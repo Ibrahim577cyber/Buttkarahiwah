@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Butt Karahi - Complete Digital Menu</title>
-    
-    <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
     <style>
         :root { 
             --primary: #b32d2e; 
@@ -24,14 +21,55 @@
         header { 
             background: var(--primary); 
             color: white; 
-            padding: 20px; 
+            padding: 12px 20px; 
             text-align: center; 
             position: sticky; 
             top: 0; 
             z-index: 1000; 
             box-shadow: 0 4px 15px rgba(0,0,0,0.15);
             animation: slideDown 0.6s ease-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
+        header p {
+            margin: 2px 0 0 0;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.85);
+        }
+        .reference-notice {
+            margin: 4px 0 0 0;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #ffe0e0;
+            background: rgba(0, 0, 0, 0.15);
+            padding: 2px 10px;
+            border-radius: 10px;
+        }
+        .home-btn {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            background: var(--primary);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 1100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transition: 0.2s;
+            text-decoration: none;
+            border: none;
+        }
+        .home-btn:hover { transform: scale(1.05); background: #8e2323; }
         
         @keyframes slideDown {
             from { transform: translateY(-100%); opacity: 0; }
@@ -41,7 +79,7 @@
         header h1 { 
             margin: 0; 
             letter-spacing: 1px; 
-            font-size: 1.6rem; 
+            font-size: 1.4rem; 
             text-transform: uppercase; 
             color: antiquewhite;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
@@ -50,16 +88,16 @@
         .cat-nav { 
             display: flex; 
             overflow-x: auto; 
-            background: white; 
+            background: #ffffff !important; 
             padding: 12px; 
             gap: 10px; 
             border-bottom: 1px solid #eee; 
             position: sticky; 
-            top: 85px; 
+            top: 85px; /* Adjusted to perfectly clear the newly padded header */
             z-index: 999; 
             scrollbar-width: none;
             animation: fadeInUp 0.5s ease-out;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
         }
         .cat-nav::-webkit-scrollbar { display: none; }
         
@@ -90,7 +128,7 @@
         }
 
         .container { max-width: 600px; margin: auto; padding: 15px; }
-        .category-section { scroll-margin-top: 160px; }
+        .category-section { scroll-margin-top: 165px; /* Adjusted for navigation offset */ }
         
         .category-title { 
             background: var(--accent); 
@@ -170,16 +208,29 @@
             align-items: center; justify-content: center; border: 2px solid white;
         }
         
-        #cartModal { 
+        #cartModal, #addonsModal { 
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(0,0,0,0.8); z-index: 2000; backdrop-filter: blur(8px);
         }
         .modal-content { 
             position: absolute; bottom: 0; left: 0; right: 0; background: white; 
-            border-radius: 30px 30px 0 0; padding: 30px; max-height: 85vh; overflow-y: auto;
+            border-radius: 30px 30px 0 0; padding: 25px; max-height: 85vh; overflow-y: auto;
             animation: slideUp 0.4s;
         }
-        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        .addons-modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 30px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 20px;
+            animation: scaleIn 0.3s;
+        }
         
         .delivery-modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -215,7 +266,6 @@
             background: white;
         }
         .payment-option.selected { border-color: var(--whatsapp); background: #f0fff4; }
-        .payment-option:hover { border-color: var(--primary); transform: translateX(5px); }
         .payment-name { font-weight: 800; font-size: 1rem; display: flex; align-items: center; gap: 10px; }
         .payment-details { font-size: 0.75rem; color: #666; margin-top: 8px; padding-left: 28px; }
         .bank-details { background: #f5f5f5; padding: 12px; border-radius: 12px; margin-top: 8px; font-size: 0.8rem; }
@@ -232,13 +282,51 @@
         .close-image { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
         
         @keyframes bounceIn { 0% { transform: scale(0); } 60% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        
+        .cart-addons { font-size: 0.7rem; color: #2e7d32; margin-top: 4px; }
+        .cart-item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .cart-item-details { flex: 2; }
+        .cart-item-controls { display: flex; align-items: center; gap: 8px; }
+        .addon-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .btn-addon {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .btn-addon.added {
+            background: #2e7d32;
+        }
+        .btn-back {
+            background: #2e7d32;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
 
+<button class="home-btn" onclick="window.location.href='index.html'">🏠</button>
+
 <header>
     <h1>Butt Karahi</h1>
     <p>AUTHENTIC LAHORI TASTE</p>
+    <div class="reference-notice">⚠️ Images are just for reference</div>
 </header>
 
 <div class="cat-nav" id="catNav"></div>
@@ -249,15 +337,28 @@
     <div class="cart-badge" id="badge">0</div>
 </div>
 
+<!-- Cart Modal: Delivery charges row REMOVED as requested -->
 <div id="cartModal" onclick="toggleCart()">
     <div class="modal-content" onclick="event.stopPropagation()">
-        <div class="close-line" style="width:50px;height:6px;background:#e0e0e0;border-radius:10px;margin:-10px auto 20px" onclick="toggleCart()"></div>
+        <div style="width:50px;height:6px;background:#e0e0e0;border-radius:10px;margin:-10px auto 20px" onclick="toggleCart()"></div>
         <h2 style="margin-top:0;color:var(--primary)">Your Order</h2>
         <div id="cartItemsList"></div>
-        <div style="display:flex;justify-content:space-between;margin-top:25px;font-weight:900;font-size:1.3rem;border-top:2px solid #f5f5f5;padding-top:20px">
+        <button class="confirm-delivery" style="background:#2e7d32; margin:15px 0;" onclick="openAddonsModal()">➕ Add Add-ons (Naan, Drinks, etc.)</button>
+        <!-- deliveryChargeRow div completely removed: no "Delivery Charges:" statement appears here -->
+        <div style="display:flex;justify-content:space-between;margin-top:15px;font-weight:900;font-size:1.3rem;border-top:2px solid #f5f5f5;padding-top:15px">
             <span>Total:</span><span id="totalPrice" style="color:var(--primary)">Rs 0</span>
         </div>
         <button class="order-btn" style="background:#25D366;color:white;border:none;width:100%;padding:20px;border-radius:18px;font-weight:800;margin-top:25px;cursor:pointer" onclick="proceedToCheckout()">Proceed to Checkout</button>
+    </div>
+</div>
+
+<div id="addonsModal" onclick="closeAddonsModal()">
+    <div class="addons-modal-content" onclick="event.stopPropagation()">
+        <h3 style="color:var(--primary); margin-top:0;">➕ Add-ons Menu</h3>
+        <p style="font-size:0.8rem;">Naan, Breads, Raita, Salad, Desserts, Beverages & more</p>
+        <div id="addonsList"></div>
+        <button class="cancel-btn btn-back" onclick="closeAddonsModal()">← Back to Cart</button>
+        <button class="cancel-btn" onclick="closeAddonsModal()">Close</button>
     </div>
 </div>
 
@@ -265,7 +366,8 @@
     <div class="delivery-card">
         <h3 style="color:var(--primary)">📦 Order Type</h3>
         <div class="delivery-options">
-            <div class="delivery-option" onclick="selectOrderType('pickup')">🍽️ Pickup</div>
+            <div class="delivery-option" onclick="selectOrderType('dinein')">🍽️ Dine-in</div>
+            <div class="delivery-option" onclick="selectOrderType('pickup')">🏠 Pickup</div>
             <div class="delivery-option" onclick="selectOrderType('delivery')">🚚 Home Delivery</div>
         </div>
         <div id="deliveryDetails" style="display:none">
@@ -276,47 +378,23 @@
             <div id="paymentSection" style="display:none; margin-top: 20px;">
                 <hr><h4>💳 Payment Method</h4>
                 <div class="payment-options">
-                    <div class="payment-option" onclick="selectPayment('cod')" id="payment_cod">
-                        <div class="payment-name">💵 Cash on Delivery</div>
-                        <div class="payment-details">Pay when you receive your order</div>
-                    </div>
-                    <div class="payment-option" onclick="selectPayment('bank')" id="payment_bank">
-                        <div class="payment-name">🏦 Meezan Bank Transfer</div>
-                        <div class="payment-details">Online transfer or bank deposit</div>
-                        <div class="bank-details" id="bankDetails" style="display:none;">
-                            <p><strong>Account Holder:</strong> Shabbir Aziz</p>
-                            <p><strong>Bank:</strong> Meezan Bank</p>
-                            <p><strong>Account Number:</strong> 03080102761475</p>
-                            <p style="font-size:0.7rem;">⚠️ Ask for the Delivery CHARGES and wait for the ORDER to CONFIRM then After transfer, send screenshot to WhatsApp</p>
-                        </div>
-                    </div>
+                    <div class="payment-option" onclick="selectPayment('cod')" id="payment_cod"><div class="payment-name">💵 Cash on Delivery</div></div>
+                    <div class="payment-option" onclick="selectPayment('bank')" id="payment_bank"><div class="payment-name">🏦 Meezan Bank Transfer</div><div class="bank-details" id="bankDetails" style="display:none;"><p>Account: Shabbir Aziz | 03080102761475</p></div></div>
                 </div>
             </div>
-            <button class="confirm-delivery" id="confirmBtn" onclick="confirmDeliveryLocation()">✅ Confirm & Continue</button>
+            <button class="confirm-delivery" onclick="confirmDeliveryLocation()">✅ Confirm & Continue</button>
         </div>
         <div id="pickupDetails" style="display:none">
             <hr><h4>🏠 Pickup</h4>
             <p><strong>Butt Karahi, GT Road, Wah Cantt</strong></p>
-            <div id="paymentSectionPickup" style="margin-top: 20px;">
-                <hr><h4>💳 Payment Method</h4>
-                <div class="payment-options">
-                    <div class="payment-option" onclick="selectPaymentPickup('cod')" id="pickup_payment_cod">
-                        <div class="payment-name">💵 Cash on Pickup</div>
-                        <div class="payment-details">Pay when you pick up your order</div>
-                    </div>
-                    <div class="payment-option" onclick="selectPaymentPickup('bank')" id="pickup_payment_bank">
-                        <div class="payment-name">🏦 Meezan Bank Transfer</div>
-                        <div class="payment-details">Online transfer before pickup</div>
-                        <div class="bank-details" id="bankDetailsPickup" style="display:none;">
-                            <p><strong>Account Holder:</strong> Shabbir Aziz</p>
-                            <p><strong>Bank:</strong> Meezan Bank</p>
-                            <p><strong>Account Number:</strong> 03080102761475</p>
-                            <p style="font-size:0.7rem;">⚠️ After transfer, send screenshot to WhatsApp,And wait for the reply and ask for the delivery charges</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="confirm-delivery" id="confirmPickupBtn" onclick="confirmPickup()">👍 Confirm Pickup</button>
+            <div id="paymentSectionPickup"><hr><h4>💳 Payment</h4><div class="payment-options"><div class="payment-option" onclick="selectPaymentPickup('cod')" id="pickup_payment_cod"><div class="payment-name">💵 Cash on Pickup</div></div><div class="payment-option" onclick="selectPaymentPickup('bank')" id="pickup_payment_bank"><div class="payment-name">🏦 Meezan Bank Transfer</div><div class="bank-details" id="bankDetailsPickup" style="display:none;"><p>Account: Shabbir Aziz | 03080102761475</p></div></div></div></div>
+            <button class="confirm-delivery" onclick="confirmPickup()">👍 Confirm Pickup</button>
+        </div>
+        <div id="dineinDetails" style="display:none">
+            <hr><h4>🍽️ Dine-in</h4>
+            <p>Butt Karahi, GT Road, Wah Cantt – No delivery charges.</p>
+            <div id="paymentSectionDinein"><hr><h4>💳 Payment</h4><div class="payment-options"><div class="payment-option" onclick="selectPaymentDinein('cash')" id="dinein_payment_cash"><div class="payment-name">💵 Cash at Restaurant</div></div><div class="payment-option" onclick="selectPaymentDinein('bank')" id="dinein_payment_bank"><div class="payment-name">🏦 Meezan Bank Transfer</div><div class="bank-details" style="display:none;"><p>Account: Shabbir Aziz | 03080102761475</p></div></div></div></div>
+            <button class="confirm-delivery" onclick="confirmDineIn()">✅ Confirm Dine-in</button>
         </div>
         <button class="cancel-btn" onclick="closeDeliveryModal()">Cancel</button>
     </div>
@@ -324,7 +402,7 @@
 
 <div id="imageModal" class="image-modal" onclick="closeImageModal()">
     <span class="close-image">&times;</span>
-    <img id="previewImage" src="" alt="">
+    <img id="previewImage" src="">
 </div>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -333,11 +411,11 @@ AOS.init({ duration: 600, once: true, offset: 50 });
 
 const CLIENT_WHATSAPP = "923320929999";
 let pendingOrderMessage = "";
-let selectedPayment = null;
-let selectedPaymentPickup = null;
+let selectedPayment = null, selectedPaymentPickup = null, selectedPaymentDinein = null;
 let cart = {};
+let currentOrderType = null;
+const DELIVERY_FEE = 250;
 
-// Delivery area validation
 const ALLOWED_LOCATION_KEYWORDS = [
     "hassan abdal", "hassanabdul", "hassan", "abdal", "mankiala", "sanjarwal", "tarnol",
     "jalal khan", "jhangi", "burhan", "khanpur road", "gharial", "sangjani",
@@ -345,315 +423,164 @@ const ALLOWED_LOCATION_KEYWORDS = [
     "dhoke dollian", "dhoke", "cement company", "panja sahib", "panja",
     "wah cantt", "wah", "sector", "phase", "people colony", "askari", "bahria", 
     "army housing", "police colony", "model town", "gulshan", "shams abad", 
-    "taxila", "texila", "mohra moradu", "julian", "sirsukh", "badal pur", "saffron city"
+    "taxila", "texila", "mohra moradu", "julian", "sirsukh", "badal pur", 
+    "saffron city", "wah garden", "new city", "ghazi", "haripur road", "sangjani", "shahpur"
 ];
-
-function isLocationAllowed(location) {
-    if (!location || location.trim() === "") return false;
-    const lowerLoc = location.toLowerCase().trim();
-    for (let kw of ALLOWED_LOCATION_KEYWORDS) {
-        if (lowerLoc.includes(kw)) return true;
-    }
-    return false;
-}
-
-// Complete Image Map for every item
+function isLocationAllowed(loc) { if(!loc) return false; return ALLOWED_LOCATION_KEYWORDS.some(k => loc.toLowerCase().includes(k)); }
 const imageMap = {
-    // Desi Murgh Karahi
-    "Desi Murgh Karahi": "https://i.postimg.cc/8PJq3jqc/Desi-Chicken-Karahi-Butt-Karahi-Waseem-Islamabad-1.png",
-    "Desi Murgh Karahi White": "https://i.postimg.cc/25ZdNfCJ/Screenshot-20260515-192652.png",
-    
-    // Chicken Karahi
-    "Chicken Karahi Broiler": "https://i.postimg.cc/d0Bbj2GQ/images-(4).jpg",
-    "Chicken White Karahi": "https://i.postimg.cc/q7kYqNWB/images-(10).jpg",
-    "Chicken Green Karahi": "https://i.postimg.cc/bYHbPL1Z/maxresdefault-(1).jpg",
-    "Chicken Achari Karahi": "https://i.postimg.cc/TPD9Rf3R/images-(11).jpg",
-    
-    // Mutton Karahi
-    "Mutton Karahi": "https://i.postimg.cc/85xhw8yP/22092ee266c1d57859cda83a0da4ef5f.jpg",
-    "Mutton Green Karahi": "https://i.postimg.cc/WzHsVQ8v/images-(12).jpg",
-    "Mutton Achari Karahi": "https://i.postimg.cc/RZrzT1bs/images-(13).jpg",
-    "Mutton White Karahi": "https://i.postimg.cc/HnfFBH3p/images-(14).jpg",
-    
-    // Special Karahi & Fry
-    "Beef Tikka Karahi": "https://i.postimg.cc/521fVqq9/92f903cd-a54d-42c8-89f5-89ca0b9ab0bc.webp",
-    "Batair Karahi": "https://i.postimg.cc/kgMLsjvw/images-(15).jpg",
-    "Fish Karahi": "https://i.postimg.cc/rFffVq5z/maxresdefault-(2).jpg",
-    "Jangli Karahi": "https://i.postimg.cc/SRszDbjJ/hq720.jpg",
-    "Beef Kabab Fry Plate": "https://i.postimg.cc/RVXqgZHF/images-(24).jpg",
-    "Chicken Boti Fry 10pc": "https://i.postimg.cc/yND1Q6ym/hq720-(1).jpg",
-    "Chicken Kabab Fry Plate": "https://i.postimg.cc/bwB8tcfL/andhra-chicken-fry-chicken-indian-chicken-fry-kerala-chicken-fry-chicken-hot-kabab-kebab-spicy-dish.jpg",
-    "Chicken Tawa Piece": "https://i.postimg.cc/RF1jG2yg/maxresdefault-(3).jpg",
-    "Chicken Qeema Fry": "https://i.postimg.cc/XYFxwdTG/images-(17).jpg",
-    "Beef Qeema Fry": "https://i.postimg.cc/K8L7d2GJ/images-(36).jpg",
-    "Mutton Kabab Fry": "https://i.postimg.cc/8cJLTVGy/hq720-(2).jpg",
-    "Mutton Qeema Fry": "https://i.postimg.cc/yNLR9NY3/images-(18).jpg",
-    "Grill Fish (Kg)": "https://i.postimg.cc/PqTVt45V/Screenshot-20260515-193302.png",
-    "Rahu Fry Crispy Fish (Kg)": "https://i.postimg.cc/rFffVq5z/maxresdefault-(2).jpg",
-    "Finger Fish 10 Pc": "https://i.postimg.cc/CL7Xq2Q8/Fish-Tikka-Bites.jpg",
-    
-    // Special Handi
-    "Chicken Handi": "https://i.postimg.cc/DZRn1fPQ/75543821.jpg",
-    "Chicken Jalfrezi": "https://i.postimg.cc/wB42Xz6L/images-(19).jpg",
-    "Makhani Handi": "https://i.postimg.cc/QChFVBRn/images-(20).jpg",
-    "Chicken Ginger": "https://i.postimg.cc/XvDMptt3/images-(21).jpg",
-    "Chicken Achari": "https://i.postimg.cc/Cx3kSKL4/images-(22).jpg",
-    "Chicken White": "https://i.postimg.cc/m2cPkGqZ/images-(23).jpg",
-    "Mutton Handi": "https://i.postimg.cc/nhWbL66y/DUM-MUTTON-HANDIi.jpg",
-    
-    // Chinese
-    "Butt Special Chicken Cashew Nuts": "https://i.postimg.cc/pVk2H1LV/images-(25).jpg",
-    "Chicken Hot Garlic": "https://i.postimg.cc/Fs7QQr6H/images-(26).jpg",
-    "Chicken Szechuan": "https://i.postimg.cc/KzvHrQS5/images-(27).jpg",
-    "Kung Pao Chicken": "https://i.postimg.cc/2SSGty9J/images-(28).jpg",
-    "Chicken Manchurian": "https://i.postimg.cc/435Jx8Q9/images-(29).jpg",
-    "Chicken Chilli Dry": "https://i.postimg.cc/c1YdK4h1/images-(30).jpg",
-    "Chicken Chilli Vegetable": "https://i.postimg.cc/QdCPTfDQ/images-(31).jpg",
-    "Chicken Shashlik": "https://i.postimg.cc/3x9vPZ0c/images-(32).jpg",
-    "Mangolian Chicken": "https://i.postimg.cc/7L0y5K1j/images-(33).jpg",
-    "Black Pepper Chicken": "https://i.postimg.cc/CdTGxLwC/images-(34).jpg",
-    "Chicken Roasted Almond": "https://i.postimg.cc/B6PNSz2r/images-(35).jpg",
-    "Beef Chilli Dry": "https://i.postimg.cc/yYjhHKwN/IMG-0155.jpg",
-    
-    // Soups & Pasta
-    "Butt Special Soup": "https://i.postimg.cc/BQh8VqVm/Hot-and-Sour-Soup-Vegetarian.jpg",
-    "Chicken Corn Soup": "https://i.postimg.cc/bJzpPnGG/hq720.jpg",
-    "Hot & Sour Soup": "https://i.postimg.cc/SsNF3p5H/Hot-and-sour-soup-4.jpg",
-    "Thai Soup": "https://i.postimg.cc/vTJKYRPp/creamy-thai-coconut-soup.jpg",
-    "Chicken Cream Soup": "https://i.postimg.cc/vBkyVNqk/Cream-of-chicken-Soup.jpg",
-    "French Fries": "https://i.postimg.cc/fbbQgN1Y/Copycat-Mc-Donalds-French-Fries.jpg",
-    "Alfredo Pasta": "https://i.postimg.cc/28fRNvPd/alfredopasta5-500x500.jpg",
-    "Chicken Crunchy Pasta": "https://i.postimg.cc/tJ3c4SLd/1694601178-p-JQPzi.webp",
-    "Chicken Taragon Pasta": "https://i.postimg.cc/KvsPgrxb/Screenshot-20260515-144108.png",
-    
-    // Rice
-    "Butt Special Chow Mein": "https://i.postimg.cc/tTXZcYpS/Screenshot-20260515-144205.png",
-    "Chicken Chow Mein": "https://i.postimg.cc/6QKy7y2n/Easy-Chicken-Chow-Mein-1.jpg",
-    "Vegetable Chow Mein": "https://i.postimg.cc/K8PYyxqk/Veg-Chowmein.jpg",
-    "Butt Special Rice": "https://i.postimg.cc/G3fP4xc4/Screenshot-20260515-145107.png",
-    "Chicken Masala Rice": "https://i.postimg.cc/m20S5NqV/instant-pot-chicken-tikka-masala-rice-one-pot-500x500.jpg",
-    "Chicken Fried Rice": "https://i.postimg.cc/G3fP4xc4/Screenshot-20260515-145107.png",
-    "Egg Fried Rice": "https://i.postimg.cc/5jcFnp0C/Egg-fried-rice-2.jpg",
-    
-    // BBQ
-    "Chicken Kabab (4 Piece)": "https://i.postimg.cc/zGxT1CPJ/chicken-kabab-Butt-Karahi-Waseem-Islamabad.jpg",
-    "Chicken Cheese Kabab (4 Piece)": "https://i.postimg.cc/xjLHdDF4/Chicken-Cheez-Kabab-Butt-Karahi-Waseem-Islamabad.jpg",
-    "Turkish Kabab (4 Piece)": "https://i.postimg.cc/ZKT9K9NT/Turkish-Kebabs-min.jpg",
-    "Beef Kabab (4 Piece)": "https://i.postimg.cc/sDDXCkFp/Beef-Kabab-Butt-Karahi-Waseem-Islamabad.jpg",
-    "Beef Tikka 500g": "https://i.postimg.cc/LX2SBP2X/Screenshot-20260515-145916.png",
-    "Reshmi Kabab (4 Piece)": "https://i.postimg.cc/1zchtzw9/Reshmi-Kabab-Butt-Karahi-Waseem-Islamabad.jpg",
-    "Mutton Kabab (4 Piece)": "https://i.postimg.cc/s2DdMrcm/image-6e77de17-1.png",
-    "Chicken Boti (10 Pc)": "https://i.postimg.cc/d1bxjP2s/Chicken-Boti-Kabab-24.jpg",
-    "Batair (5 Pc)": "https://i.postimg.cc/T1jCjy2J/BBQ-quail-500x500-1-(1).jpg",
-    "Chicken Achari Boti (10 Pc)": "https://i.postimg.cc/SNyrFxN7/hq720-(1).jpg",
-    "Chicken Tikka": "https://i.postimg.cc/9XBdpHt0/Chicken-Tikka-1-scaled.webp",
-    "Malai Tikka": "https://i.postimg.cc/tJm7Mk45/chicken-malai-tikka-2220-500x500.jpg",
-    "Malai Boti Plate": "https://i.postimg.cc/vBYB8k1h/chicken-malai-boti-with-green-chutney-1.jpg",
-    "Chicken Green Malai Boti": "https://i.postimg.cc/9XvDZxs1/hq720-(2).jpg",
-    "Kastoori Boti Plate": "https://i.postimg.cc/xd4fY82n/maxresdefault-(2).jpg",
-    "Peshawari Boti (Kg)": "https://i.postimg.cc/nc2tprKV/5-ingredient-peshawari-namkeen-boti-recipe-main-photo.jpg",
-    "Mutton Namkeen Tikka (kg)": "https://i.postimg.cc/qMk9brPQ/hq720-(3).jpg",
-    "Full Chargha Namkeen": "https://i.postimg.cc/Y0X8D5gK/Screenshot-20260515-151735-1.jpg",
-    "Masala Chargha": "https://i.postimg.cc/ZqnSnmbD/lahori-chargha-13.jpg",
-    "Fish Tikka (10 Pc)": "https://i.postimg.cc/CL7Xq2Q8/Fish-Tikka-Bites.jpg",
-    
-    // Platters
-    "1 Person Platter": "https://i.postimg.cc/W4C1xXjp/1778859477067.png",
-    "BBQ Platter (1)": "https://i.postimg.cc/C5VkpF0t/Screenshot-20260515-204231.png",
-    "BBQ Platter (2)": "https://i.postimg.cc/05FHr4d8/Screenshot-20260515-204633.png",
-    "BBQ Platter (3)": "https://i.postimg.cc/sfMsttgg/Screenshot-20260515-205449.png",
-    "Family Platter": "https://i.postimg.cc/wvCqWVJX/1778860669262.png",
-    
-    // Midnight Deals
-    "Midnight Deal 1": "https://i.postimg.cc/RVP840p3/1778860812709.png",
-    "Midnight Deal 2": "https://i.postimg.cc/KzBjhwZZ/1778861304895.png",
-    "Midnight Deal 3": "https://i.postimg.cc/c48Y49Xn/1778861058313.png",
-    "Midnight Deal 4": "https://i.postimg.cc/s2pCjrZ0/1778861416023.png",
-    "Midnight Deal 5": "https://i.postimg.cc/Mp2sWjb8/1778861549313.png",
-    "Midnight Signature Deal": "https://i.postimg.cc/7Z5mMnHz/Screenshot-20260515-211641.png",
-    
-    // Naan
-    "Roghni Naan": "https://i.postimg.cc/DZ81PJZ3/roghni-naan-featured.jpg",
-    "Kalonji Naan": "https://i.postimg.cc/gj4dcJVz/Snappy-ka-Kalonji-Naan.webp",
-    "Garlic Naan": "https://i.postimg.cc/wxFdm1NT/images-(37).jpg",
-    "Zeera Naan": "https://i.postimg.cc/TwYtM33h/sddefault.jpg",
-    "Cheese Naan": "https://i.postimg.cc/s2ZhBFH6/Cheese-Stuffed-Naan-Bread-2.jpg",
-    "Chicken Naan": "https://i.postimg.cc/cJ4djfwg/hq720-(3).jpg",
-    "Beef Naan": "https://i.postimg.cc/qRyDx5qD/High-Protein-Keema-Naan-Beef-Stuffed-Flatbread-12.jpg",
-    "Ginger Naan": "https://i.postimg.cc/Pq8SdRWp/ginger.jpg",
-    "Achari Naan": "https://i.postimg.cc/BQXHW15d/images-(38).jpg",
-    "Plain Roti": "https://i.postimg.cc/XqZJP9S4/images-(39).jpg",
-    "Plain Naan": "https://i.postimg.cc/BZdH0nhZ/images-(40).jpg",
-    "Khamiri Roti": "https://i.postimg.cc/g2GwzX3H/images-(41).jpg",
-    "Raita": "https://i.postimg.cc/3RYf9ZG4/images-(42).jpg",
-    "Mint Raita": "https://i.postimg.cc/VNCP2455/Screenshot-20260515-195110.png",
-    "Salad": "https://i.postimg.cc/qMPLjLfX/images-(43).jpg",
-    "Makhan Extra": "https://i.postimg.cc/cL7QTGBM/images-(44).jpg",
-    "Olive Oil Extra": "https://i.postimg.cc/hPTyFw1N/images-(45).jpg",
-    "Gulab Jaman": "https://i.postimg.cc/1tbH2cnK/images-(46).jpg",
-    "Kheer": "https://i.postimg.cc/X7bK5v9D/images-(47).jpg",
-    "Qawa": "https://i.postimg.cc/L5RqJnGz/6d6a92427ad7e94637985705bbc448b7.jpg",
-    "Tea": "https://i.postimg.cc/wBLTD95T/DSC04958-500x500.jpg",
-    
-    // Beverages
-    "Mint Margarita": "https://i.postimg.cc/j5vTh2L6/images-(48).jpg",
-    "Classic Lemonade": "https://i.postimg.cc/Hs8GrB9G/images-(49).jpg",
-    "Peach Lemonade": "https://i.postimg.cc/pd21JZzv/images-(50).jpg",
-    "Mint Lemonade": "https://i.postimg.cc/KzKXtfhz/images-(51).jpg",
-    "Blue Lemonade": "https://i.postimg.cc/dVngXpqP/images-(52).jpg",
-    "Pink Lady Mocktail": "https://i.postimg.cc/Gm35kKk9/pink-lady-mocktail-featured.jpg",
-    "Sweet Lassi": "https://i.postimg.cc/bYQCWWgd/images-(53).jpg",
-    "Salted Lassi": "https://i.postimg.cc/ncFk5zMk/images-(54).jpg",
-    "Mineral Water Large": "https://i.postimg.cc/Njy1qrtK/download-1.jpg",
-    "Mineral Water Small": "https://i.postimg.cc/tJSV89mv/330ml-2.jpg",
-    "Soft Drink Can": "https://i.postimg.cc/nVRjFc0K/main-qimg-8eff3354383e7f1884c8ab055676ca21-c.jpg",
-    "Cold Drink 1 Ltr": "https://i.postimg.cc/xCdfhLrs/aje-big-soft-drink-mix-802398198-tsegaj8y.jpg",
-    "Cold Drink 1.5 Ltr": "https://i.postimg.cc/9QjWV65k/images-(55).jpg"
+  "Desi Murgh Karahi": "https://i.postimg.cc/hPfbmcXB/t1wf-hero.jpg",
+  "Desi Murgh Karahi White": "https://i.postimg.cc/c4y4RcH0/hq720-(5).jpg",
+  "Chicken Karahi Broiler": "https://i.postimg.cc/d0Bbj2GQ/images-(4).jpg",
+  "Chicken White Karahi": "https://i.postimg.cc/4yhyJLx2/Chicken-Cheese-White-Karahi-Recipe-by-Food-fusion-2-1.jpg",
+  "Chicken Green Karahi": "https://i.postimg.cc/bYHbPL1Z/maxresdefault-(1).jpg",
+  "Chicken Achari Karahi": "https://i.postimg.cc/TPD9Rf3R/images-(11).jpg",
+  "Mutton Karahi": "https://i.postimg.cc/pr7W4DQ5/Screenshot-20260520-172448.png",
+  "Mutton Green Karahi": "https://i.postimg.cc/WzHsVQ8v/images-(12).jpg",
+  "Mutton Achari Karahi": "https://i.postimg.cc/RZrzT1bs/images-(13).jpg",
+  "Mutton White Karahi": "https://i.postimg.cc/HnfFBH3p/images-(14).jpg",
+  "Beef Tikka Karahi": "https://i.postimg.cc/521fVqq9/92f903cd-a54d-42c8-89f5-89ca0b9ab0bc.webp",
+  "Batair Karahi": "https://i.postimg.cc/kgMLsjvw/images-(15).jpg",
+  "Fish Karahi": "https://i.postimg.cc/rFffVq5z/maxresdefault-(2).jpg",
+  "Jangli Karahi": "https://i.postimg.cc/SxK0CXW0/hq720-(4).jpg",
+  "Beef Kabab Fry Plate": "https://i.postimg.cc/RVXqgZHF/images-(24).jpg",
+  "Chicken Boti Fry 10pc": "https://i.postimg.cc/yND1Q6ym/hq720-(1).jpg",
+  "Chicken Kabab Fry Plate": "https://i.postimg.cc/bwB8tcfL/andhra-chicken-fry-chicken-indian-chicken-fry-kerala-chicken-fry-chicken-hot-kabab-kebab-spicy-dish.jpg",
+  "Chicken Tawa Piece": "https://i.postimg.cc/RF1jG2yg/maxresdefault-(3).jpg",
+  "Chicken Qeema Fry": "https://i.postimg.cc/XYFxwdTG/images-(17).jpg",
+  "Beef Qeema Fry": "https://i.postimg.cc/K8L7d2GJ/images-(36).jpg",
+  "Mutton Kabab Fry": "https://i.postimg.cc/8cJLTVGy/hq720-(2).jpg",
+  "Mutton Qeema Fry": "https://i.postimg.cc/yNLR9NY3/images-(18).jpg",
+  "Grill Fish (Kg)": "https://i.postimg.cc/PqTVt45V/Screenshot-20260515-193302.png",
+  "Rahu Fry Crispy Fish (Kg)": "https://i.postimg.cc/rFffVq5z/maxresdefault-(2).jpg",
+  "Finger Fish 10 Pc": "https://i.postimg.cc/CL7Xq2Q8/Fish-Tikka-Bites.jpg",
+  "Chicken Handi": "https://i.postimg.cc/DZRn1fPQ/75543821.jpg",
+  "Chicken Jalfrezi": "https://i.postimg.cc/wB42Xz6L/images-(19).jpg",
+  "Makhani Handi": "https://i.postimg.cc/QChFVBRn/images-(20).jpg",
+  "Chicken Ginger": "https://i.postimg.cc/XvDMptt3/images-(21).jpg",
+  "Chicken Achari": "https://i.postimg.cc/Cx3kSKL4/images-(22).jpg",
+  "Chicken White": "https://i.postimg.cc/vm3dCrbm/White-Chicken-Karahi-3.jpg",
+  "Mutton Handi": "https://i.postimg.cc/nhWbL66y/DUM-MUTTON-HANDIi.jpg",
+  "Butt Special Chicken Cashew Nuts": "https://i.postimg.cc/pVk2H1LV/images-(25).jpg",
+  "Chicken Hot Garlic": "https://i.postimg.cc/Fs7QQr6H/images-(26).jpg",
+  "Chicken Szechuan": "https://i.postimg.cc/KzvHrQS5/images-(27).jpg",
+  "Kung Pao Chicken": "https://i.postimg.cc/2SSGty9J/images-(28).jpg",
+  "Chicken Manchurian": "https://i.postimg.cc/435Jx8Q9/images-(29).jpg",
+  "Chicken Chilli Dry": "https://i.postimg.cc/c1YdK4h1/images-(30).jpg",
+  "Chicken Chilli Vegetable": "https://i.postimg.cc/QdCPTfDQ/images-(31).jpg",
+  "Chicken Shashlik": "https://i.postimg.cc/3x9vPZ0c/images-(32).jpg",
+  "Mangolian Chicken": "https://i.postimg.cc/7L0y5K1j/images-(33).jpg",
+  "Black Pepper Chicken": "https://i.postimg.cc/CdTGxLwC/images-(34).jpg",
+  "Chicken Roasted Almond": "https://i.postimg.cc/B6PNSz2r/images-(35).jpg",
+  "Beef Chilli Dry": "https://i.postimg.cc/yYjhHKwN/IMG-0155.jpg",
+  "Butt Special Soup": "https://i.postimg.cc/BQh8VqVm/Hot-and-Sour-Soup-Vegetarian.jpg",
+  "Chicken Corn Soup": "https://i.postimg.cc/bJzpPnGG/hq720.jpg",
+  "Hot & Sour Soup": "https://i.postimg.cc/SsNF3p5H/Hot-and-sour-soup-4.jpg",
+  "Thai Soup": "https://i.postimg.cc/vTJKYRPp/creamy-thai-coconut-soup.jpg",
+  "Chicken Cream Soup": "https://i.postimg.cc/vBkyVNqk/Cream-of-chicken-Soup.jpg",
+  "French Fries": "https://i.postimg.cc/fbbQgN1Y/Copycat-Mc-Donalds-French-Fries.jpg",
+  "Alfredo Pasta": "https://i.postimg.cc/28fRNvPd/alfredopasta5-500x500.jpg",
+  "Chicken Crunchy Pasta": "https://i.postimg.cc/tJ3c4SLd/1694601178-p-JQPzi.webp",
+  "Chicken Taragon Pasta": "https://i.postimg.cc/KvsPgrxb/Screenshot-20260515-144108.png",
+  "Butt Special Chow Mein": "https://i.postimg.cc/tTXZcYpS/Screenshot-20260515-144205.png",
+  "Chicken Chow Mein": "https://i.postimg.cc/6QKy7y2n/Easy-Chicken-Chow-Mein-1.jpg",
+  "Vegetable Chow Mein": "https://i.postimg.cc/K8PYyxqk/Veg-Chowmein.jpg",
+  "Butt Special Rice": "https://i.postimg.cc/G3fP4xc4/Screenshot-20260515-145107.png",
+  "Chicken Masala Rice": "https://i.postimg.cc/m20S5NqV/instant-pot-chicken-tikka-masala-rice-one-pot-500x500.jpg",
+  "Chicken Fried Rice": "https://i.postimg.cc/G3fP4xc4/Screenshot-20260515-145107.png",
+  "Egg Fried Rice": "https://i.postimg.cc/5jcFnp0C/Egg-fried-rice-2.jpg",
+  "Chicken Kabab (4 Piece)": "https://i.postimg.cc/zGxT1CPJ/chicken-kabab-Butt-Karahi-Waseem-Islamabad.jpg",
+  "Chicken Cheese Kabab (4 Piece)": "https://i.postimg.cc/xjLHdDF4/Chicken-Cheez-Kabab-Butt-Karahi-Waseem-Islamabad.jpg",
+  "Turkish Kabab (4 Piece)": "https://i.postimg.cc/ZKT9K9NT/Turkish-Kebabs-min.jpg",
+  "Beef Kabab (4 Piece)": "https://i.postimg.cc/sDDXCkFp/Beef-Kabab-Butt-Karahi-Waseem-Islamabad.jpg",
+  "Beef Tikka 500g": "https://i.postimg.cc/LX2SBP2X/Screenshot-20260515-145916.png",
+  "Reshmi Kabab (4 Piece)": "https://i.postimg.cc/1zchtzw9/Reshmi-Kabab-Butt-Karahi-Waseem-Islamabad.jpg",
+  "Mutton Kabab (4 Piece)": "https://i.postimg.cc/s2DdMrcm/image-6e77de17-1.png",
+  "Chicken Boti (10 Pc)": "https://i.postimg.cc/d1bxjP2s/Chicken-Boti-Kabab-24.jpg",
+  "Batair (5 Pc)": "https://i.postimg.cc/T1jCjy2J/BBQ-quail-500x500-1-(1).jpg",
+  "Chicken Achari Boti (10 Pc)": "https://i.postimg.cc/SNyrFxN7/hq720-(1).jpg",
+  "Chicken Tikka": "https://i.postimg.cc/9XBdpHt0/Chicken-Tikka-1-scaled.webp",
+  "Malai Tikka": "https://i.postimg.cc/tJm7Mk45/chicken-malai-tikka-2220-500x500.jpg",
+  "Malai Boti Plate": "https://i.postimg.cc/vBYB8k1h/chicken-malai-boti-with-green-chutney-1.jpg",
+  "Chicken Green Malai Boti": "https://i.postimg.cc/9XvDZxs1/hq720-(2).jpg",
+  "Kastoori Boti Plate": "https://i.postimg.cc/xd4fY82n/maxresdefault-(2).jpg",
+  "Peshawari Boti (Kg)": "https://i.postimg.cc/nc2tprKV/5-ingredient-peshawari-namkeen-boti-recipe-main-photo.jpg",
+  "Mutton Namkeen Tikka (kg)": "https://i.postimg.cc/qMk9brPQ/hq720-(3).jpg",
+  "Full Chargha Namkeen": "https://i.postimg.cc/Y0X8D5gK/Screenshot-20260515-151735-1.jpg",
+  "Masala Chargha": "https://i.postimg.cc/ZqnSnmbD/lahori-chargha-13.jpg",
+  "Fish Tikka (10 Pc)": "https://i.postimg.cc/CL7Xq2Q8/Fish-Tikka-Bites.jpg",
+  "1 Person Platter": "https://i.postimg.cc/W4C1xXjp/1778859477067.png",
+  "BBQ Platter (1)": "https://i.postimg.cc/C5VkpF0t/Screenshot-20260515-204231.png",
+  "BBQ Platter (2)": "https://i.postimg.cc/05FHr4d8/Screenshot-20260515-204633.png",
+  "BBQ Platter (3)": "https://i.postimg.cc/sfMsttgg/Screenshot-20260515-205449.png",
+  "Family Platter": "https://i.postimg.cc/wvCqWVJX/1778860669262.png",
+  "Midnight Deal 1": "https://i.postimg.cc/RVP840p3/1778860812709.png",
+  "Midnight Deal 2": "https://i.postimg.cc/KzBjhwZZ/1778861304895.png",
+  "Midnight Deal 3": "https://i.postimg.cc/c48Y49Xn/1778861058313.png",
+  "Midnight Deal 4": "https://i.postimg.cc/s2pCjrZ0/1778861416023.png",
+  "Midnight Deal 5": "https://i.postimg.cc/Mp2sWjb8/1778861549313.png",
+  "Midnight Signature Deal": "https://i.postimg.cc/7Z5mMnHz/Screenshot-20260515-211641.png",
+  "Roghni Naan": "https://i.postimg.cc/DZ81PJZ3/roghni-naan-featured.jpg",
+  "Kalonji Naan": "https://i.postimg.cc/gj4dcJVz/Snappy-ka-Kalonji-Naan.webp",
+  "Garlic Naan": "https://i.postimg.cc/wxFdm1NT/images-(37).jpg",
+  "Zeera Naan": "https://i.postimg.cc/TwYtM33h/sddefault.jpg",
+  "Cheese Naan": "https://i.postimg.cc/s2ZhBFH6/Cheese-Stuffed-Naan-Bread-2.jpg",
+  "Chicken Naan": "https://i.postimg.cc/cJ4djfwg/hq720-(3).jpg",
+  "Beef Naan": "https://i.postimg.cc/qRyDx5qD/High-Protein-Keema-Naan-Beef-Stuffed-Flatbread-12.jpg",
+  "Ginger Naan": "https://i.postimg.cc/Pq8SdRWp/ginger.jpg",
+  "Achari Naan": "https://i.postimg.cc/BQXHW15d/images-(38).jpg",
+  "Plain Roti": "https://i.postimg.cc/XqZJP9S4/images-(39).jpg",
+  "Plain Naan": "https://i.postimg.cc/BZdH0nhZ/images-(40).jpg",
+  "Khamiri Roti": "https://i.postimg.cc/g2GwzX3H/images-(41).jpg",
+  "Raita": "https://i.postimg.cc/3RYf9ZG4/images-(42).jpg",
+  "Mint Raita": "https://i.postimg.cc/VNCP2455/Screenshot-20260515-195110.png",
+  "Salad": "https://i.postimg.cc/qMPLjLfX/images-(43).jpg",
+  "Makhan Extra": "https://i.postimg.cc/cL7QTGBM/images-(44).jpg",
+  "Olive Oil Extra": "https://i.postimg.cc/hPTyFw1N/images-(45).jpg",
+  "Gulab Jaman": "https://i.postimg.cc/1tbH2cnK/images-(46).jpg",
+  "Kheer": "https://i.postimg.cc/X7bK5v9D/images-(47).jpg",
+  "Qawa": "https://i.postimg.cc/L5RqJnGz/6d6a92427ad7e94637985705bbc448b7.jpg",
+  "Tea": "https://i.postimg.cc/wBLTD95T/DSC04958-500x500.jpg",
+  "Mint Margarita": "https://i.postimg.cc/j5vTh2L6/images-(48).jpg",
+  "Classic Lemonade": "https://i.postimg.cc/Hs8GrB9G/images-(49).jpg",
+  "Peach Lemonade": "https://i.postimg.cc/pd21JZzv/images-(50).jpg",
+  "Mint Lemonade": "https://i.postimg.cc/KzKXtfhz/images-(51).jpg",
+  "Blue Lemonade": "https://i.postimg.cc/dVngXpqP/images-(52).jpg",
+  "Pink Lady Mocktail": "https://i.postimg.cc/Gm35kKk9/pink-lady-mocktail-featured.jpg",
+  "Sweet Lassi": "https://i.postimg.cc/bYQCWWgd/images-(53).jpg",
+  "Salted Lassi": "https://i.postimg.cc/ncFk5zMk/images-(54).jpg",
+  "Mineral Water Large": "https://i.postimg.cc/Njy1qrtK/download-1.jpg",
+  "Mineral Water Small": "https://i.postimg.cc/tJSV89mv/330ml-2.jpg",
+  "Soft Drink Can": "https://i.postimg.cc/nVRjFc0K/main-qimg-8eff3354383e7f1884c8ab055676ca21-c.jpg",
+  "Cold Drink 1 Ltr": "https://i.postimg.cc/xCdfhLrs/aje-big-soft-drink-mix-802398198-tsegaj8y.jpg",
+  "Cold Drink 1.5 Ltr": "https://i.postimg.cc/9QjWV65k/images-(55).jpg"
 };
 
-function getItemImage(itemName) {
-    return imageMap[itemName] || "https://i.postimg.cc/d0Bbj2GQ/images-(4).jpg";
-}
-
-// FULL COMPLETE MENU DATA
-const menuData = [
-  { category: "Desi Murgh Karahi", items: [
-    { name: "Desi Murgh Karahi", variants: [{name:"Half",price:2200},{name:"Full",price:4200}] },
-    { name: "Desi Murgh Karahi White", price: 4700 }
-  ]},
-  { category: "Chicken Karahi", items: [
-    { name: "Chicken Karahi Broiler", variants: [{name:"Half",price:1200},{name:"Full",price:2200}] },
-    { name: "Chicken White Karahi", variants: [{name:"Half",price:1250},{name:"Full",price:2500}] },
-    { name: "Chicken Green Karahi", variants: [{name:"Half",price:1250},{name:"Full",price:2500}] },
-    { name: "Chicken Achari Karahi", variants: [{name:"Half",price:1200},{name:"Full",price:2400}] }
-  ]},
-  { category: "Mutton Karahi", items: [
-    { name: "Mutton Karahi", variants: [{name:"Half",price:2200},{name:"Full",price:4200}] },
-    { name: "Mutton Green Karahi", price: 4300 },
-    { name: "Mutton Achari Karahi", price: 4300 },
-    { name: "Mutton White Karahi", price: 4700 }
-  ]},
-  { category: "Special Karahi & Fry", items: [
-    { name: "Beef Tikka Karahi", price: 2100, desc: "500g Boneless" },
-    { name: "Batair Karahi", price: 2200 },
-    { name: "Fish Karahi", variants: [{name:"Half",price:1750},{name:"Full",price:3500}] },
-    { name: "Jangli Karahi", price: 5500, desc: "Signature combo" },
-    { name: "Beef Kabab Fry Plate", price: 1500 },
-    { name: "Chicken Boti Fry 10pc", price: 1500 },
-    { name: "Chicken Kabab Fry Plate", price: 1400 },
-    { name: "Chicken Tawa Piece", price: 950 },
-    { name: "Chicken Qeema Fry", variants: [{name:"Half",price:1500},{name:"Full",price:3000}] },
-    { name: "Beef Qeema Fry", variants: [{name:"Half",price:1500},{name:"Full",price:3000}] },
-    { name: "Mutton Kabab Fry", price: 2200 },
-    { name: "Mutton Qeema Fry", price: 4600 },
-    { name: "Grill Fish (Kg)", price: 1250 },
-    { name: "Rahu Fry Crispy Fish (Kg)", price: 1550 },
-    { name: "Finger Fish 10 Pc", price: 1800 }
-  ]},
-  { category: "Special Handi", items: [
-    { name: "Chicken Handi", price: 1750, desc: "Serves 2-3" },
-    { name: "Chicken Jalfrezi", price: 1800 },
-    { name: "Makhani Handi", price: 2200 },
-    { name: "Chicken Ginger", price: 1900 },
-    { name: "Chicken Achari", price: 1900 },
-    { name: "Chicken White", price: 1800 },
-    { name: "Mutton Handi", price: 4800 }
-  ]},
-  { category: "Chinese & Continental", items: [
-    { name: "Butt Special Chicken Cashew Nuts", price: 1350 },
-    { name: "Chicken Hot Garlic", price: 950 },
-    { name: "Chicken Szechuan", price: 1050 },
-    { name: "Kung Pao Chicken", price: 1100 },
-    { name: "Chicken Manchurian", price: 1100 },
-    { name: "Chicken Chilli Dry", price: 1050 },
-    { name: "Chicken Chilli Vegetable", price: 900 },
-    { name: "Chicken Shashlik", price: 1050 },
-    { name: "Mangolian Chicken", price: 1050 },
-    { name: "Black Pepper Chicken", price: 900 },
-    { name: "Chicken Roasted Almond", price: 1100 },
-    { name: "Beef Chilli Dry", price: 1150 }
-  ]},
-  { category: "Soups & Pasta", items: [
-    { name: "Butt Special Soup", price: 1200, desc: "Family bowl" },
-    { name: "Chicken Corn Soup", price: 1000 },
-    { name: "Hot & Sour Soup", price: 1000 },
-    { name: "Thai Soup", price: 1000 },
-    { name: "Chicken Cream Soup", price: 1200 },
-    { name: "French Fries", price: 400 },
-    { name: "Alfredo Pasta", price: 1100 },
-    { name: "Chicken Crunchy Pasta", price: 1300 },
-    { name: "Chicken Taragon Pasta", price: 1200 }
-  ]},
-  { category: "Rice & Chow Mein", items: [
-    { name: "Butt Special Chow Mein", price: 1050 },
-    { name: "Chicken Chow Mein", price: 950 },
-    { name: "Vegetable Chow Mein", price: 800 },
-    { name: "Butt Special Rice", price: 1300 },
-    { name: "Chicken Masala Rice", price: 1100 },
-    { name: "Chicken Fried Rice", price: 1100 },
-    { name: "Egg Fried Rice", price: 1000 }
-  ]},
-  { category: "BBQ", items: [
-    { name: "Chicken Kabab (4 Piece)", price: 1200 },
-    { name: "Chicken Cheese Kabab (4 Piece)", price: 1450 },
-    { name: "Turkish Kabab (4 Piece)", price: 1500 },
-    { name: "Beef Kabab (4 Piece)", price: 1300 },
-    { name: "Beef Tikka 500g", price: 1600 },
-    { name: "Reshmi Kabab (4 Piece)", price: 1400 },
-    { name: "Mutton Kabab (4 Piece)", price: 1900 },
-    { name: "Chicken Boti (10 Pc)", price: 1350 },
-    { name: "Batair (5 Pc)", price: 1000 },
-    { name: "Chicken Achari Boti (10 Pc)", price: 1450 },
-    { name: "Chicken Tikka", price: 500 },
-    { name: "Malai Tikka", price: 600 },
-    { name: "Malai Boti Plate", price: 1650 },
-    { name: "Chicken Green Malai Boti", price: 1750 },
-    { name: "Kastoori Boti Plate", price: 1750 },
-    { name: "Peshawari Boti (Kg)", price: 1500 },
-    { name: "Mutton Namkeen Tikka (kg)", price: 3500 },
-    { name: "Full Chargha Namkeen", price: 1400 },
-    { name: "Masala Chargha", price: 1600 },
-    { name: "Fish Tikka (10 Pc)", price: 1500 }
-  ]},
-  { category: "Premium Platters", items: [
-    { name: "1 Person Platter", price: 1500, desc: "Kabab + Boti + Rice" },
-    { name: "BBQ Platter (1)", price: 3500, desc: "1-2 Person" },
-    { name: "BBQ Platter (2)", price: 4000, desc: "2-3 Person" },
-    { name: "BBQ Platter (3)", price: 7800, desc: "4-5 Person" },
-    { name: "Family Platter", price: 11500, desc: "7-8 Person" }
-  ]},
-  { category: "Midnight Deals (11 PM - 1 AM)", items: [
-    { name: "Midnight Deal 1", price: 3320, desc: "3 Person" },
-    { name: "Midnight Deal 2", price: 4500, desc: "5 Person" },
-    { name: "Midnight Deal 3", price: 6120, desc: "5 Person" },
-    { name: "Midnight Deal 4", price: 5580, desc: "4 Person" },
-    { name: "Midnight Deal 5", price: 3880, desc: "4 Person" },
-    { name: "Midnight Signature Deal", price: 10610, desc: "8 Person" }
-  ]},
+function getItemImage(n) { return imageMap[n] || "https://i.postimg.cc/d0Bbj2GQ/images-(4).jpg"; }const menuData = [
+  { category: "Desi Murgh Karahi", items: [{ name: "Desi Murgh Karahi", variants: [{name:"Half",price:2200},{name:"Full",price:4200}] },{ name: "Desi Murgh Karahi White", price: 4700 }]},
+  { category: "Chicken Karahi", items: [{ name: "Chicken Karahi Broiler", variants: [{name:"Half",price:1200},{name:"Full",price:2200}] },{ name: "Chicken White Karahi", variants: [{name:"Half",price:1250},{name:"Full",price:2500}] },{ name: "Chicken Green Karahi", variants: [{name:"Half",price:1250},{name:"Full",price:2500}] },{ name: "Chicken Achari Karahi", variants: [{name:"Half",price:1200},{name:"Full",price:2400}] }]},
+  { category: "Mutton Karahi", items: [{ name: "Mutton Karahi", variants: [{name:"Half",price:2200},{name:"Full",price:4200}] },{ name: "Mutton Green Karahi", price: 4300 },{ name: "Mutton Achari Karahi", price: 4300 },{ name: "Mutton White Karahi", price: 4700 }]},
+  { category: "Special Karahi & Fry", items: [{ name: "Beef Tikka Karahi", price: 2100, desc: "500g Boneless" },{ name: "Batair Karahi", price: 2200 },{ name: "Fish Karahi", variants: [{name:"Half",price:1750},{name:"Full",price:3500}] },{ name: "Jangli Karahi", price: 5500 },{ name: "Beef Kabab Fry Plate", price: 1500 },{ name: "Chicken Boti Fry 10pc", price: 1500 },{ name: "Chicken Kabab Fry Plate", price: 1400 },{ name: "Chicken Tawa Piece", price: 950 },{ name: "Chicken Qeema Fry", variants: [{name:"Half",price:1500},{name:"Full",price:3000}] },{ name: "Beef Qeema Fry", variants: [{name:"Half",price:1500},{name:"Full",price:3000}] },{ name: "Mutton Kabab Fry", price: 2200 },{ name: "Mutton Qeema Fry", price: 4600 },{ name: "Grill Fish (Kg)", price: 1250 },{ name: "Rahu Fry Crispy Fish (Kg)", price: 1550 },{ name: "Finger Fish 10 Pc", price: 1800 }]},
+  { category: "Special Handi", items: [{ name: "Chicken Handi", price: 1750 },{ name: "Chicken Jalfrezi", price: 1800 },{ name: "Makhani Handi", price: 2200 },{ name: "Chicken Ginger", price: 1900 },{ name: "Chicken Achari", price: 1900 },{ name: "Chicken White", price: 1800 },{ name: "Mutton Handi", price: 4800 }]},
+  { category: "Chinese & Continental", items: [{ name: "Butt Special Chicken Cashew Nuts", price: 1350 },{ name: "Chicken Hot Garlic", price: 950 },{ name: "Chicken Szechuan", price: 1050 },{ name: "Kung Pao Chicken", price: 1100 },{ name: "Chicken Manchurian", price: 1100 },{ name: "Chicken Chilli Dry", price: 1050 },{ name: "Chicken Chilli Vegetable", price: 900 },{ name: "Chicken Shashlik", price: 1050 },{ name: "Mangolian Chicken", price: 1050 },{ name: "Black Pepper Chicken", price: 900 },{ name: "Chicken Roasted Almond", price: 1100 },{ name: "Beef Chilli Dry", price: 1150 }]},
+  { category: "Soups & Pasta", items: [{ name: "Butt Special Soup", price: 1200 },{ name: "Chicken Corn Soup", price: 1000 },{ name: "Hot & Sour Soup", price: 1000 },{ name: "Thai Soup", price: 1000 },{ name: "Chicken Cream Soup", price: 1200 },{ name: "French Fries", price: 400 },{ name: "Alfredo Pasta", price: 1100 },{ name: "Chicken Crunchy Pasta", price: 1300 },{ name: "Chicken Taragon Pasta", price: 1200 }]},
+  { category: "Rice & Chow Mein", items: [{ name: "Butt Special Chow Mein", price: 1050 },{ name: "Chicken Chow Mein", price: 950 },{ name: "Vegetable Chow Mein", price: 800 },{ name: "Butt Special Rice", price: 1300 },{ name: "Chicken Masala Rice", price: 1100 },{ name: "Chicken Fried Rice", price: 1100 },{ name: "Egg Fried Rice", price: 1000 }]},
+  { category: "BBQ", items: [{ name: "Chicken Kabab (4 Piece)", price: 1200 },{ name: "Chicken Cheese Kabab (4 Piece)", price: 1450 },{ name: "Turkish Kabab (4 Piece)", price: 1500 },{ name: "Beef Kabab (4 Piece)", price: 1300 },{ name: "Beef Tikka 500g", price: 1600 },{ name: "Reshmi Kabab (4 Piece)", price: 1400 },{ name: "Mutton Kabab (4 Piece)", price: 1900 },{ name: "Chicken Boti (10 Pc)", price: 1350 },{ name: "Batair (5 Pc)", price: 1000 },{ name: "Chicken Achari Boti (10 Pc)", price: 1450 },{ name: "Chicken Tikka", price: 500 },{ name: "Malai Tikka", price: 600 },{ name: "Malai Boti Plate", price: 1650 },{ name: "Chicken Green Malai Boti", price: 1750 },{ name: "Kastoori Boti Plate", price: 1750 },{ name: "Peshawari Boti (Kg)", price: 1500 },{ name: "Mutton Namkeen Tikka (kg)", price: 3500 },{ name: "Full Chargha Namkeen", price: 1400 },{ name: "Masala Chargha", price: 1600 },{ name: "Fish Tikka (10 Pc)", price: 1500 }]},
+  { category: "Premium Platters", items: [{ name: "1 Person Platter", price: 1500 },{ name: "BBQ Platter (1)", price: 3500 },{ name: "BBQ Platter (2)", price: 4000 },{ name: "BBQ Platter (3)", price: 7800 },{ name: "Family Platter", price: 11500 }]},
+  { category: "Midnight Deals (11 PM - 1 AM)", items: [{ name: "Midnight Deal 1", price: 3320 },{ name: "Midnight Deal 2", price: 4500 },{ name: "Midnight Deal 3", price: 6120 },{ name: "Midnight Deal 4", price: 5580 },{ name: "Midnight Deal 5", price: 3880 },{ name: "Midnight Signature Deal", price: 10610 }]},
   { category: "Naan & Add-ons", items: [
-    { name: "Roghni Naan", price: 100 }, { name: "Kalonji Naan", price: 100 },
-    { name: "Garlic Naan", price: 100 }, { name: "Zeera Naan", price: 100 },
-    { name: "Cheese Naan", price: 500 }, { name: "Chicken Naan", price: 500 },
-    { name: "Beef Naan", price: 400 }, { name: "Ginger Naan", price: 120 },
-    { name: "Achari Naan", price: 180 }, { name: "Plain Roti", price: 30 },
-    { name: "Plain Naan", price: 40 }, { name: "Khamiri Roti", price: 40 },
-    { name: "Raita", price: 140 }, { name: "Mint Raita", price: 160 },
-    { name: "Salad", price: 140 }, { name: "Makhan Extra", price: 700 },
-    { name: "Olive Oil Extra", price: 700 }, { name: "Gulab Jaman", price: 150 },
-    { name: "Kheer", price: 200 }, { name: "Qawa", price: 80 }, { name: "Tea", price: 150 }
+    { name: "Roghni Naan", price: 100 },{ name: "Kalonji Naan", price: 100 },{ name: "Garlic Naan", price: 100 },{ name: "Zeera Naan", price: 100 },
+    { name: "Cheese Naan", price: 500 },{ name: "Chicken Naan", price: 500 },{ name: "Beef Naan", price: 400 },{ name: "Ginger Naan", price: 120 },
+    { name: "Achari Naan", price: 180 },{ name: "Plain Roti", price: 30 },{ name: "Plain Naan", price: 40 },{ name: "Khamiri Roti", price: 40 },
+    { name: "Raita", price: 140 },{ name: "Mint Raita", price: 160 },{ name: "Salad", price: 140 },{ name: "Makhan Extra", price: 700 },
+    { name: "Olive Oil Extra", price: 700 },{ name: "Gulab Jaman", price: 150 },{ name: "Kheer", price: 200 },{ name: "Qawa", price: 80 },{ name: "Tea", price: 150 }
   ]},
   { category: "Beverages", items: [
-    { name: "Mint Margarita", price: 250 }, { name: "Classic Lemonade", price: 200 },
-    { name: "Peach Lemonade", price: 250 }, { name: "Mint Lemonade", price: 250 },
-    { name: "Blue Lemonade", price: 250 }, { name: "Pink Lady Mocktail", price: 300 },
-    { name: "Sweet Lassi", price: 180 }, { name: "Salted Lassi", price: 180 },
-    { name: "Mineral Water Large", price: 130 }, { name: "Mineral Water Small", price: 80 },
-    { name: "Soft Drink Can", price: 150 }, { name: "Cold Drink 1 Ltr", price: 200 },
-    { name: "Cold Drink 1.5 Ltr", price: 250 }
+    { name: "Mint Margarita", price: 250 },{ name: "Classic Lemonade", price: 200 },{ name: "Peach Lemonade", price: 250 },{ name: "Mint Lemonade", price: 250 },
+    { name: "Blue Lemonade", price: 250 },{ name: "Pink Lady Mocktail", price: 300 },{ name: "Sweet Lassi", price: 180 },{ name: "Salted Lassi", price: 180 },
+    { name: "Mineral Water Large", price: 130 },{ name: "Mineral Water Small", price: 80 },{ name: "Soft Drink Can", price: 150 },{ name: "Cold Drink 1 Ltr", price: 200 },{ name: "Cold Drink 1.5 Ltr", price: 250 }
   ]}
 ];
 
-// Render function
 function render() {
     let menuHtml = "", navHtml = "";
     menuData.forEach((cat, idx) => {
@@ -667,27 +594,9 @@ function render() {
             let priceText = isVariant ? `Rs ${item.variants[0].price.toLocaleString()}` : `Rs ${item.price.toLocaleString()}`;
             let selectorHtml = '';
             if (isVariant) {
-                selectorHtml = `<div class="variant-selector">`;
-                item.variants.forEach((v, vIdx) => {
-                    selectorHtml += `<button class="var-btn ${vIdx===0?'active':''}" onclick="changeVariant(this,'${itemId}','${item.name.replace(/'/g,"\\'")}','${v.name}',${v.price})">${v.name}</button>`;
-                });
-                selectorHtml += `</div>`;
+                selectorHtml = `<div class="variant-selector">${item.variants.map((v,vIdx)=>`<button class="var-btn ${vIdx===0?'active':''}" onclick="changeVariant(this,'${itemId}','${item.name.replace(/'/g,"\\'")}','${v.name}',${v.price})">${v.name}</button>`).join('')}</div>`;
             }
-            menuHtml += `
-            <div class="menu-item">
-                <img src="${img}" loading="lazy" onclick="openImageModal('${img}')">
-                <div class="item-content">
-                    <div><div class="item-name">${item.name}</div>${item.desc ? `<div class="item-desc">${item.desc}</div>` : ''}</div>
-                    <div class="item-bottom">
-                        <div>${selectorHtml}<div class="item-price">${priceText}</div></div>
-                        <div class="controls">
-                            <button class="minus" onclick="updateCart('${item.name.replace(/'/g,"\\'")}', '', ${isVariant?item.variants[0].price:item.price}, -1, '${itemId}')">-</button>
-                            <span class="qty-val" id="qty_${itemId}">0</span>
-                            <button class="plus" onclick="updateCart('${item.name.replace(/'/g,"\\'")}', '', ${isVariant?item.variants[0].price:item.price}, 1, '${itemId}')">+</button>
-                        </div>
-                    </div>
-                </div>
-            </div>`;
+            menuHtml += `<div class="menu-item"><img src="${img}" onclick="openImageModal('${img}')"><div class="item-content"><div><div class="item-name">${item.name}</div>${item.desc?`<div class="item-desc">${item.desc}</div>`:''}</div><div class="item-bottom"><div>${selectorHtml}<div class="item-price">${priceText}</div></div><div class="controls"><button class="minus" onclick="updateCart('${item.name.replace(/'/g,"\\'")}','',${isVariant?item.variants[0].price:item.price},-1,'${itemId}')">-</button><span class="qty-val" id="qty_${itemId}">0</span><button class="plus" onclick="updateCart('${item.name.replace(/'/g,"\\'")}','',${isVariant?item.variants[0].price:item.price},1,'${itemId}')">+</button></div></div></div></div>`;
         });
         menuHtml += `</div>`;
     });
@@ -696,178 +605,238 @@ function render() {
     AOS.refresh();
 }
 
-function scrollToSection(sectionId) {
-    const section = document.getElementById(sectionId);
-    if (section) {
-        const offset = 160;
-        const elementPosition = section.getBoundingClientRect().top + window.pageYOffset;
-        window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' });
+function scrollToSection(id) { let el=document.getElementById(id); if(el) window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-165, behavior:'smooth'}); }
+function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+function changeVariant(btn,itemId,name,varName,price){ let parent=btn.parentElement; parent.querySelectorAll('.var-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); let mi=parent.closest('.menu-item'); mi.querySelector('.item-price').innerText="Rs "+price.toLocaleString(); let minus=mi.querySelector('.minus'), plus=mi.querySelector('.plus'); minus.setAttribute('onclick',`updateCart('${name.replace(/'/g,"\\'")}','${varName}',${price},-1,'${itemId}')`); plus.setAttribute('onclick',`updateCart('${name.replace(/'/g,"\\'")}','${varName}',${price},1,'${itemId}')`); let key=`${name} (${varName})`; if(cart[key]) document.getElementById(`qty_${itemId}`).innerText=cart[key].qty; }
+function updateCart(name, variant, price, delta, itemId) { let key = variant ? `${name} (${variant})` : name; if (!cart[key]) cart[key] = { qty:0, price, itemId, name, variant, addons:[] }; cart[key].qty += delta; if (cart[key].qty <= 0) delete cart[key]; let qtySpan=document.getElementById(`qty_${itemId}`); if(qtySpan) qtySpan.innerText=cart[key]?.qty||0; updateUI(); }
+
+function addAddonItem(btn, name, price) { 
+    let key=name; 
+    if(!cart[key]) cart[key]={qty:0,price,itemId:"addon_"+name.replace(/[^\w]/g,'_'),name,variant:"",addons:[]}; 
+    cart[key].qty+=1; 
+    updateUI(); 
+    let originalText = btn.innerText;
+    btn.innerText = "Added!";
+    btn.classList.add("added");
+    setTimeout(() => {
+        btn.innerText = originalText;
+        btn.classList.remove("added");
+    }, 800);
+}
+
+function updateUI(){ 
+    let subtotal=0,count=0,html=""; 
+    for(let k in cart){ 
+        let sub=cart[k].qty*cart[k].price; 
+        subtotal+=sub; 
+        count+=cart[k].qty; 
+        html+=`<div class="cart-item-row"><div class="cart-item-details"><strong>${k}</strong><br><small>Rs ${cart[k].price}</small></div><div class="cart-item-controls"><button onclick="updateCart('${cart[k].name.replace(/'/g,"\\'")}','${cart[k].variant||''}',${cart[k].price},-1,'${cart[k].itemId}')" style="background:#eee;border:none;width:28px;border-radius:8px">-</button><span>${cart[k].qty}</span><button onclick="updateCart('${cart[k].name.replace(/'/g,"\\'")}','${cart[k].variant||''}',${cart[k].price},1,'${cart[k].itemId}')" style="background:var(--primary);color:white;border:none;width:28px;border-radius:8px">+</button></div><div>Rs ${sub.toLocaleString()}</div></div>`; 
     }
+    document.getElementById("cartItemsList").innerHTML=html||"<p style='text-align:center'>Empty cart</p>";
+    // Delivery charge row completely removed: no display, total is subtotal only (no delivery fee shown before order type selection)
+    document.getElementById("totalPrice").innerText="Rs "+subtotal.toLocaleString();
+    document.getElementById("badge").innerText=count; 
+    document.getElementById("badge").style.display=count>0?"flex":"none";
 }
 
-function changeVariant(btn, itemId, itemName, varName, price) {
-    let parent = btn.parentElement;
-    parent.querySelectorAll('.var-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    let menuItem = parent.closest('.menu-item');
-    menuItem.querySelector('.item-price').innerText = "Rs " + price.toLocaleString();
-    let minusBtn = menuItem.querySelector('.minus');
-    let plusBtn = menuItem.querySelector('.plus');
-    minusBtn.setAttribute('onclick', `updateCart('${itemName.replace(/'/g,"\\'")}', '${varName}', ${price}, -1, '${itemId}')`);
-    plusBtn.setAttribute('onclick', `updateCart('${itemName.replace(/'/g,"\\'")}', '${varName}', ${price}, 1, '${itemId}')`);
-    let key = `${itemName} (${varName})`;
-    document.getElementById(`qty_${itemId}`).innerText = cart[key]?.qty || 0;
+function toggleCart(){ 
+    let m=document.getElementById("cartModal"); 
+    m.style.display=m.style.display==="block"?"none":"block"; 
 }
 
-function updateCart(name, variant, price, delta, itemId) {
-    let key = variant ? `${name} (${variant})` : name;
-    if (!cart[key]) cart[key] = { qty: 0, price, itemId, name, variant };
-    cart[key].qty += delta;
-    if (cart[key].qty <= 0) delete cart[key];
-    let qtySpan = document.getElementById(`qty_${itemId}`);
-    if (qtySpan) qtySpan.innerText = cart[key]?.qty || 0;
-    updateUI();
+function openImageModal(src){ 
+    document.getElementById("previewImage").src=src; 
+    document.getElementById("imageModal").classList.add("active"); 
+    document.body.style.overflow="hidden"; 
 }
 
-function updateUI() {
-    let total = 0, count = 0, html = "";
-    for (let k in cart) {
-        let sub = cart[k].qty * cart[k].price;
-        total += sub; count += cart[k].qty;
-        html += `<div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #eee">
-            <div><strong>${k}</strong><br><small>Rs ${cart[k].price}</small></div>
-            <div style="display:flex;align-items:center;gap:10px">
-                <button onclick="updateCart('${cart[k].name.replace(/'/g,"\\'")}','${cart[k].variant||''}',${cart[k].price},-1,'${cart[k].itemId}')" style="background:#eee;border:none;width:28px;border-radius:8px">-</button>
-                <span>${cart[k].qty}</span>
-                <button onclick="updateCart('${cart[k].name.replace(/'/g,"\\'")}','${cart[k].variant||''}',${cart[k].price},1,'${cart[k].itemId}')" style="background:var(--primary);color:white;border:none;width:28px;border-radius:8px">+</button>
-            </div>
-            <div>Rs ${sub.toLocaleString()}</div>
-        </div>`;
-    }
-    document.getElementById("cartItemsList").innerHTML = html || "<p style='text-align:center'>Empty cart</p>";
-    document.getElementById("totalPrice").innerText = "Rs " + total.toLocaleString();
-    let badge = document.getElementById("badge");
-    badge.innerText = count;
-    badge.style.display = count > 0 ? "flex" : "none";
+function closeImageModal(){ 
+    document.getElementById("imageModal").classList.remove("active"); 
+    document.body.style.overflow="auto"; 
 }
 
-function toggleCart() { let m = document.getElementById("cartModal"); m.style.display = m.style.display === "block" ? "none" : "block"; }
-function openImageModal(src) { document.getElementById("previewImage").src = src; document.getElementById("imageModal").classList.add("active"); document.body.style.overflow = "hidden"; }
-function closeImageModal() { document.getElementById("imageModal").classList.remove("active"); document.body.style.overflow = "auto"; }
-
-function proceedToCheckout() {
-    if (Object.keys(cart).length === 0) { alert("Add items first"); return; }
-    let msg = "🛒 *NEW ORDER*\n\n";
-    let total = 0;
-    for (let k in cart) {
-        let sub = cart[k].qty * cart[k].price;
-        total += sub;
-        msg += `▪️ ${k}\n   ${cart[k].qty} x Rs ${cart[k].price} = Rs ${sub.toLocaleString()}\n\n`;
-    }
-    msg += `═══════════\n*Total: Rs ${total.toLocaleString()}*`;
-    pendingOrderMessage = msg;
-    document.getElementById("cartModal").style.display = "none";
-    document.getElementById("deliveryModal").classList.add("active");
-    document.body.style.overflow = "hidden";
-    document.getElementById("deliveryDetails").style.display = "none";
-    document.getElementById("pickupDetails").style.display = "none";
-    document.getElementById("customLocation").value = "";
-    selectedPayment = null;
-    selectedPaymentPickup = null;
-    document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+function openAddonsModal(){ 
+    let html=""; 
+    const addonCats=["Naan & Add-ons","Beverages"]; 
+    menuData.forEach(cat=>{ 
+        if(addonCats.includes(cat.category)){ 
+            html+=`<h4 style="margin:15px 0 5px; color:var(--primary);">${cat.category}</h4>`; 
+            cat.items.forEach(item=>{ 
+                html+=`<div class="addon-item"><div><strong>${item.name}</strong><br><small>Rs ${item.price}</small></div><button class="btn-addon" onclick="addAddonItem(this, '${item.name.replace(/'/g,"\\'")}', ${item.price})">+ Add</button></div>`; 
+            }); 
+        } 
+    }); 
+    document.getElementById("addonsList").innerHTML=html; 
+    document.getElementById("addonsModal").style.display="block"; 
+    document.body.style.overflow="hidden"; 
 }
 
-function selectPayment(type) {
-    selectedPayment = type;
-    document.getElementById("payment_cod").classList.remove("selected");
-    document.getElementById("payment_bank").classList.remove("selected");
-    if (type === 'cod') {
+function closeAddonsModal(){ 
+    document.getElementById("addonsModal").style.display="none"; 
+    document.body.style.overflow="auto"; 
+}
+
+function proceedToCheckout(){ 
+    if(Object.keys(cart).length===0){alert("Add items first");return;} 
+    let msg="🛒 *NEW ORDER*\n\n",subtotal=0; 
+    for(let k in cart){ 
+        let sub=cart[k].qty*cart[k].price; 
+        subtotal+=sub; 
+        msg+=`▪️ ${k}\n   ${cart[k].qty} x Rs ${cart[k].price} = Rs ${sub.toLocaleString()}\n`; 
+        if(cart[k].addons?.length) msg+=`   ➕ Add-ons: ${cart[k].addons.join(", ")}\n`; 
+        msg+=`\n`; 
+    } 
+    msg+=`═══════════\n*Subtotal: Rs ${subtotal.toLocaleString()}*`; 
+    pendingOrderMessage=msg; 
+    document.getElementById("cartModal").style.display="none"; 
+    document.getElementById("deliveryModal").classList.add("active"); 
+    document.body.style.overflow="hidden"; 
+    document.getElementById("deliveryDetails").style.display="none"; 
+    document.getElementById("pickupDetails").style.display="none"; 
+    document.getElementById("dineinDetails").style.display="none"; 
+    selectedPayment=selectedPaymentPickup=selectedPaymentDinein=null; 
+}
+
+function selectPayment(t){ 
+    selectedPayment=t; 
+    document.getElementById("payment_cod").classList.remove("selected"); 
+    document.getElementById("payment_bank").classList.remove("selected"); 
+    if(t==='cod'){
         document.getElementById("payment_cod").classList.add("selected");
-        document.getElementById("bankDetails").style.display = "none";
-    } else {
+        document.querySelector("#payment_bank .bank-details").style.display="none";
+    }else{
         document.getElementById("payment_bank").classList.add("selected");
-        document.getElementById("bankDetails").style.display = "block";
-    }
+        document.querySelector("#payment_bank .bank-details").style.display="block";
+    } 
 }
 
-function selectPaymentPickup(type) {
-    selectedPaymentPickup = type;
-    document.getElementById("pickup_payment_cod").classList.remove("selected");
-    document.getElementById("pickup_payment_bank").classList.remove("selected");
-    if (type === 'cod') {
+function selectPaymentPickup(t){ 
+    selectedPaymentPickup=t; 
+    document.getElementById("pickup_payment_cod").classList.remove("selected"); 
+    document.getElementById("pickup_payment_bank").classList.remove("selected"); 
+    if(t==='cod'){
         document.getElementById("pickup_payment_cod").classList.add("selected");
-        document.getElementById("bankDetailsPickup").style.display = "none";
-    } else {
+        document.querySelector("#pickup_payment_bank .bank-details").style.display="none";
+    }else{
         document.getElementById("pickup_payment_bank").classList.add("selected");
-        document.getElementById("bankDetailsPickup").style.display = "block";
+        document.querySelector("#pickup_payment_bank .bank-details").style.display="block";
+    } 
+}
+
+function selectPaymentDinein(t){ 
+    selectedPaymentDinein=t; 
+    document.getElementById("dinein_payment_cash").classList.remove("selected"); 
+    document.getElementById("dinein_payment_bank").classList.remove("selected"); 
+    if(t==='cash'){
+        document.getElementById("dinein_payment_cash").classList.add("selected");
+        document.querySelector("#dinein_payment_bank .bank-details").style.display="none";
+    }else{
+        document.getElementById("dinein_payment_bank").classList.add("selected");
+        document.querySelector("#dinein_payment_bank .bank-details").style.display="block";
+    } 
+}
+
+function selectOrderType(t){ 
+    currentOrderType=t; 
+    document.getElementById("deliveryDetails").style.display="none"; 
+    document.getElementById("pickupDetails").style.display="none"; 
+    document.getElementById("dineinDetails").style.display="none"; 
+    if(t==='pickup') {
+        document.getElementById("pickupDetails").style.display="block"; 
+    } else if(t==='delivery'){ 
+        document.getElementById("deliveryDetails").style.display="block"; 
+        let areas=["Hassan Abdal","Wah Cantt","Taxila","Kohistan Enclave","Shah Wali Colony","Khan Model Town","Dhoke Dollian","Cement Company","Panja Sahib","Wah Garden","New City"]; 
+        let cont=document.getElementById("areaButtonsContainer"); 
+        cont.innerHTML=""; 
+        areas.forEach(a=>{
+            let btn=document.createElement("button");
+            btn.className="area-btn";
+            btn.innerText=a;
+            btn.onclick=()=>{
+                document.getElementById("customLocation").value=a;
+                validateLocationLive(a);
+            };
+            cont.appendChild(btn);
+        }); 
+        document.getElementById("customLocation").oninput=(e)=>validateLocationLive(e.target.value); 
+        document.getElementById("paymentSection").style.display="block"; 
+    } else if(t==='dinein') {
+        document.getElementById("dineinDetails").style.display="block"; 
     }
+    updateUI(); 
 }
 
-function selectOrderType(type) {
-    if (type === 'pickup') {
-        document.getElementById("deliveryDetails").style.display = "none";
-        document.getElementById("pickupDetails").style.display = "block";
-    } else {
-        document.getElementById("pickupDetails").style.display = "none";
-        document.getElementById("deliveryDetails").style.display = "block";
-        let areas = ["Hassan Abdal", "Wah Cantt", "Taxila", "Kohistan Enclave", "Shah Wali Colony", "Khan Model Town", "Dhoke Dollian", "Cement Company", "Panja Sahib"];
-        let container = document.getElementById("areaButtonsContainer");
-        container.innerHTML = "";
-        areas.forEach(a => {
-            let btn = document.createElement("button");
-            btn.className = "area-btn";
-            btn.innerText = a;
-            btn.onclick = () => { document.getElementById("customLocation").value = a; validateLocationLive(a); };
-            container.appendChild(btn);
-        });
-        document.getElementById("customLocation").oninput = (e) => validateLocationLive(e.target.value);
-        document.getElementById("paymentSection").style.display = "block";
-    }
+function validateLocationLive(l){ 
+    let div=document.getElementById("locationValidation"); 
+    if(!l){div.innerHTML="";return;} 
+    if(isLocationAllowed(l)){
+        div.innerHTML="✅ Delivery available!";
+        div.className="success-text";
+    }else{
+        div.innerHTML="❌ Outside delivery zone (Hassan Abdal - Wah Cantt - Taxila corridor)";
+        div.className="info-text";
+        div.style.color="#d90429";
+    } 
 }
 
-function validateLocationLive(loc) {
-    let div = document.getElementById("locationValidation");
-    if (!loc) { div.innerHTML = ""; return; }
-    if (isLocationAllowed(loc)) { 
-        div.innerHTML = "✅ Delivery available!"; 
-        div.className = "success-text";
-    } else { 
-        div.innerHTML = "❌ Outside delivery zone (Hassan Abdal to Taxila corridor)"; 
-        div.className = "info-text"; 
-        div.style.color = "#d90429";
-    }
+function confirmDeliveryLocation(){ 
+    let loc=document.getElementById("customLocation").value.trim(); 
+    if(!loc||!isLocationAllowed(loc)){alert("Valid address required. We deliver to Hassan Abdal, Wah Cantt, Taxila, and surrounding areas including Wah Garden.");return;} 
+    if(!selectedPayment){alert("Select payment");return;} 
+    let payText=selectedPayment==='cod'?"💵 Cash on Delivery":"🏦 Meezan Bank Transfer\nAccount: Shabbir Aziz | 03080102761475"; 
+    let subtotalOnly = 0;
+    for(let k in cart){ subtotalOnly += cart[k].qty*cart[k].price; }
+    let totalWithDelivery = subtotalOnly + DELIVERY_FEE;
+    let finalMsg=pendingOrderMessage+`\n🚚 *HOME DELIVERY*\n📍 ${loc}\n💳 Payment: ${payText}\n➕ Delivery: Rs ${DELIVERY_FEE}\n\n*TOTAL: Rs ${totalWithDelivery}*`; 
+    window.open("https://wa.me/"+CLIENT_WHATSAPP+"?text="+encodeURIComponent(finalMsg),'_blank'); 
+    closeDeliveryModal(); 
+    cart={}; 
+    currentOrderType=null; 
+    updateUI(); 
+    render(); 
 }
 
-function confirmDeliveryLocation() {
-    let loc = document.getElementById("customLocation").value.trim();
-    if (!loc) { alert("Enter your area"); return; }
-    if (!isLocationAllowed(loc)) { alert("Sorry, we only deliver within Hassan Abdal → Wah Cantt → Taxila corridor (including Kohistan Enclave, Shah Wali Colony, Khan Model Town, Dhoke Dollian, Cement Company, New City)"); return; }
-    if (!selectedPayment) { alert("Please select a payment method"); return; }
-    let paymentText = selectedPayment === 'cod' ? "💵 Cash on Delivery" : "🏦 Meezan Bank Transfer\nAccount: Shabbir Aziz | Meezan Bank | 03080102761475";
-    sendOrder(`🚚 *HOME DELIVERY*\n📍 ${loc}\n💳 Payment: ${paymentText}\n\n${pendingOrderMessage}`);
+function confirmPickup(){ 
+    if(!selectedPaymentPickup){alert("Select payment");return;} 
+    let payText=selectedPaymentPickup==='cod'?"💵 Cash on Pickup":"🏦 Meezan Bank Transfer\nAccount: Shabbir Aziz | 03080102761475"; 
+    let total=parseInt(document.getElementById("totalPrice").innerText.replace(/[^0-9]/g,'')) || 0; 
+    let finalMsg=pendingOrderMessage+`\n🍽️ *PICKUP*\n📍 Butt Karahi, GT Road, Wah Cantt\n💳 Payment: ${payText}\n\n*TOTAL: Rs ${total}*`; 
+    window.open("https://wa.me/"+CLIENT_WHATSAPP+"?text="+encodeURIComponent(finalMsg),'_blank'); 
+    closeDeliveryModal(); 
+    cart={}; 
+    currentOrderType=null; 
+    updateUI(); 
+    render(); 
 }
 
-function confirmPickup() {
-    if (!selectedPaymentPickup) { alert("Please select a payment method"); return; }
-    let paymentText = selectedPaymentPickup === 'cod' ? "💵 Cash on Pickup" : "🏦 Meezan Bank Transfer (send screenshot after transfer and wait for the reply and ask for the delivery charges)\nAccount: Shabbir Aziz | Meezan Bank | 03080102761475";
-    sendOrder(`🍽️ *PICKUP*\n📍 Butt Karahi, GT Road, Wah Cantt\n💳 Payment: ${paymentText}\n\n${pendingOrderMessage}`);
+function confirmDineIn(){ 
+    if(!selectedPaymentDinein){alert("Select payment");return;} 
+    let payText=selectedPaymentDinein==='cash'?"💵 Cash at Restaurant":"🏦 Meezan Bank Transfer\nAccount: Shabbir Aziz | 03080102761475"; 
+    let total=parseInt(document.getElementById("totalPrice").innerText.replace(/[^0-9]/g,'')) || 0; 
+    let finalMsg=pendingOrderMessage+`\n🍽️ *DINE-IN*\n📍 Butt Karahi, Wah Cantt\n💳 Payment: ${payText}\n\n*TOTAL: Rs ${total}*`; 
+    window.open("https://wa.me/"+CLIENT_WHATSAPP+"?text="+encodeURIComponent(finalMsg),'_blank'); 
+    closeDeliveryModal(); 
+    cart={}; 
+    currentOrderType=null; 
+    updateUI(); 
+    render(); 
 }
 
-function sendOrder(msg) {
-    window.open("https://wa.me/" + CLIENT_WHATSAPP + "?text=" + encodeURIComponent(msg), '_blank');
-    closeDeliveryModal();
-    cart = {};
-    updateUI();
-    render();
-}
-
-function closeDeliveryModal() {
-    document.getElementById("deliveryModal").classList.remove("active");
-    document.body.style.overflow = "auto";
+function closeDeliveryModal(){ 
+    document.getElementById("deliveryModal").classList.remove("active"); 
+    document.body.style.overflow="auto"; 
+    currentOrderType=null; 
+    updateUI(); 
 }
 
 render();
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeImageModal(); closeDeliveryModal(); } });
+document.addEventListener('keydown', e => { 
+    if(e.key === 'Escape') { 
+        closeImageModal(); 
+        closeAddonsModal(); 
+        closeDeliveryModal(); 
+    } 
+});
 </script>
 </body>
 </html>
