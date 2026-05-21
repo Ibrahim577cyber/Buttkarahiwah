@@ -93,7 +93,7 @@
             gap: 10px; 
             border-bottom: 1px solid #eee; 
             position: sticky; 
-            top: 85px; /* Adjusted to perfectly clear the newly padded header */
+            top: 85px;
             z-index: 999; 
             scrollbar-width: none;
             animation: fadeInUp 0.5s ease-out;
@@ -128,7 +128,7 @@
         }
 
         .container { max-width: 600px; margin: auto; padding: 15px; }
-        .category-section { scroll-margin-top: 165px; /* Adjusted for navigation offset */ }
+        .category-section { scroll-margin-top: 165px; }
         
         .category-title { 
             background: var(--accent); 
@@ -180,10 +180,17 @@
         
         .item-content { flex: 1; display: flex; flex-direction: column; min-width: 0; }
         .item-name { font-weight: 700; font-size: 0.95rem; color: #111; margin-bottom: 4px; }
-        .item-desc { font-size: 0.7rem; color: #666; margin-bottom: 6px; }
+        .item-desc { font-size: 0.7rem; color: #666; margin-bottom: 6px; line-height: 1.4; }
         .item-price { color: var(--primary); font-weight: 800; font-size: 1rem; }
         
-        .item-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+        .item-bottom { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-top: 8px; 
+            flex-wrap: wrap; 
+            gap: 8px;
+        }
         .variant-selector { display: flex; gap: 4px; background: #f0f0f0; padding: 2px; border-radius: 8px; }
         .var-btn { border: none; background: transparent; padding: 4px 10px; border-radius: 6px; font-size: 0.7rem; font-weight: 800; cursor: pointer; transition: 0.2s; }
         .var-btn.active { background: var(--primary); color: white; }
@@ -267,8 +274,18 @@
         }
         .payment-option.selected { border-color: var(--whatsapp); background: #f0fff4; }
         .payment-name { font-weight: 800; font-size: 1rem; display: flex; align-items: center; gap: 10px; }
-        .payment-details { font-size: 0.75rem; color: #666; margin-top: 8px; padding-left: 28px; }
         .bank-details { background: #f5f5f5; padding: 12px; border-radius: 12px; margin-top: 8px; font-size: 0.8rem; }
+        .payment-warning {
+            color: #b32d2e;
+            font-size: 0.7rem;
+            margin-top: 8px;
+            background: #fff0f0;
+            padding: 6px 8px;
+            border-radius: 10px;
+            border-left: 3px solid #b32d2e;
+            word-break: break-word;
+            white-space: normal;
+        }
         
         .confirm-delivery { background: var(--whatsapp); color: white; border: none; width: 100%; padding: 14px; border-radius: 50px; font-weight: bold; margin-top: 20px; cursor: pointer; transition: 0.3s; }
         .confirm-delivery:hover { transform: scale(1.02); }
@@ -283,16 +300,51 @@
         
         @keyframes bounceIn { 0% { transform: scale(0); } 60% { transform: scale(1.1); } 100% { transform: scale(1); } }
         
-        .cart-addons { font-size: 0.7rem; color: #2e7d32; margin-top: 4px; }
         .cart-item-row {
+            display: flex;
+            flex-direction: column;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .cart-item-main {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
+            width: 100%;
         }
         .cart-item-details { flex: 2; }
         .cart-item-controls { display: flex; align-items: center; gap: 8px; }
+        .cart-instructions {
+            margin-top: 8px;
+            width: 100%;
+        }
+        .cart-instructions input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            background: #fef9e6;
+        }
+        .inst-buttons {
+            display: flex;
+            gap: 6px;
+            margin-top: 6px;
+            flex-wrap: wrap;
+        }
+        .inst-btn {
+            background: #f0f0f0;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .inst-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
         .addon-item {
             display: flex;
             justify-content: space-between;
@@ -317,6 +369,43 @@
             background: #2e7d32;
             margin-bottom: 15px;
         }
+        .booking-radio-group {
+            margin: 15px 0;
+            text-align: left;
+            background: #f9f3f0;
+            padding: 12px;
+            border-radius: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 20px;
+        }
+        .booking-radio-group strong {
+            margin-right: 10px;
+        }
+        .booking-radio-group label {
+            margin: 0;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .addons-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .back-addon-top {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -337,14 +426,13 @@
     <div class="cart-badge" id="badge">0</div>
 </div>
 
-<!-- Cart Modal: Delivery charges row REMOVED as requested -->
+<!-- Cart Modal -->
 <div id="cartModal" onclick="toggleCart()">
     <div class="modal-content" onclick="event.stopPropagation()">
         <div style="width:50px;height:6px;background:#e0e0e0;border-radius:10px;margin:-10px auto 20px" onclick="toggleCart()"></div>
         <h2 style="margin-top:0;color:var(--primary)">Your Order</h2>
         <div id="cartItemsList"></div>
         <button class="confirm-delivery" style="background:#2e7d32; margin:15px 0;" onclick="openAddonsModal()">➕ Add Add-ons (Naan, Drinks, etc.)</button>
-        <!-- deliveryChargeRow div completely removed: no "Delivery Charges:" statement appears here -->
         <div style="display:flex;justify-content:space-between;margin-top:15px;font-weight:900;font-size:1.3rem;border-top:2px solid #f5f5f5;padding-top:15px">
             <span>Total:</span><span id="totalPrice" style="color:var(--primary)">Rs 0</span>
         </div>
@@ -352,13 +440,16 @@
     </div>
 </div>
 
+<!-- Addons Modal -->
 <div id="addonsModal" onclick="closeAddonsModal()">
     <div class="addons-modal-content" onclick="event.stopPropagation()">
-        <h3 style="color:var(--primary); margin-top:0;">➕ Add-ons Menu</h3>
+        <div class="addons-header">
+            <h3 style="color:var(--primary); margin:0;">➕ Add-ons Menu</h3>
+            <button class="back-addon-top" onclick="closeAddonsModal()">← Back to Cart</button>
+        </div>
         <p style="font-size:0.8rem;">Naan, Breads, Raita, Salad, Desserts, Beverages & more</p>
         <div id="addonsList"></div>
-        <button class="cancel-btn btn-back" onclick="closeAddonsModal()">← Back to Cart</button>
-        <button class="cancel-btn" onclick="closeAddonsModal()">Close</button>
+        <button class="cancel-btn" style="margin-top:15px;" onclick="closeAddonsModal()">Close</button>
     </div>
 </div>
 
@@ -379,7 +470,12 @@
                 <hr><h4>💳 Payment Method</h4>
                 <div class="payment-options">
                     <div class="payment-option" onclick="selectPayment('cod')" id="payment_cod"><div class="payment-name">💵 Cash on Delivery</div></div>
-                    <div class="payment-option" onclick="selectPayment('bank')" id="payment_bank"><div class="payment-name">🏦 Meezan Bank Transfer</div><div class="bank-details" id="bankDetails" style="display:none;"><p>Account: Shabbir Aziz | 03080102761475</p></div></div>
+                    <div class="payment-option" onclick="selectPayment('bank')" id="payment_bank"><div class="payment-name">🏦 Meezan Bank Transfer</div>
+                        <div class="bank-details" id="bankDetails" style="display:none;">
+                            <p>Account: Shabbir Aziz | 03080102761475</p>
+                            <div class="payment-warning">⚠️ After completing bank transfer, please send screenshot of payment confirmation on WhatsApp (923320929999) to confirm your order.</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <button class="confirm-delivery" onclick="confirmDeliveryLocation()">✅ Confirm & Continue</button>
@@ -387,13 +483,18 @@
         <div id="pickupDetails" style="display:none">
             <hr><h4>🏠 Pickup</h4>
             <p><strong>Butt Karahi, GT Road, Wah Cantt</strong></p>
-            <div id="paymentSectionPickup"><hr><h4>💳 Payment</h4><div class="payment-options"><div class="payment-option" onclick="selectPaymentPickup('cod')" id="pickup_payment_cod"><div class="payment-name">💵 Cash on Pickup</div></div><div class="payment-option" onclick="selectPaymentPickup('bank')" id="pickup_payment_bank"><div class="payment-name">🏦 Meezan Bank Transfer</div><div class="bank-details" id="bankDetailsPickup" style="display:none;"><p>Account: Shabbir Aziz | 03080102761475</p></div></div></div></div>
+            <div id="paymentSectionPickup"><hr><h4>💳 Payment</h4><div class="payment-options"><div class="payment-option" onclick="selectPaymentPickup('cod')" id="pickup_payment_cod"><div class="payment-name">💵 Cash on Pickup</div></div><div class="payment-option" onclick="selectPaymentPickup('bank')" id="pickup_payment_bank"><div class="payment-name">🏦 Meezan Bank Transfer</div><div class="bank-details" id="bankDetailsPickup" style="display:none;"><p>Account: Shabbir Aziz | 03080102761475</p><div class="payment-warning">⚠️ After bank transfer, send screenshot via WhatsApp (923320929999) for order confirmation.</div></div></div></div></div>
             <button class="confirm-delivery" onclick="confirmPickup()">👍 Confirm Pickup</button>
         </div>
         <div id="dineinDetails" style="display:none">
             <hr><h4>🍽️ Dine-in</h4>
-            <p>Butt Karahi, GT Road, Wah Cantt – No delivery charges.</p>
-            <div id="paymentSectionDinein"><hr><h4>💳 Payment</h4><div class="payment-options"><div class="payment-option" onclick="selectPaymentDinein('cash')" id="dinein_payment_cash"><div class="payment-name">💵 Cash at Restaurant</div></div><div class="payment-option" onclick="selectPaymentDinein('bank')" id="dinein_payment_bank"><div class="payment-name">🏦 Meezan Bank Transfer</div><div class="bank-details" style="display:none;"><p>Account: Shabbir Aziz | 03080102761475</p></div></div></div></div>
+            <p><strong>Butt Karahi, GT Road, Wah Cantt</strong></p>
+            <div class="booking-radio-group">
+                <strong>📌 Booking Preference:</strong>
+                <label><input type="radio" name="dineBookingType" value="Gents" checked> 👨‍🦱 Gents Section</label>
+                <label><input type="radio" name="dineBookingType" value="Family"> 👨‍👩‍👧‍👦 Family Section</label>
+            </div>
+            <div id="paymentSectionDinein"><hr><h4>💳 Payment</h4><div class="payment-options"><div class="payment-option" onclick="selectPaymentDinein('cash')" id="dinein_payment_cash"><div class="payment-name">💵 Cash at Restaurant</div></div><div class="payment-option" onclick="selectPaymentDinein('bank')" id="dinein_payment_bank"><div class="payment-name">🏦 Meezan Bank Transfer</div><div class="bank-details" style="display:none;"><p>Account: Shabbir Aziz | 03080102761475</p><div class="payment-warning">⚠️ After transfer, send screenshot via WhatsApp (923320929999) to confirm booking.</div></div></div></div></div>
             <button class="confirm-delivery" onclick="confirmDineIn()">✅ Confirm Dine-in</button>
         </div>
         <button class="cancel-btn" onclick="closeDeliveryModal()">Cancel</button>
@@ -427,6 +528,8 @@ const ALLOWED_LOCATION_KEYWORDS = [
     "saffron city", "wah garden", "new city", "ghazi", "haripur road", "sangjani", "shahpur"
 ];
 function isLocationAllowed(loc) { if(!loc) return false; return ALLOWED_LOCATION_KEYWORDS.some(k => loc.toLowerCase().includes(k)); }
+
+// Image mapping (full as per original)
 const imageMap = {
   "Desi Murgh Karahi": "https://i.postimg.cc/vmpVRXCw/IMG-20260520-WA0023.jpg",
   "Desi Murgh Karahi White": "https://i.postimg.cc/c4y4RcH0/hq720-(5).jpg",
@@ -555,18 +658,33 @@ const imageMap = {
   "Cold Drink 1.5 Ltr": "https://i.postimg.cc/9QjWV65k/images-(55).jpg"
 };
 
-function getItemImage(n) { return imageMap[n] || "https://i.postimg.cc/d0Bbj2GQ/images-(4).jpg"; }const menuData = [
+function getItemImage(n) { return imageMap[n] || "https://i.postimg.cc/d0Bbj2GQ/images-(4).jpg"; }
+
+// Full menu data
+const menuData = [
   { category: "Desi Murgh Karahi", items: [{ name: "Desi Murgh Karahi", variants: [{name:"Half",price:2200},{name:"Full",price:4200}] },{ name: "Desi Murgh Karahi White", price: 4700 }]},
   { category: "Chicken Karahi", items: [{ name: "Chicken Karahi Broiler", variants: [{name:"Half",price:1200},{name:"Full",price:2200}] },{ name: "Chicken White Karahi", variants: [{name:"Half",price:1250},{name:"Full",price:2500}] },{ name: "Chicken Green Karahi", variants: [{name:"Half",price:1250},{name:"Full",price:2500}] },{ name: "Chicken Achari Karahi", variants: [{name:"Half",price:1200},{name:"Full",price:2400}] }]},
   { category: "Mutton Karahi", items: [{ name: "Mutton Karahi", variants: [{name:"Half",price:2200},{name:"Full",price:4200}] },{ name: "Mutton Green Karahi", price: 4300 },{ name: "Mutton Achari Karahi", price: 4300 },{ name: "Mutton White Karahi", price: 4700 }]},
-  { category: "Special Karahi & Fry", items: [{ name: "Beef Tikka Karahi", price: 2100, desc: "500g Boneless" },{ name: "Batair Karahi", price: 2200 },{ name: "Fish Karahi", variants: [{name:"Half",price:1750},{name:"Full",price:3500}] },{ name: "Jangli Karahi", price: 5500 },{ name: "Beef Kabab Fry Plate", price: 1500 },{ name: "Chicken Boti Fry 10pc", price: 1500 },{ name: "Chicken Kabab Fry Plate", price: 1400 },{ name: "Chicken Tawa Piece", price: 950 },{ name: "Chicken Qeema Fry", variants: [{name:"Half",price:1500},{name:"Full",price:3000}] },{ name: "Beef Qeema Fry", variants: [{name:"Half",price:1500},{name:"Full",price:3000}] },{ name: "Mutton Kabab Fry", price: 2200 },{ name: "Mutton Qeema Fry", price: 4600 },{ name: "Grill Fish (Kg)", price: 1250 },{ name: "Rahu Fry Crispy Fish (Kg)", price: 1550 },{ name: "Finger Fish 10 Pc", price: 1800 }]},
+  { category: "Special Karahi & Fry", items: [{ name: "Beef Tikka Karahi", price: 2100, desc: "500g Boneless" },{ name: "Batair Karahi", price: 2200 },{ name: "Fish Karahi", variants: [{name:"Half",price:1750},{name:"Full",price:3500}] },{ name: "Jangli Karahi", price: 5500, desc: "Desi + Mutton + Chicken" },{ name: "Beef Kabab Fry Plate", price: 1500 },{ name: "Chicken Boti Fry 10pc", price: 1500 },{ name: "Chicken Kabab Fry Plate", price: 1400 },{ name: "Chicken Tawa Piece", price: 950 },{ name: "Chicken/Beef Qeema Fry", price: 3000, desc: "Full (Half available)" },{ name: "Mutton Kabab Fry", price: 2200 },{ name: "Mutton Qeema Fry", price: 4600 }]},
   { category: "Special Handi", items: [{ name: "Chicken Handi", price: 1750 },{ name: "Chicken Jalfrezi", price: 1800 },{ name: "Makhani Handi", price: 2200 },{ name: "Chicken Ginger", price: 1900 },{ name: "Chicken Achari", price: 1900 },{ name: "Chicken White", price: 1800 },{ name: "Mutton Handi", price: 4800 }]},
   { category: "Chinese & Continental", items: [{ name: "Butt Special Chicken Cashew Nuts", price: 1350 },{ name: "Chicken Hot Garlic", price: 950 },{ name: "Chicken Szechuan", price: 1050 },{ name: "Kung Pao Chicken", price: 1100 },{ name: "Chicken Manchurian", price: 1100 },{ name: "Chicken Chilli Dry", price: 1050 },{ name: "Chicken Chilli Vegetable", price: 900 },{ name: "Chicken Shashlik", price: 1050 },{ name: "Mangolian Chicken", price: 1050 },{ name: "Black Pepper Chicken", price: 900 },{ name: "Chicken Roasted Almond", price: 1100 },{ name: "Beef Chilli Dry", price: 1150 }]},
-  { category: "Soups & Pasta", items: [{ name: "Butt Special Soup", price: 1200 },{ name: "Chicken Corn Soup", price: 1000 },{ name: "Hot & Sour Soup", price: 1000 },{ name: "Thai Soup", price: 1000 },{ name: "Chicken Cream Soup", price: 1200 },{ name: "French Fries", price: 400 },{ name: "Alfredo Pasta", price: 1100 },{ name: "Chicken Crunchy Pasta", price: 1300 },{ name: "Chicken Taragon Pasta", price: 1200 }]},
-  { category: "Rice & Chow Mein", items: [{ name: "Butt Special Chow Mein", price: 1050 },{ name: "Chicken Chow Mein", price: 950 },{ name: "Vegetable Chow Mein", price: 800 },{ name: "Butt Special Rice", price: 1300 },{ name: "Chicken Masala Rice", price: 1100 },{ name: "Chicken Fried Rice", price: 1100 },{ name: "Egg Fried Rice", price: 1000 }]},
+  { category: "Soups & Pasta", items: [{ name: "Butt Special Soup", price: 1200, desc: "Family bowl served with fish cracker" },{ name: "Chicken Corn Soup", price: 1000, desc: "Family bowl served with fish cracker" },{ name: "Hot & Sour Soup", price: 1000, desc: "Family bowl served with fish cracker" },{ name: "Thai Soup", price: 1000 },{ name: "Chicken Cream Soup", price: 1200 },{ name: "French Fries", price: 400 },{ name: "Alfredo Pasta", price: 1100 },{ name: "Chicken Crunchy Pasta", price: 1300 },{ name: "Chicken Taragon Pasta", price: 1200, desc: "Family bowl served with fish cracker" },{ name: "Butt Special Chow Mein", price: 1050 },{ name: "Chicken Chow Mein", price: 950 },{ name: "Vegetable Chow Mein", price: 800 },{ name: "Butt Special Rice", price: 1300 },{ name: "Chicken Masala Rice", price: 1100 },{ name: "Chicken Fried Rice", price: 1100 },{ name: "Egg Fried Rice", price: 1000 },{ name: "Grill Fish (Kg)", price: 1250 },{ name: "Rahu Fry Crispy Fish (Kg)", price: 1550 },{ name: "Finger Fish 10 Pc", price: 1800 }]},
   { category: "BBQ", items: [{ name: "Chicken Kabab (4 Piece)", price: 1200 },{ name: "Chicken Cheese Kabab (4 Piece)", price: 1450 },{ name: "Turkish Kabab (4 Piece)", price: 1500 },{ name: "Beef Kabab (4 Piece)", price: 1300 },{ name: "Beef Tikka 500g", price: 1600 },{ name: "Reshmi Kabab (4 Piece)", price: 1400 },{ name: "Mutton Kabab (4 Piece)", price: 1900 },{ name: "Chicken Boti (10 Pc)", price: 1350 },{ name: "Batair (5 Pc)", price: 1000 },{ name: "Chicken Achari Boti (10 Pc)", price: 1450 },{ name: "Chicken Tikka", price: 500 },{ name: "Malai Tikka", price: 600 },{ name: "Malai Boti Plate", price: 1650 },{ name: "Chicken Green Malai Boti", price: 1750 },{ name: "Kastoori Boti Plate", price: 1750 },{ name: "Peshawari Boti (Kg)", price: 1500 },{ name: "Mutton Namkeen Tikka (kg)", price: 3500 },{ name: "Full Chargha Namkeen", price: 1400 },{ name: "Masala Chargha", price: 1600 },{ name: "Fish Tikka (10 Pc)", price: 1500 }]},
-  { category: "Premium Platters", items: [{ name: "1 Person Platter", price: 1500 },{ name: "BBQ Platter (1)", price: 3500 },{ name: "BBQ Platter (2)", price: 4000 },{ name: "BBQ Platter (3)", price: 7800 },{ name: "Family Platter", price: 11500 }]},
-  { category: "Midnight Deals (11 PM - 1 AM)", items: [{ name: "Midnight Deal 1", price: 3320 },{ name: "Midnight Deal 2", price: 4500 },{ name: "Midnight Deal 3", price: 6120 },{ name: "Midnight Deal 4", price: 5580 },{ name: "Midnight Deal 5", price: 3880 },{ name: "Midnight Signature Deal", price: 10610 }]},
+  { category: "Premium Platters", items: [
+    { name: "1 Person Platter", price: 1500, desc: "1 Pc Chicken Kabab, 5 Pc Chicken Boti, 1 Pc Beef Kabab, Rice, Mint, Raita" },
+    { name: "BBQ Platter (1)", price: 3500, desc: "2 Pc Chicken Kabab, Beef Kabab 2 Pc, 5 Pc Chicken Boti, 2 Chicken Tikka Rice, Mint, Raita (1-2 Person)" },
+    { name: "BBQ Platter (2)", price: 4000, desc: "2 Pc Chicken Kabab, 5 Pc Chicken Boti, Beef Tikka (500 gm), 3 Pc Batair, Rice, Mint, Raita (2-3 Person)" },
+    { name: "BBQ Platter (3)", price: 7800, desc: "2 Pc Reshmi Kabab, Chicken Cheese Kabab 2 Pc, Beef Kabab 2 Pc, Peshawari Boti (500 gm), Kastoori Boti 5 Pc, Chicken Boti 5 Pc, Beef Tikka (500 gm), 3 Pc Batair, Fish Tikka 5 Pc (4-5 Person)" },
+    { name: "Family Platter", price: 11500, desc: "Chicken Kabab 2 Pc, Chicken Cheese Kabab 2 Pc, Beef Kabab 2 Pc, Malai Boti 5 Pc, Kastoori Boti 5 Pc, Chicken Boti 5 Pc, Chicken Tikka 2 Pc, Beef Tikka (500 gm), Mutton Namkeen Tikka (500 gm), Peshawari Boti (500 gm), Fish Tikka 5 Pc, Batair 5 Pc (7-8 Person)" }
+  ]},
+  { category: "Midnight Deals (11 PM - 1 AM)", items: [
+    { name: "Midnight Deal 1", price: 3320, desc: "3 Person - Rs. 420 off" },
+    { name: "Midnight Deal 2", price: 4500, desc: "5 Person - Rs. 230 off" },
+    { name: "Midnight Deal 3", price: 6120, desc: "5 Person - Fish Karachi (Kg), 5 Pc Batair BBQ, Chicken Boti 1/2 Plate, Raita, Salad, 1.5 Ltr Drink, Roti, Naan (Rs. 185 off)" },
+    { name: "Midnight Deal 4", price: 5580, desc: "4 Person - Beef Tikka Karachi, Fish Tikka Plate, Chicken Boti Plate, Raita, Salad, 1.5 Ltr Drink, Roti, Naan (Rs. 380 off)" },
+    { name: "Midnight Deal 5", price: 3880, desc: "Available with similar combo" },
+    { name: "Midnight Signature Deal", price: 10610, desc: "8 Person - Chicken Karachi Half, Desi Karachi Half, Mutton Karachi Half, Batair Karachi 10 Pc, Fish Karachi Half, 2 Raita Salad, 2 Mint Raita, 2 Ltr Drink, Roti, Naan (Rs. 1040 off)" }
+  ]},
   { category: "Naan & Add-ons", items: [
     { name: "Roghni Naan", price: 100 },{ name: "Kalonji Naan", price: 100 },{ name: "Garlic Naan", price: 100 },{ name: "Zeera Naan", price: 100 },
     { name: "Cheese Naan", price: 500 },{ name: "Chicken Naan", price: 500 },{ name: "Beef Naan", price: 400 },{ name: "Ginger Naan", price: 120 },
@@ -606,13 +724,21 @@ function render() {
 }
 
 function scrollToSection(id) { let el=document.getElementById(id); if(el) window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-165, behavior:'smooth'}); }
-function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 function changeVariant(btn,itemId,name,varName,price){ let parent=btn.parentElement; parent.querySelectorAll('.var-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); let mi=parent.closest('.menu-item'); mi.querySelector('.item-price').innerText="Rs "+price.toLocaleString(); let minus=mi.querySelector('.minus'), plus=mi.querySelector('.plus'); minus.setAttribute('onclick',`updateCart('${name.replace(/'/g,"\\'")}','${varName}',${price},-1,'${itemId}')`); plus.setAttribute('onclick',`updateCart('${name.replace(/'/g,"\\'")}','${varName}',${price},1,'${itemId}')`); let key=`${name} (${varName})`; if(cart[key]) document.getElementById(`qty_${itemId}`).innerText=cart[key].qty; }
-function updateCart(name, variant, price, delta, itemId) { let key = variant ? `${name} (${variant})` : name; if (!cart[key]) cart[key] = { qty:0, price, itemId, name, variant, addons:[] }; cart[key].qty += delta; if (cart[key].qty <= 0) delete cart[key]; let qtySpan=document.getElementById(`qty_${itemId}`); if(qtySpan) qtySpan.innerText=cart[key]?.qty||0; updateUI(); }
+
+function updateCart(name, variant, price, delta, itemId) { 
+    let key = variant ? `${name} (${variant})` : name; 
+    if (!cart[key]) cart[key] = { qty:0, price, itemId, name, variant, instructions: "" }; 
+    cart[key].qty += delta; 
+    if (cart[key].qty <= 0) delete cart[key]; 
+    let qtySpan=document.getElementById(`qty_${itemId}`); 
+    if(qtySpan) qtySpan.innerText=cart[key]?.qty||0; 
+    updateUI(); 
+}
 
 function addAddonItem(btn, name, price) { 
     let key=name; 
-    if(!cart[key]) cart[key]={qty:0,price,itemId:"addon_"+name.replace(/[^\w]/g,'_'),name,variant:"",addons:[]}; 
+    if(!cart[key]) cart[key]={qty:0,price,itemId:"addon_"+name.replace(/[^\w]/g,'_'),name,variant:"",instructions:""}; 
     cart[key].qty+=1; 
     updateUI(); 
     let originalText = btn.innerText;
@@ -630,213 +756,38 @@ function updateUI(){
         let sub=cart[k].qty*cart[k].price; 
         subtotal+=sub; 
         count+=cart[k].qty; 
-        html+=`<div class="cart-item-row"><div class="cart-item-details"><strong>${k}</strong><br><small>Rs ${cart[k].price}</small></div><div class="cart-item-controls"><button onclick="updateCart('${cart[k].name.replace(/'/g,"\\'")}','${cart[k].variant||''}',${cart[k].price},-1,'${cart[k].itemId}')" style="background:#eee;border:none;width:28px;border-radius:8px">-</button><span>${cart[k].qty}</span><button onclick="updateCart('${cart[k].name.replace(/'/g,"\\'")}','${cart[k].variant||''}',${cart[k].price},1,'${cart[k].itemId}')" style="background:var(--primary);color:white;border:none;width:28px;border-radius:8px">+</button></div><div>Rs ${sub.toLocaleString()}</div></div>`; 
+        let inst = cart[k].instructions || "";
+        let isAddon = cart[k].itemId && cart[k].itemId.startsWith("addon_");
+        html+=`<div class="cart-item-row"><div class="cart-item-main"><div class="cart-item-details"><strong>${k}</strong><br><small>Rs ${cart[k].price}</small></div><div class="cart-item-controls"><button onclick="updateCart('${cart[k].name.replace(/'/g,"\\'")}','${cart[k].variant||''}',${cart[k].price},-1,'${cart[k].itemId}')" style="background:#eee;border:none;width:28px;border-radius:8px">-</button><span>${cart[k].qty}</span><button onclick="updateCart('${cart[k].name.replace(/'/g,"\\'")}','${cart[k].variant||''}',${cart[k].price},1,'${cart[k].itemId}')" style="background:var(--primary);color:white;border:none;width:28px;border-radius:8px">+</button></div><div>Rs ${sub.toLocaleString()}</div></div>`;
+        if(!isAddon) {
+            html+=`<div class="cart-instructions"><input type="text" placeholder="Special instructions (spicy, less salt, etc.)" value="${inst.replace(/"/g, '&quot;')}" onchange="updateInstructions('${k.replace(/'/g,"\\'")}', this.value)"><div class="inst-buttons"><button class="inst-btn" onclick="setInstruction('${k.replace(/'/g,"\\'")}', 'Spicy 🔥')">Spicy</button><button class="inst-btn" onclick="setInstruction('${k.replace(/'/g,"\\'")}', 'Not So Spicy')">Not Spicy</button><button class="inst-btn" onclick="setInstruction('${k.replace(/'/g,"\\'")}', 'Less Salt')">Less Salt</button><button class="inst-btn" onclick="setInstruction('${k.replace(/'/g,"\\'")}', 'Extra Salt')">Extra Salt</button><button class="inst-btn" onclick="setInstruction('${k.replace(/'/g,"\\'")}', 'Less Oil')">Less Oil</button></div></div>`;
+        }
+        html+=`</div>`;
     }
     document.getElementById("cartItemsList").innerHTML=html||"<p style='text-align:center'>Empty cart</p>";
-    // Delivery charge row completely removed: no display, total is subtotal only (no delivery fee shown before order type selection)
     document.getElementById("totalPrice").innerText="Rs "+subtotal.toLocaleString();
     document.getElementById("badge").innerText=count; 
     document.getElementById("badge").style.display=count>0?"flex":"none";
 }
-
-function toggleCart(){ 
-    let m=document.getElementById("cartModal"); 
-    m.style.display=m.style.display==="block"?"none":"block"; 
-}
-
-function openImageModal(src){ 
-    document.getElementById("previewImage").src=src; 
-    document.getElementById("imageModal").classList.add("active"); 
-    document.body.style.overflow="hidden"; 
-}
-
-function closeImageModal(){ 
-    document.getElementById("imageModal").classList.remove("active"); 
-    document.body.style.overflow="auto"; 
-}
-
-function openAddonsModal(){ 
-    let html=""; 
-    const addonCats=["Naan & Add-ons","Beverages"]; 
-    menuData.forEach(cat=>{ 
-        if(addonCats.includes(cat.category)){ 
-            html+=`<h4 style="margin:15px 0 5px; color:var(--primary);">${cat.category}</h4>`; 
-            cat.items.forEach(item=>{ 
-                html+=`<div class="addon-item"><div><strong>${item.name}</strong><br><small>Rs ${item.price}</small></div><button class="btn-addon" onclick="addAddonItem(this, '${item.name.replace(/'/g,"\\'")}', ${item.price})">+ Add</button></div>`; 
-            }); 
-        } 
-    }); 
-    document.getElementById("addonsList").innerHTML=html; 
-    document.getElementById("addonsModal").style.display="block"; 
-    document.body.style.overflow="hidden"; 
-}
-
-function closeAddonsModal(){ 
-    document.getElementById("addonsModal").style.display="none"; 
-    document.body.style.overflow="auto"; 
-}
-
-function proceedToCheckout(){ 
-    if(Object.keys(cart).length===0){alert("Add items first");return;} 
-    let msg="🛒 *NEW ORDER*\n\n",subtotal=0; 
-    for(let k in cart){ 
-        let sub=cart[k].qty*cart[k].price; 
-        subtotal+=sub; 
-        msg+=`▪️ ${k}\n   ${cart[k].qty} x Rs ${cart[k].price} = Rs ${sub.toLocaleString()}\n`; 
-        if(cart[k].addons?.length) msg+=`   ➕ Add-ons: ${cart[k].addons.join(", ")}\n`; 
-        msg+=`\n`; 
-    } 
-    msg+=`═══════════\n*Subtotal: Rs ${subtotal.toLocaleString()}*`; 
-    pendingOrderMessage=msg; 
-    document.getElementById("cartModal").style.display="none"; 
-    document.getElementById("deliveryModal").classList.add("active"); 
-    document.body.style.overflow="hidden"; 
-    document.getElementById("deliveryDetails").style.display="none"; 
-    document.getElementById("pickupDetails").style.display="none"; 
-    document.getElementById("dineinDetails").style.display="none"; 
-    selectedPayment=selectedPaymentPickup=selectedPaymentDinein=null; 
-}
-
-function selectPayment(t){ 
-    selectedPayment=t; 
-    document.getElementById("payment_cod").classList.remove("selected"); 
-    document.getElementById("payment_bank").classList.remove("selected"); 
-    if(t==='cod'){
-        document.getElementById("payment_cod").classList.add("selected");
-        document.querySelector("#payment_bank .bank-details").style.display="none";
-    }else{
-        document.getElementById("payment_bank").classList.add("selected");
-        document.querySelector("#payment_bank .bank-details").style.display="block";
-    } 
-}
-
-function selectPaymentPickup(t){ 
-    selectedPaymentPickup=t; 
-    document.getElementById("pickup_payment_cod").classList.remove("selected"); 
-    document.getElementById("pickup_payment_bank").classList.remove("selected"); 
-    if(t==='cod'){
-        document.getElementById("pickup_payment_cod").classList.add("selected");
-        document.querySelector("#pickup_payment_bank .bank-details").style.display="none";
-    }else{
-        document.getElementById("pickup_payment_bank").classList.add("selected");
-        document.querySelector("#pickup_payment_bank .bank-details").style.display="block";
-    } 
-}
-
-function selectPaymentDinein(t){ 
-    selectedPaymentDinein=t; 
-    document.getElementById("dinein_payment_cash").classList.remove("selected"); 
-    document.getElementById("dinein_payment_bank").classList.remove("selected"); 
-    if(t==='cash'){
-        document.getElementById("dinein_payment_cash").classList.add("selected");
-        document.querySelector("#dinein_payment_bank .bank-details").style.display="none";
-    }else{
-        document.getElementById("dinein_payment_bank").classList.add("selected");
-        document.querySelector("#dinein_payment_bank .bank-details").style.display="block";
-    } 
-}
-
-function selectOrderType(t){ 
-    currentOrderType=t; 
-    document.getElementById("deliveryDetails").style.display="none"; 
-    document.getElementById("pickupDetails").style.display="none"; 
-    document.getElementById("dineinDetails").style.display="none"; 
-    if(t==='pickup') {
-        document.getElementById("pickupDetails").style.display="block"; 
-    } else if(t==='delivery'){ 
-        document.getElementById("deliveryDetails").style.display="block"; 
-        let areas=["Hassan Abdal","Wah Cantt","Taxila","Kohistan Enclave","Shah Wali Colony","Khan Model Town","Dhoke Dollian","Cement Company","Panja Sahib","Wah Garden","New City"]; 
-        let cont=document.getElementById("areaButtonsContainer"); 
-        cont.innerHTML=""; 
-        areas.forEach(a=>{
-            let btn=document.createElement("button");
-            btn.className="area-btn";
-            btn.innerText=a;
-            btn.onclick=()=>{
-                document.getElementById("customLocation").value=a;
-                validateLocationLive(a);
-            };
-            cont.appendChild(btn);
-        }); 
-        document.getElementById("customLocation").oninput=(e)=>validateLocationLive(e.target.value); 
-        document.getElementById("paymentSection").style.display="block"; 
-    } else if(t==='dinein') {
-        document.getElementById("dineinDetails").style.display="block"; 
-    }
-    updateUI(); 
-}
-
-function validateLocationLive(l){ 
-    let div=document.getElementById("locationValidation"); 
-    if(!l){div.innerHTML="";return;} 
-    if(isLocationAllowed(l)){
-        div.innerHTML="✅ Delivery available!";
-        div.className="success-text";
-    }else{
-        div.innerHTML="❌ Outside delivery zone (Hassan Abdal - Wah Cantt - Taxila corridor)";
-        div.className="info-text";
-        div.style.color="#d90429";
-    } 
-}
-
-function confirmDeliveryLocation(){ 
-    let loc=document.getElementById("customLocation").value.trim(); 
-    if(!loc||!isLocationAllowed(loc)){alert("Valid address required. We deliver to Hassan Abdal, Wah Cantt, Taxila, and surrounding areas including Wah Garden.");return;} 
-    if(!selectedPayment){alert("Select payment");return;} 
-    let payText=selectedPayment==='cod'?"💵 Cash on Delivery":"🏦 Meezan Bank Transfer\nAccount: Shabbir Aziz | 03080102761475"; 
-    let subtotalOnly = 0;
-    for(let k in cart){ subtotalOnly += cart[k].qty*cart[k].price; }
-    let totalWithDelivery = subtotalOnly + DELIVERY_FEE;
-    let finalMsg=pendingOrderMessage+`\n🚚 *HOME DELIVERY*\n📍 ${loc}\n💳 Payment: ${payText}\n➕ Delivery: Rs ${DELIVERY_FEE}\n\n*TOTAL: Rs ${totalWithDelivery}*`; 
-    window.open("https://wa.me/"+CLIENT_WHATSAPP+"?text="+encodeURIComponent(finalMsg),'_blank'); 
-    closeDeliveryModal(); 
-    cart={}; 
-    currentOrderType=null; 
-    updateUI(); 
-    render(); 
-}
-
-function confirmPickup(){ 
-    if(!selectedPaymentPickup){alert("Select payment");return;} 
-    let payText=selectedPaymentPickup==='cod'?"💵 Cash on Pickup":"🏦 Meezan Bank Transfer\nAccount: Shabbir Aziz | 03080102761475"; 
-    let total=parseInt(document.getElementById("totalPrice").innerText.replace(/[^0-9]/g,'')) || 0; 
-    let finalMsg=pendingOrderMessage+`\n🍽️ *PICKUP*\n📍 Butt Karahi, GT Road, Wah Cantt\n💳 Payment: ${payText}\n\n*TOTAL: Rs ${total}*`; 
-    window.open("https://wa.me/"+CLIENT_WHATSAPP+"?text="+encodeURIComponent(finalMsg),'_blank'); 
-    closeDeliveryModal(); 
-    cart={}; 
-    currentOrderType=null; 
-    updateUI(); 
-    render(); 
-}
-
-function confirmDineIn(){ 
-    if(!selectedPaymentDinein){alert("Select payment");return;} 
-    let payText=selectedPaymentDinein==='cash'?"💵 Cash at Restaurant":"🏦 Meezan Bank Transfer\nAccount: Shabbir Aziz | 03080102761475"; 
-    let total=parseInt(document.getElementById("totalPrice").innerText.replace(/[^0-9]/g,'')) || 0; 
-    let finalMsg=pendingOrderMessage+`\n🍽️ *DINE-IN*\n📍 Butt Karahi, Wah Cantt\n💳 Payment: ${payText}\n\n*TOTAL: Rs ${total}*`; 
-    window.open("https://wa.me/"+CLIENT_WHATSAPP+"?text="+encodeURIComponent(finalMsg),'_blank'); 
-    closeDeliveryModal(); 
-    cart={}; 
-    currentOrderType=null; 
-    updateUI(); 
-    render(); 
-}
-
-function closeDeliveryModal(){ 
-    document.getElementById("deliveryModal").classList.remove("active"); 
-    document.body.style.overflow="auto"; 
-    currentOrderType=null; 
-    updateUI(); 
-}
-
+function updateInstructions(key, val) { if(cart[key]) cart[key].instructions = val; }
+function setInstruction(key, preset) { if(cart[key]) { cart[key].instructions = preset; updateUI(); } }
+function toggleCart(){ let m=document.getElementById("cartModal"); m.style.display=m.style.display==="block"?"none":"block"; }
+function openImageModal(src){ document.getElementById("previewImage").src=src; document.getElementById("imageModal").classList.add("active"); document.body.style.overflow="hidden"; }
+function closeImageModal(){ document.getElementById("imageModal").classList.remove("active"); document.body.style.overflow="auto"; }
+function openAddonsModal(){ let html=""; const addonCats=["Naan & Add-ons","Beverages"]; menuData.forEach(cat=>{ if(addonCats.includes(cat.category)){ html+=`<h4 style="margin:15px 0 5px; color:var(--primary);">${cat.category}</h4>`; cat.items.forEach(item=>{ html+=`<div class="addon-item"><div><strong>${item.name}</strong><br><small>Rs ${item.price}</small></div><button class="btn-addon" onclick="addAddonItem(this, '${item.name.replace(/'/g,"\\'")}', ${item.price})">+ Add</button></div>`; }); } }); document.getElementById("addonsList").innerHTML=html; document.getElementById("addonsModal").style.display="block"; document.body.style.overflow="hidden"; }
+function closeAddonsModal(){ document.getElementById("addonsModal").style.display="none"; document.body.style.overflow="auto"; }
+function proceedToCheckout(){ if(Object.keys(cart).length===0){alert("Add items first");return;} let msg="🛒 *NEW ORDER*\n\n",subtotal=0; for(let k in cart){ let sub=cart[k].qty*cart[k].price; subtotal+=sub; msg+=`▪️ ${k}\n   ${cart[k].qty} x Rs ${cart[k].price} = Rs ${sub.toLocaleString()}\n`; if(cart[k].instructions && cart[k].instructions.trim()!="" && !cart[k].itemId?.startsWith("addon_")) msg+=`   📝 Instructions: ${cart[k].instructions}\n`; msg+=`\n`; } msg+=`═══════════\n*Subtotal: Rs ${subtotal.toLocaleString()}*`; pendingOrderMessage=msg; document.getElementById("cartModal").style.display="none"; document.getElementById("deliveryModal").classList.add("active"); document.body.style.overflow="hidden"; document.getElementById("deliveryDetails").style.display="none"; document.getElementById("pickupDetails").style.display="none"; document.getElementById("dineinDetails").style.display="none"; selectedPayment=selectedPaymentPickup=selectedPaymentDinein=null; }
+function selectPayment(t){ selectedPayment=t; document.getElementById("payment_cod").classList.remove("selected"); document.getElementById("payment_bank").classList.remove("selected"); if(t==='cod'){ document.getElementById("payment_cod").classList.add("selected"); document.querySelector("#payment_bank .bank-details").style.display="none"; }else{ document.getElementById("payment_bank").classList.add("selected"); document.querySelector("#payment_bank .bank-details").style.display="block"; } }
+function selectPaymentPickup(t){ selectedPaymentPickup=t; document.getElementById("pickup_payment_cod").classList.remove("selected"); document.getElementById("pickup_payment_bank").classList.remove("selected"); if(t==='cod'){ document.getElementById("pickup_payment_cod").classList.add("selected"); document.querySelector("#pickup_payment_bank .bank-details").style.display="none"; }else{ document.getElementById("pickup_payment_bank").classList.add("selected"); document.querySelector("#pickup_payment_bank .bank-details").style.display="block"; } }
+function selectPaymentDinein(t){ selectedPaymentDinein=t; document.getElementById("dinein_payment_cash").classList.remove("selected"); document.getElementById("dinein_payment_bank").classList.remove("selected"); if(t==='cash'){ document.getElementById("dinein_payment_cash").classList.add("selected"); document.querySelector("#dinein_payment_bank .bank-details").style.display="none"; }else{ document.getElementById("dinein_payment_bank").classList.add("selected"); document.querySelector("#dinein_payment_bank .bank-details").style.display="block"; } }
+function selectOrderType(t){ currentOrderType=t; document.getElementById("deliveryDetails").style.display="none"; document.getElementById("pickupDetails").style.display="none"; document.getElementById("dineinDetails").style.display="none"; if(t==='pickup') { document.getElementById("pickupDetails").style.display="block"; } else if(t==='delivery'){ document.getElementById("deliveryDetails").style.display="block"; let areas=["Hassan Abdal","Wah Cantt","Taxila","Kohistan Enclave","Shah Wali Colony","Khan Model Town","Dhoke Dollian","Cement Company","Panja Sahib","Wah Garden","New City"]; let cont=document.getElementById("areaButtonsContainer"); cont.innerHTML=""; areas.forEach(a=>{ let btn=document.createElement("button"); btn.className="area-btn"; btn.innerText=a; btn.onclick=()=>{ document.getElementById("customLocation").value=a; validateLocationLive(a); }; cont.appendChild(btn); }); document.getElementById("customLocation").oninput=(e)=>validateLocationLive(e.target.value); document.getElementById("paymentSection").style.display="block"; } else if(t==='dinein') { document.getElementById("dineinDetails").style.display="block"; } updateUI(); }
+function validateLocationLive(l){ let div=document.getElementById("locationValidation"); if(!l){div.innerHTML="";return;} if(isLocationAllowed(l)){ div.innerHTML="✅ Delivery available!"; div.className="success-text"; }else{ div.innerHTML="❌ Outside delivery zone (Hassan Abdal - Wah Cantt - Taxila corridor)"; div.className="info-text"; div.style.color="#d90429"; } }
+function confirmDeliveryLocation(){ let loc=document.getElementById("customLocation").value.trim(); if(!loc||!isLocationAllowed(loc)){alert("Valid address required. We deliver to Hassan Abdal, Wah Cantt, Taxila, and surrounding areas including Wah Garden.");return;} if(!selectedPayment){alert("Select payment");return;} let payText=selectedPayment==='cod'?"💵 Cash on Delivery":"🏦 Meezan Bank Transfer\nAccount: Shabbir Aziz | 03080102761475\n⚠️ Send screenshot after transfer to 923320929999"; let subtotalOnly = 0; for(let k in cart){ subtotalOnly += cart[k].qty*cart[k].price; } let totalWithDelivery = subtotalOnly + DELIVERY_FEE; let finalMsg=pendingOrderMessage+`\n🚚 *HOME DELIVERY*\n📍 ${loc}\n💳 Payment: ${payText}\n➕ Delivery: Rs ${DELIVERY_FEE}\n\n*TOTAL: Rs ${totalWithDelivery}*`; window.open("https://wa.me/"+CLIENT_WHATSAPP+"?text="+encodeURIComponent(finalMsg),'_blank'); closeDeliveryModal(); cart={}; currentOrderType=null; updateUI(); render(); }
+function confirmPickup(){ if(!selectedPaymentPickup){alert("Select payment");return;} let payText=selectedPaymentPickup==='cod'?"💵 Cash on Pickup":"🏦 Meezan Bank Transfer\nAccount: Shabbir Aziz | 03080102761475\n⚠️ Send screenshot after transfer to 923320929999"; let total=parseInt(document.getElementById("totalPrice").innerText.replace(/[^0-9]/g,'')) || 0; let finalMsg=pendingOrderMessage+`\n🍽️ *PICKUP*\n📍 Butt Karahi, GT Road, Wah Cantt\n💳 Payment: ${payText}\n\n*TOTAL: Rs ${total}*`; window.open("https://wa.me/"+CLIENT_WHATSAPP+"?text="+encodeURIComponent(finalMsg),'_blank'); closeDeliveryModal(); cart={}; currentOrderType=null; updateUI(); render(); }
+function confirmDineIn(){ if(!selectedPaymentDinein){alert("Select payment");return;} let bookingType = document.querySelector('input[name="dineBookingType"]:checked')?.value || "Gents"; let payText=selectedPaymentDinein==='cash'?"💵 Cash at Restaurant":"🏦 Meezan Bank Transfer\nAccount: Shabbir Aziz | 03080102761475\n⚠️ Send screenshot after transfer to 923320929999"; let total=parseInt(document.getElementById("totalPrice").innerText.replace(/[^0-9]/g,'')) || 0; let finalMsg=pendingOrderMessage+`\n🍽️ *DINE-IN*\n📍 Butt Karahi, GT Road, Wah Cantt\n👥 Booking: ${bookingType} Section\n💳 Payment: ${payText}\n\n*TOTAL: Rs ${total}*`; window.open("https://wa.me/"+CLIENT_WHATSAPP+"?text="+encodeURIComponent(finalMsg),'_blank'); closeDeliveryModal(); cart={}; currentOrderType=null; updateUI(); render(); }
+function closeDeliveryModal(){ document.getElementById("deliveryModal").classList.remove("active"); document.body.style.overflow="auto"; currentOrderType=null; updateUI(); }
 render();
-document.addEventListener('keydown', e => { 
-    if(e.key === 'Escape') { 
-        closeImageModal(); 
-        closeAddonsModal(); 
-        closeDeliveryModal(); 
-    } 
-});
+document.addEventListener('keydown', e => { if(e.key === 'Escape') { closeImageModal(); closeAddonsModal(); closeDeliveryModal(); } });
 </script>
 </body>
 </html>
