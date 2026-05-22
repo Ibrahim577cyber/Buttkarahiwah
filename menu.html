@@ -18,7 +18,6 @@
         }
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Segoe UI', system-ui; margin: 0; background: var(--bg); color: var(--text); padding-bottom: 100px; overflow-x: hidden; }
-        
         header { 
             background: var(--primary); 
             color: white; 
@@ -34,12 +33,7 @@
             justify-content: center;
             align-items: center;
         }
-        header p {
-            margin: 2px 0 0 0;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            color: rgba(255,255,255,0.85);
-        }
+        header p { margin: 2px 0 0 0; font-size: 0.75rem; letter-spacing: 2px; color: rgba(255,255,255,0.85); }
         .reference-notice {
             margin: 4px 0 0 0;
             font-size: 0.65rem;
@@ -71,360 +65,96 @@
             border: none;
         }
         .home-btn:hover { transform: scale(1.05); background: #8e2323; }
-        
         @keyframes slideDown {
             from { transform: translateY(-100%); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
-        
-        header h1 { 
-            margin: 0; 
-            letter-spacing: 1px; 
-            font-size: 1.4rem; 
-            text-transform: uppercase; 
-            color: antiquewhite;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .cat-nav { 
-            display: flex; 
-            overflow-x: auto; 
-            background: #ffffff !important; 
-            padding: 12px; 
-            gap: 10px; 
-            border-bottom: 1px solid #eee; 
-            position: sticky; 
-            top: 85px;
-            z-index: 999; 
-            scrollbar-width: none;
-            animation: fadeInUp 0.5s ease-out;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-        }
+        header h1 { margin: 0; letter-spacing: 1px; font-size: 1.4rem; text-transform: uppercase; color: antiquewhite; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .cat-nav { display: flex; overflow-x: auto; background: #ffffff; padding: 12px; gap: 10px; border-bottom: 1px solid #eee; position: sticky; top: 85px; z-index: 999; scrollbar-width: none; animation: fadeInUp 0.5s ease-out; box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
         .cat-nav::-webkit-scrollbar { display: none; }
-        
-        .cat-chip { 
-            background: var(--accent); 
-            color: var(--primary); 
-            padding: 8px 18px; 
-            border-radius: 25px; 
-            font-size: 0.8rem; 
-            font-weight: bold; 
-            white-space: nowrap; 
-            text-decoration: none; 
-            border: 1px solid #f2dada; 
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .cat-chip:hover {
-            transform: translateY(-2px);
-            background: var(--primary);
-            color: white;
-            box-shadow: 0 5px 15px rgba(179, 45, 46, 0.3);
-        }
-        
+        .cat-chip { background: var(--accent); color: var(--primary); padding: 8px 18px; border-radius: 25px; font-size: 0.8rem; font-weight: bold; white-space: nowrap; text-decoration: none; border: 1px solid #f2dada; transition: all 0.3s ease; cursor: pointer; }
+        .cat-chip:hover { transform: translateY(-2px); background: var(--primary); color: white; box-shadow: 0 5px 15px rgba(179,45,46,0.3); }
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         .container { max-width: 600px; margin: auto; padding: 15px; }
         .category-section { scroll-margin-top: 165px; }
-        
-        .category-title { 
-            background: var(--accent); 
-            color: var(--primary); 
-            padding: 12px; 
-            border-left: 5px solid var(--primary); 
-            font-weight: 800; 
-            margin: 30px 0 15px 0; 
-            text-transform: uppercase; 
-            font-size: 0.9rem; 
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-        }
-        
-        .menu-item { 
-            display: flex; 
-            background: white; 
-            margin: 15px 0; 
-            padding: 12px; 
-            border-radius: 18px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
-            border: 1px solid #f0f0f0; 
-            gap: 12px; 
-            align-items: flex-start;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        
-        .menu-item:hover {
-            transform: translateY(-5px) scale(1.01);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-        
-        .menu-item img { 
-            width: 90px; 
-            height: 90px; 
-            border-radius: 14px; 
-            object-fit: cover; 
-            background: #eee; 
-            flex-shrink: 0; 
-            border: 1px solid #f5f5f5;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .menu-item img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        
+        .category-title { background: var(--accent); color: var(--primary); padding: 12px; border-left: 5px solid var(--primary); font-weight: 800; margin: 30px 0 15px 0; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; }
+        .menu-item { display: flex; background: white; margin: 15px 0; padding: 12px; border-radius: 18px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #f0f0f0; gap: 12px; align-items: flex-start; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .menu-item:hover { transform: translateY(-5px) scale(1.01); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .menu-item img { width: 90px; height: 90px; border-radius: 14px; object-fit: cover; background: #eee; flex-shrink: 0; border: 1px solid #f5f5f5; transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; }
+        .menu-item img:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
         .item-content { flex: 1; display: flex; flex-direction: column; min-width: 0; }
         .item-name { font-weight: 700; font-size: 0.95rem; color: #111; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-        .butter-badge {
-            background: var(--butter-gold);
-            color: white;
-            font-size: 0.6rem;
-            font-weight: bold;
-            padding: 2px 8px;
-            border-radius: 20px;
-            letter-spacing: 0.5px;
-        }
-        .full-badge {
-            background: #2e7d32;
-            color: white;
-            font-size: 0.6rem;
-            font-weight: bold;
-            padding: 2px 8px;
-            border-radius: 20px;
-            letter-spacing: 0.5px;
-        }
+        .butter-badge { background: var(--butter-gold); color: white; font-size: 0.6rem; font-weight: bold; padding: 2px 8px; border-radius: 20px; letter-spacing: 0.5px; }
+        .full-badge { background: #2e7d32; color: white; font-size: 0.6rem; font-weight: bold; padding: 2px 8px; border-radius: 20px; letter-spacing: 0.5px; }
         .item-desc { font-size: 0.7rem; color: #666; margin-bottom: 6px; line-height: 1.4; }
         .item-price { color: var(--primary); font-weight: 800; font-size: 1rem; }
-        
-        .item-bottom { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            margin-top: 8px; 
-            flex-wrap: wrap; 
-            gap: 8px;
-        }
+        .item-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; flex-wrap: wrap; gap: 8px; }
         .variant-selector { display: flex; gap: 4px; background: #f0f0f0; padding: 2px; border-radius: 8px; }
         .var-btn { border: none; background: transparent; padding: 4px 10px; border-radius: 6px; font-size: 0.7rem; font-weight: 800; cursor: pointer; transition: 0.2s; }
         .var-btn.active { background: var(--primary); color: white; }
-        
         .controls { display: flex; align-items: center; gap: 8px; background: #f5f5f5; padding: 3px; border-radius: 10px; }
         .controls button { border: none; width: 32px; height: 32px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.15s; }
         .minus { background: white; color: #333; }
         .plus { background: var(--primary); color: white; }
         .qty-val { min-width: 20px; text-align: center; font-weight: 800; }
-
-        .cart-fab { 
-            position: fixed; bottom: 25px; right: 20px; width: 70px; height: 70px; 
-            background: var(--primary); border-radius: 50%; display: flex; align-items: center; 
-            justify-content: center; box-shadow: 0 10px 30px rgba(179,45,46,0.4); cursor: pointer; 
-            z-index: 1001; transition: 0.3s; animation: bounceIn 0.8s ease-out;
-        }
+        .addon-controls { display: flex; align-items: center; gap: 8px; background: #f0f0f0; padding: 2px 6px; border-radius: 30px; }
+        .addon-controls button { border: none; width: 32px; height: 32px; border-radius: 50%; font-weight: bold; cursor: pointer; font-size: 1.2rem; transition: 0.1s; }
+        .addon-controls .addon-minus { background: white; color: #333; }
+        .addon-controls .addon-plus { background: var(--primary); color: white; }
+        .addon-qty { font-weight: 800; min-width: 28px; text-align: center; }
+        .cart-fab { position: fixed; bottom: 25px; right: 20px; width: 70px; height: 70px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(179,45,46,0.4); cursor: pointer; z-index: 1001; transition: 0.3s; animation: bounceIn 0.8s ease-out; }
         .cart-fab:hover { transform: scale(1.1); }
-        
-        .cart-badge { 
-            position: absolute; top: -5px; right: -5px; background: #222; color: white; 
-            border-radius: 50%; width: 26px; height: 26px; font-size: 12px; display: none; 
-            align-items: center; justify-content: center; border: 2px solid white;
-        }
-        
-        #cartModal, #addonsModal { 
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.8); z-index: 2000; backdrop-filter: blur(8px);
-        }
-        .modal-content { 
-            position: absolute; bottom: 0; left: 0; right: 0; background: white; 
-            border-radius: 30px 30px 0 0; padding: 25px; max-height: 85vh; overflow-y: auto;
-            animation: slideUp 0.4s;
-        }
-        .addons-modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            border-radius: 30px;
-            width: 90%;
-            max-width: 500px;
-            max-height: 85vh;
-            overflow-y: auto;
-            padding: 20px;
-            animation: scaleIn 0.3s;
-        }
-        
-        .delivery-modal {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85); z-index: 4000; justify-content: center; align-items: center;
-            backdrop-filter: blur(5px);
-        }
+        .cart-badge { position: absolute; top: -5px; right: -5px; background: #222; color: white; border-radius: 50%; width: 26px; height: 26px; font-size: 12px; display: none; align-items: center; justify-content: center; border: 2px solid white; }
+        #cartModal, #addonsModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; backdrop-filter: blur(8px); }
+        .modal-content { position: absolute; bottom: 0; left: 0; right: 0; background: white; border-radius: 30px 30px 0 0; padding: 25px; max-height: 85vh; overflow-y: auto; animation: slideUp 0.4s; }
+        .addons-modal-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; border-radius: 30px; width: 90%; max-width: 500px; max-height: 85vh; overflow-y: auto; padding: 20px; animation: scaleIn 0.3s; }
+        .delivery-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 4000; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
         .delivery-modal.active { display: flex; }
-        .delivery-card {
-            background: white; border-radius: 30px; padding: 30px 25px; max-width: 400px; width: 90%;
-            text-align: center; animation: scaleIn 0.3s; max-height: 90vh; overflow-y: auto;
-        }
+        .delivery-card { background: white; border-radius: 30px; padding: 30px 25px; max-width: 400px; width: 90%; text-align: center; animation: scaleIn 0.3s; max-height: 90vh; overflow-y: auto; }
         @keyframes scaleIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-        
         .delivery-options { display: flex; gap: 15px; margin: 25px 0; }
         .delivery-option { flex: 1; padding: 15px; border: 2px solid #e0e0e0; border-radius: 20px; cursor: pointer; font-weight: 700; transition: 0.3s; }
         .delivery-option:hover { border-color: var(--primary); transform: translateY(-3px); }
-        
         .location-input { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 12px; font-size: 1rem; margin: 15px 0; }
         .location-input:focus { border-color: var(--primary); outline: none; }
-        
         .area-buttons { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 15px 0; max-height: 150px; overflow-y: auto; }
         .area-btn { background: #f0f0f0; border: none; padding: 6px 12px; border-radius: 20px; cursor: pointer; font-size: 0.75rem; transition: 0.2s; }
         .area-btn:hover { background: var(--primary); color: white; }
-        
         .payment-options { margin: 20px 0; text-align: left; }
-        .payment-option {
-            border: 2px solid #e0e0e0;
-            border-radius: 16px;
-            padding: 15px;
-            margin: 12px 0;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: white;
-        }
+        .payment-option { border: 2px solid #e0e0e0; border-radius: 16px; padding: 15px; margin: 12px 0; cursor: pointer; transition: all 0.3s ease; background: white; }
         .payment-option.selected { border-color: var(--whatsapp); background: #f0fff4; }
         .payment-name { font-weight: 800; font-size: 1rem; display: flex; align-items: center; gap: 10px; }
         .bank-details { background: #f5f5f5; padding: 12px; border-radius: 12px; margin-top: 8px; font-size: 0.8rem; }
-        .payment-warning {
-            color: #b32d2e;
-            font-size: 0.7rem;
-            margin-top: 8px;
-            background: #fff0f0;
-            padding: 6px 8px;
-            border-radius: 10px;
-            border-left: 3px solid #b32d2e;
-            word-break: break-word;
-            white-space: normal;
-        }
-        
+        .payment-warning { color: #b32d2e; font-size: 0.7rem; margin-top: 8px; background: #fff0f0; padding: 6px 8px; border-radius: 10px; border-left: 3px solid #b32d2e; word-break: break-word; white-space: normal; }
         .confirm-delivery { background: var(--whatsapp); color: white; border: none; width: 100%; padding: 14px; border-radius: 50px; font-weight: bold; margin-top: 20px; cursor: pointer; transition: 0.3s; }
         .confirm-delivery:hover { transform: scale(1.02); }
         .cancel-btn { background: #ccc; color: #333; border: none; width: 100%; padding: 12px; border-radius: 50px; margin-top: 10px; cursor: pointer; }
         .info-text { font-size: 0.7rem; color: #666; margin-top: 8px; }
         .success-text { color: #2e7d32; font-size: 0.8rem; }
-        
         .image-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; justify-content: center; align-items: center; cursor: pointer; }
         .image-modal.active { display: flex; }
         .image-modal img { max-width: 90%; max-height: 90%; border-radius: 20px; animation: scaleIn 0.3s; }
         .close-image { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
-        
         @keyframes bounceIn { 0% { transform: scale(0); } 60% { transform: scale(1.1); } 100% { transform: scale(1); } }
-        
-        .cart-item-row {
-            display: flex;
-            flex-direction: column;
-            padding: 12px 0;
-            border-bottom: 1px solid #eee;
-        }
-        .cart-item-main {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
+        .cart-item-row { display: flex; flex-direction: column; padding: 12px 0; border-bottom: 1px solid #eee; }
+        .cart-item-main { display: flex; justify-content: space-between; align-items: center; width: 100%; }
         .cart-item-details { flex: 2; }
         .cart-item-controls { display: flex; align-items: center; gap: 8px; }
-        .cart-instructions {
-            margin-top: 8px;
-            width: 100%;
-        }
-        .cart-instructions input {
-            width: 100%;
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            background: #fef9e6;
-        }
-        .inst-buttons {
-            display: flex;
-            gap: 6px;
-            margin-top: 6px;
-            flex-wrap: wrap;
-        }
-        .inst-btn {
-            background: #f0f0f0;
-            border: none;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.65rem;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .inst-btn:hover {
-            background: var(--primary);
-            color: white;
-        }
-        .addon-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            border-bottom: 1px solid #eee;
-        }
-        .btn-addon {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 5px 15px;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: 0.1s;
-        }
-        .btn-addon.added {
-            background: #2e7d32;
-        }
-        .btn-back {
-            background: #2e7d32;
-            margin-bottom: 15px;
-        }
-        .booking-radio-group {
-            margin: 15px 0;
-            text-align: left;
-            background: #f9f3f0;
-            padding: 12px;
-            border-radius: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 20px;
-        }
-        .booking-radio-group strong {
-            margin-right: 10px;
-        }
-        .booking-radio-group label {
-            margin: 0;
-            font-weight: 500;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .addons-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        .back-addon-top {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            cursor: pointer;
-        }
+        .cart-instructions { margin-top: 8px; width: 100%; }
+        .cart-instructions input { width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 12px; font-size: 0.7rem; background: #fef9e6; }
+        .inst-buttons { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+        .inst-btn { background: #f0f0f0; border: none; padding: 4px 10px; border-radius: 20px; font-size: 0.65rem; cursor: pointer; transition: 0.2s; }
+        .inst-btn:hover { background: var(--primary); color: white; }
+        .addon-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #eee; }
+        .btn-back { background: #2e7d32; margin-bottom: 15px; }
+        .booking-radio-group { margin: 15px 0; text-align: left; background: #f9f3f0; padding: 12px; border-radius: 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
+        .booking-radio-group strong { margin-right: 10px; }
+        .booking-radio-group label { margin: 0; font-weight: 500; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; }
+        .addons-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .back-addon-top { background: var(--primary); color: white; border: none; padding: 6px 12px; border-radius: 30px; font-size: 0.8rem; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -459,14 +189,14 @@
     </div>
 </div>
 
-<!-- Addons Modal -->
+<!-- Addons Modal (plus/minus version) -->
 <div id="addonsModal" onclick="closeAddonsModal()">
     <div class="addons-modal-content" onclick="event.stopPropagation()">
         <div class="addons-header">
             <h3 style="color:var(--primary); margin:0;">➕ Add-ons Menu</h3>
             <button class="back-addon-top" onclick="closeAddonsModal()">← Back to Cart</button>
         </div>
-        <p style="font-size:0.8rem;">Naan, Breads, Raita, Salad, Desserts, Beverages & more</p>
+        <p style="font-size:0.8rem;">Naan, Breads, Raita, Salad, Desserts, Beverages & more — adjust quantity with +/-</p>
         <div id="addonsList"></div>
         <button class="cancel-btn" style="margin-top:15px;" onclick="closeAddonsModal()">Close</button>
     </div>
@@ -515,19 +245,11 @@ const ALLOWED_LOCATION_KEYWORDS = [
 ];
 function isLocationAllowed(loc) { if(!loc) return false; return ALLOWED_LOCATION_KEYWORDS.some(k => loc.toLowerCase().includes(k)); }
 
-// Complete image mapping (works with original and makhani names)
-const imageMap = {
-  "Desi Murgh Karahi": "https://i.postimg.cc/vmpVRXCw/IMG-20260520-WA0023.jpg","Desi Murgh Karahi White": "https://i.postimg.cc/c4y4RcH0/hq720-(5).jpg","Chicken Karahi Broiler": "https://i.postimg.cc/Nj9LkmPq/IMG-20260520-WA0014.jpg","Chicken White Karahi": "https://i.postimg.cc/4yhyJLx2/Chicken-Cheese-White-Karahi-Recipe-by-Food-fusion-2-1.jpg","Chicken Green Karahi": "https://i.postimg.cc/bYHbPL1Z/maxresdefault-(1).jpg","Chicken Achari Karahi": "https://i.postimg.cc/3wJT8T51/IMG-20260520-WA0025.jpg","Mutton Karahi": "https://i.postimg.cc/1zSPVqkv/IMG-20260520-WA0017.jpg","Mutton Green Karahi": "https://i.postimg.cc/WzHsVQ8v/images-(12).jpg","Mutton Achari Karahi": "https://i.postimg.cc/RZrzT1bs/images-(13).jpg","Mutton White Karahi": "https://i.postimg.cc/HnfFBH3p/images-(14).jpg","Beef Tikka Karahi": "https://i.postimg.cc/521fVqq9/92f903cd-a54d-42c8-89f5-89ca0b9ab0bc.webp","Batair Karahi": "https://i.postimg.cc/kgMLsjvw/images-(15).jpg","Fish Karahi": "https://i.postimg.cc/rFffVq5z/maxresdefault-(2).jpg","Jangli Karahi": "https://i.postimg.cc/SxK0CXW0/hq720-(4).jpg","Beef Kabab Fry Plate": "https://i.postimg.cc/HsKbmpqW/IMG-20260520-WA0018.jpg","Chicken Boti Fry 10pc": "https://i.postimg.cc/D0nBq22D/1779293316334.png","Chicken Kabab Fry Plate": "https://i.postimg.cc/bwgDJpMm/IMG-20260520-WA0019.jpg","Chicken Tawa Piece": "https://i.postimg.cc/RF1jG2yg/maxresdefault-(3).jpg","Chicken Qeema Fry": "https://i.postimg.cc/XYFxwdTG/images-(17).jpg","Beef Qeema Fry": "https://i.postimg.cc/K8L7d2GJ/images-(36).jpg","Mutton Kabab Fry": "https://i.postimg.cc/8cJLTVGy/hq720-(2).jpg","Mutton Qeema Fry": "https://i.postimg.cc/yNLR9NY3/images-(18).jpg","Grill Fish (Kg)": "https://i.postimg.cc/PqTVt45V/Screenshot-20260515-193302.png","Rahu Fry Crispy Fish (Kg)": "https://i.postimg.cc/rFffVq5z/maxresdefault-(2).jpg","Finger Fish 10 Pc": "https://i.postimg.cc/3NjpFpSH/IMG-20260520-WA0022.jpg","Chicken Handi": "https://i.postimg.cc/DZRn1fPQ/75543821.jpg","Chicken Jalfrezi": "https://i.postimg.cc/wB42Xz6L/images-(19).jpg","Makhani Handi": "https://i.postimg.cc/QChFVBRn/images-(20).jpg","Chicken Ginger": "https://i.postimg.cc/XvDMptt3/images-(21).jpg","Chicken Achari": "https://i.postimg.cc/3wJT8T51/IMG-20260520-WA0025.jpg","Chicken White": "https://i.postimg.cc/vm3dCrbm/White-Chicken-Karahi-3.jpg","Mutton Handi": "https://i.postimg.cc/nhWbL66y/DUM-MUTTON-HANDIi.jpg","Butt Special Chicken Cashew Nuts": "https://i.postimg.cc/pVk2H1LV/images-(25).jpg","Chicken Hot Garlic": "https://i.postimg.cc/Fs7QQr6H/images-(26).jpg","Chicken Szechuan": "https://i.postimg.cc/KzvHrQS5/images-(27).jpg","Kung Pao Chicken": "https://i.postimg.cc/2SSGty9J/images-(28).jpg","Chicken Manchurian": "https://i.postimg.cc/435Jx8Q9/images-(29).jpg","Chicken Chilli Dry": "https://i.postimg.cc/c1YdK4h1/images-(30).jpg","Chicken Chilli Vegetable": "https://i.postimg.cc/QdCPTfDQ/images-(31).jpg","Chicken Shashlik": "https://i.postimg.cc/3x9vPZ0c/images-(32).jpg","Mangolian Chicken": "https://i.postimg.cc/7L0y5K1j/images-(33).jpg","Black Pepper Chicken": "https://i.postimg.cc/CdTGxLwC/images-(34).jpg","Chicken Roasted Almond": "https://i.postimg.cc/B6PNSz2r/images-(35).jpg","Beef Chilli Dry": "https://i.postimg.cc/yYjhHKwN/IMG-0155.jpg","Butt Special Soup": "https://i.postimg.cc/BQh8VqVm/Hot-and-Sour-Soup-Vegetarian.jpg","Chicken Corn Soup": "https://i.postimg.cc/bJzpPnGG/hq720.jpg","Hot & Sour Soup": "https://i.postimg.cc/SsNF3p5H/Hot-and-sour-soup-4.jpg","Thai Soup": "https://i.postimg.cc/vTJKYRPp/creamy-thai-coconut-soup.jpg","Chicken Cream Soup": "https://i.postimg.cc/vBkyVNqk/Cream-of-chicken-Soup.jpg","French Fries": "https://i.postimg.cc/fbbQgN1Y/Copycat-Mc-Donalds-French-Fries.jpg","Alfredo Pasta": "https://i.postimg.cc/28fRNvPd/alfredopasta5-500x500.jpg","Chicken Crunchy Pasta": "https://i.postimg.cc/tJ3c4SLd/1694601178-p-JQPzi.webp","Chicken Taragon Pasta": "https://i.postimg.cc/KvsPgrxb/Screenshot-20260515-144108.png","Butt Special Chow Mein": "https://i.postimg.cc/tTXZcYpS/Screenshot-20260515-144205.png","Chicken Chow Mein": "https://i.postimg.cc/6QKy7y2n/Easy-Chicken-Chow-Mein-1.jpg","Vegetable Chow Mein": "https://i.postimg.cc/K8PYyxqk/Veg-Chowmein.jpg","Butt Special Rice": "https://i.postimg.cc/G3fP4xc4/Screenshot-20260515-145107.png","Chicken Masala Rice": "https://i.postimg.cc/m20S5NqV/instant-pot-chicken-tikka-masala-rice-one-pot-500x500.jpg","Chicken Fried Rice": "https://i.postimg.cc/zDQ4shGx/IMG-20260520-WA0024.jpg","Egg Fried Rice": "https://i.postimg.cc/5jcFnp0C/Egg-fried-rice-2.jpg","Chicken Kabab (4 Piece)": "https://i.postimg.cc/zGxT1CPJ/chicken-kabab-Butt-Karahi-Waseem-Islamabad.jpg","Chicken Cheese Kabab (4 Piece)": "https://i.postimg.cc/qqJxNjw3/IMG-20260520-WA0016.jpg","Turkish Kabab (4 Piece)": "https://i.postimg.cc/ZKT9K9NT/Turkish-Kebabs-min.jpg","Beef Kabab (4 Piece)": "https://i.postimg.cc/sDDXCkFp/Beef-Kabab-Butt-Karahi-Waseem-Islamabad.jpg","Beef Tikka 500g": "https://i.postimg.cc/LX2SBP2X/Screenshot-20260515-145916.png","Reshmi Kabab (4 Piece)": "https://i.postimg.cc/1zchtzw9/Reshmi-Kabab-Butt-Karahi-Waseem-Islamabad.jpg","Mutton Kabab (4 Piece)": "https://i.postimg.cc/s2DdMrcm/image-6e77de17-1.png","Chicken Boti (10 Pc)": "https://i.postimg.cc/d1bxjP2s/Chicken-Boti-Kabab-24.jpg","Batair (5 Pc)": "https://i.postimg.cc/T1jCjy2J/BBQ-quail-500x500-1-(1).jpg","Chicken Achari Boti (10 Pc)": "https://i.postimg.cc/SNyrFxN7/hq720-(1).jpg","Chicken Tikka": "https://i.postimg.cc/gkRt1B7s/IMG-20260520-WA0020.jpg","Malai Tikka": "https://i.postimg.cc/yx0hp2Nj/IMG-20260520-WA0021.jpg","Malai Boti Plate": "https://i.postimg.cc/vBYB8k1h/chicken-malai-boti-with-green-chutney-1.jpg","Chicken Green Malai Boti": "https://i.postimg.cc/9XvDZxs1/hq720-(2).jpg","Kastoori Boti Plate": "https://i.postimg.cc/xd4fY82n/maxresdefault-(2).jpg","Peshawari Boti (Kg)": "https://i.postimg.cc/nc2tprKV/5-ingredient-peshawari-namkeen-boti-recipe-main-photo.jpg","Mutton Namkeen Tikka (kg)": "https://i.postimg.cc/qMk9brPQ/hq720-(3).jpg","Full Chargha Namkeen": "https://i.postimg.cc/Y0X8D5gK/Screenshot-20260515-151735-1.jpg","Masala Chargha": "https://i.postimg.cc/ZqnSnmbD/lahori-chargha-13.jpg","Fish Tikka (10 Pc)": "https://i.postimg.cc/CL7Xq2Q8/Fish-Tikka-Bites.jpg","1 Person Platter": "https://i.postimg.cc/W4C1xXjp/1778859477067.png","BBQ Platter (1)": "https://i.postimg.cc/C5VkpF0t/Screenshot-20260515-204231.png","BBQ Platter (2)": "https://i.postimg.cc/05FHr4d8/Screenshot-20260515-204633.png","BBQ Platter (3)": "https://i.postimg.cc/sfMsttgg/Screenshot-20260515-205449.png","Family Platter": "https://i.postimg.cc/wvCqWVJX/1778860669262.png","Midnight Deal 1": "https://i.postimg.cc/RVP840p3/1778860812709.png","Midnight Deal 2": "https://i.postimg.cc/KzBjhwZZ/1778861304895.png","Midnight Deal 3": "https://i.postimg.cc/c48Y49Xn/1778861058313.png","Midnight Deal 4": "https://i.postimg.cc/s2pCjrZ0/1778861416023.png","Midnight Deal 5": "https://i.postimg.cc/Mp2sWjb8/1778861549313.png","Midnight Signature Deal": "https://i.postimg.cc/7Z5mMnHz/Screenshot-20260515-211641.png","Roghni Naan": "https://i.postimg.cc/DZ81PJZ3/roghni-naan-featured.jpg","Kalonji Naan": "https://i.postimg.cc/gj4dcJVz/Snappy-ka-Kalonji-Naan.webp","Garlic Naan": "https://i.postimg.cc/wxFdm1NT/images-(37).jpg","Zeera Naan": "https://i.postimg.cc/TwYtM33h/sddefault.jpg","Cheese Naan": "https://i.postimg.cc/s2ZhBFH6/Cheese-Stuffed-Naan-Bread-2.jpg","Chicken Naan": "https://i.postimg.cc/cJ4djfwg/hq720-(3).jpg","Beef Naan": "https://i.postimg.cc/qRyDx5qD/High-Protein-Keema-Naan-Beef-Stuffed-Flatbread-12.jpg","Ginger Naan": "https://i.postimg.cc/Pq8SdRWp/ginger.jpg","Achari Naan": "https://i.postimg.cc/BQXHW15d/images-(38).jpg","Plain Roti": "https://i.postimg.cc/XqZJP9S4/images-(39).jpg","Plain Naan": "https://i.postimg.cc/BZdH0nhZ/images-(40).jpg","Khamiri Roti": "https://i.postimg.cc/g2GwzX3H/images-(41).jpg","Raita": "https://i.postimg.cc/3RYf9ZG4/images-(42).jpg","Mint Raita": "https://i.postimg.cc/VNCP2455/Screenshot-20260515-195110.png","Salad": "https://i.postimg.cc/qMPLjLfX/images-(43).jpg","Makhan Extra": "https://i.postimg.cc/cL7QTGBM/images-(44).jpg","Olive Oil Extra": "https://i.postimg.cc/hPTyFw1N/images-(45).jpg","Gulab Jaman": "https://i.postimg.cc/1tbH2cnK/images-(46).jpg","Kheer": "https://i.postimg.cc/X7bK5v9D/images-(47).jpg","Qawa": "https://i.postimg.cc/L5RqJnGz/6d6a92427ad7e94637985705bbc448b7.jpg","Tea": "https://i.postimg.cc/wBLTD95T/DSC04958-500x500.jpg","Mint Margarita": "https://i.postimg.cc/j5vTh2L6/images-(48).jpg","Classic Lemonade": "https://i.postimg.cc/Hs8GrB9G/images-(49).jpg","Peach Lemonade": "https://i.postimg.cc/pd21JZzv/images-(50).jpg","Mint Lemonade": "https://i.postimg.cc/KzKXtfhz/images-(51).jpg","Blue Lemonade": "https://i.postimg.cc/dVngXpqP/images-(52).jpg","Pink Lady Mocktail": "https://i.postimg.cc/Gm35kKk9/pink-lady-mocktail-featured.jpg","Sweet Lassi": "https://i.postimg.cc/bYQCWWgd/images-(53).jpg","Salted Lassi": "https://i.postimg.cc/ncFk5zMk/images-(54).jpg","Mineral Water Large": "https://i.postimg.cc/Njy1qrtK/download-1.jpg","Mineral Water Small": "https://i.postimg.cc/tJSV89mv/330ml-2.jpg","Soft Drink Can": "https://i.postimg.cc/nVRjFc0K/main-qimg-8eff3354383e7f1884c8ab055676ca21-c.jpg","Cold Drink 1 Ltr": "https://i.postimg.cc/xCdfhLrs/aje-big-soft-drink-mix-802398198-tsegaj8y.jpg","Cold Drink 1.5 Ltr": "https://i.postimg.cc/9QjWV65k/images-(55).jpg"
+const imageMap = { "Desi Murgh Karahi": "https://i.postimg.cc/vmpVRXCw/IMG-20260520-WA0023.jpg","Desi Murgh Karahi White": "https://i.postimg.cc/c4y4RcH0/hq720-(5).jpg","Chicken Karahi Broiler": "https://i.postimg.cc/Nj9LkmPq/IMG-20260520-WA0014.jpg","Chicken White Karahi": "https://i.postimg.cc/4yhyJLx2/Chicken-Cheese-White-Karahi-Recipe-by-Food-fusion-2-1.jpg","Chicken Green Karahi": "https://i.postimg.cc/bYHbPL1Z/maxresdefault-(1).jpg","Chicken Achari Karahi": "https://i.postimg.cc/3wJT8T51/IMG-20260520-WA0025.jpg","Mutton Karahi": "https://i.postimg.cc/1zSPVqkv/IMG-20260520-WA0017.jpg","Mutton Green Karahi": "https://i.postimg.cc/WzHsVQ8v/images-(12).jpg","Mutton Achari Karahi": "https://i.postimg.cc/RZrzT1bs/images-(13).jpg","Mutton White Karahi": "https://i.postimg.cc/HnfFBH3p/images-(14).jpg","Beef Tikka Karahi": "https://i.postimg.cc/521fVqq9/92f903cd-a54d-42c8-89f5-89ca0b9ab0bc.webp","Batair Karahi": "https://i.postimg.cc/kgMLsjvw/images-(15).jpg","Fish Karahi": "https://i.postimg.cc/rFffVq5z/maxresdefault-(2).jpg","Jangli Karahi": "https://i.postimg.cc/SxK0CXW0/hq720-(4).jpg","Beef Kabab Fry Plate": "https://i.postimg.cc/HsKbmpqW/IMG-20260520-WA0018.jpg","Chicken Boti Fry 10pc": "https://i.postimg.cc/D0nBq22D/1779293316334.png","Chicken Kabab Fry Plate": "https://i.postimg.cc/bwgDJpMm/IMG-20260520-WA0019.jpg","Chicken Tawa Piece": "https://i.postimg.cc/RF1jG2yg/maxresdefault-(3).jpg","Chicken Qeema Fry": "https://i.postimg.cc/XYFxwdTG/images-(17).jpg","Beef Qeema Fry": "https://i.postimg.cc/K8L7d2GJ/images-(36).jpg","Mutton Kabab Fry": "https://i.postimg.cc/8cJLTVGy/hq720-(2).jpg","Mutton Qeema Fry": "https://i.postimg.cc/yNLR9NY3/images-(18).jpg","Grill Fish (Kg)": "https://i.postimg.cc/PqTVt45V/Screenshot-20260515-193302.png","Rahu Fry Crispy Fish (Kg)": "https://i.postimg.cc/rFffVq5z/maxresdefault-(2).jpg","Finger Fish 10 Pc": "https://i.postimg.cc/3NjpFpSH/IMG-20260520-WA0022.jpg","Chicken Handi": "https://i.postimg.cc/DZRn1fPQ/75543821.jpg","Chicken Jalfrezi": "https://i.postimg.cc/wB42Xz6L/images-(19).jpg","Makhani Handi": "https://i.postimg.cc/QChFVBRn/images-(20).jpg","Chicken Ginger": "https://i.postimg.cc/XvDMptt3/images-(21).jpg","Chicken Achari": "https://i.postimg.cc/3wJT8T51/IMG-20260520-WA0025.jpg","Chicken White": "https://i.postimg.cc/vm3dCrbm/White-Chicken-Karahi-3.jpg","Mutton Handi": "https://i.postimg.cc/nhWbL66y/DUM-MUTTON-HANDIi.jpg","Butt Special Chicken Cashew Nuts": "https://i.postimg.cc/pVk2H1LV/images-(25).jpg","Chicken Hot Garlic": "https://i.postimg.cc/Fs7QQr6H/images-(26).jpg","Chicken Szechuan": "https://i.postimg.cc/KzvHrQS5/images-(27).jpg","Kung Pao Chicken": "https://i.postimg.cc/2SSGty9J/images-(28).jpg","Chicken Manchurian": "https://i.postimg.cc/435Jx8Q9/images-(29).jpg","Chicken Chilli Dry": "https://i.postimg.cc/c1YdK4h1/images-(30).jpg","Chicken Chilli Vegetable": "https://i.postimg.cc/QdCPTfDQ/images-(31).jpg","Chicken Shashlik": "https://i.postimg.cc/3x9vPZ0c/images-(32).jpg","Mangolian Chicken": "https://i.postimg.cc/7L0y5K1j/images-(33).jpg","Black Pepper Chicken": "https://i.postimg.cc/CdTGxLwC/images-(34).jpg","Chicken Roasted Almond": "https://i.postimg.cc/B6PNSz2r/images-(35).jpg","Beef Chilli Dry": "https://i.postimg.cc/yYjhHKwN/IMG-0155.jpg","Butt Special Soup": "https://i.postimg.cc/BQh8VqVm/Hot-and-Sour-Soup-Vegetarian.jpg","Chicken Corn Soup": "https://i.postimg.cc/bJzpPnGG/hq720.jpg","Hot & Sour Soup": "https://i.postimg.cc/SsNF3p5H/Hot-and-sour-soup-4.jpg","Thai Soup": "https://i.postimg.cc/vTJKYRPp/creamy-thai-coconut-soup.jpg","Chicken Cream Soup": "https://i.postimg.cc/vBkyVNqk/Cream-of-chicken-Soup.jpg","French Fries": "https://i.postimg.cc/fbbQgN1Y/Copycat-Mc-Donalds-French-Fries.jpg","Alfredo Pasta": "https://i.postimg.cc/28fRNvPd/alfredopasta5-500x500.jpg","Chicken Crunchy Pasta": "https://i.postimg.cc/tJ3c4SLd/1694601178-p-JQPzi.webp","Chicken Taragon Pasta": "https://i.postimg.cc/KvsPgrxb/Screenshot-20260515-144108.png","Butt Special Chow Mein": "https://i.postimg.cc/tTXZcYpS/Screenshot-20260515-144205.png","Chicken Chow Mein": "https://i.postimg.cc/6QKy7y2n/Easy-Chicken-Chow-Mein-1.jpg","Vegetable Chow Mein": "https://i.postimg.cc/K8PYyxqk/Veg-Chowmein.jpg","Butt Special Rice": "https://i.postimg.cc/G3fP4xc4/Screenshot-20260515-145107.png","Chicken Masala Rice": "https://i.postimg.cc/m20S5NqV/instant-pot-chicken-tikka-masala-rice-one-pot-500x500.jpg","Chicken Fried Rice": "https://i.postimg.cc/zDQ4shGx/IMG-20260520-WA0024.jpg","Egg Fried Rice": "https://i.postimg.cc/5jcFnp0C/Egg-fried-rice-2.jpg","Chicken Kabab (4 Piece)": "https://i.postimg.cc/zGxT1CPJ/chicken-kabab-Butt-Karahi-Waseem-Islamabad.jpg","Chicken Cheese Kabab (4 Piece)": "https://i.postimg.cc/qqJxNjw3/IMG-20260520-WA0016.jpg","Turkish Kabab (4 Piece)": "https://i.postimg.cc/ZKT9K9NT/Turkish-Kebabs-min.jpg","Beef Kabab (4 Piece)": "https://i.postimg.cc/sDDXCkFp/Beef-Kabab-Butt-Karahi-Waseem-Islamabad.jpg","Beef Tikka 500g": "https://i.postimg.cc/LX2SBP2X/Screenshot-20260515-145916.png","Reshmi Kabab (4 Piece)": "https://i.postimg.cc/1zchtzw9/Reshmi-Kabab-Butt-Karahi-Waseem-Islamabad.jpg","Mutton Kabab (4 Piece)": "https://i.postimg.cc/s2DdMrcm/image-6e77de17-1.png","Chicken Boti (10 Pc)": "https://i.postimg.cc/d1bxjP2s/Chicken-Boti-Kabab-24.jpg","Batair (5 Pc)": "https://i.postimg.cc/T1jCjy2J/BBQ-quail-500x500-1-(1).jpg","Chicken Achari Boti (10 Pc)": "https://i.postimg.cc/SNyrFxN7/hq720-(1).jpg","Chicken Tikka": "https://i.postimg.cc/gkRt1B7s/IMG-20260520-WA0020.jpg","Malai Tikka": "https://i.postimg.cc/yx0hp2Nj/IMG-20260520-WA0021.jpg","Malai Boti Plate": "https://i.postimg.cc/vBYB8k1h/chicken-malai-boti-with-green-chutney-1.jpg","Chicken Green Malai Boti": "https://i.postimg.cc/9XvDZxs1/hq720-(2).jpg","Kastoori Boti Plate": "https://i.postimg.cc/xd4fY82n/maxresdefault-(2).jpg","Peshawari Boti (Kg)": "https://i.postimg.cc/nc2tprKV/5-ingredient-peshawari-namkeen-boti-recipe-main-photo.jpg","Mutton Namkeen Tikka (kg)": "https://i.postimg.cc/qMk9brPQ/hq720-(3).jpg","Full Chargha Namkeen": "https://i.postimg.cc/Y0X8D5gK/Screenshot-20260515-151735-1.jpg","Masala Chargha": "https://i.postimg.cc/ZqnSnmbD/lahori-chargha-13.jpg","Fish Tikka (10 Pc)": "https://i.postimg.cc/CL7Xq2Q8/Fish-Tikka-Bites.jpg","1 Person Platter": "https://i.postimg.cc/W4C1xXjp/1778859477067.png","BBQ Platter (1)": "https://i.postimg.cc/C5VkpF0t/Screenshot-20260515-204231.png","BBQ Platter (2)": "https://i.postimg.cc/05FHr4d8/Screenshot-20260515-204633.png","BBQ Platter (3)": "https://i.postimg.cc/sfMsttgg/Screenshot-20260515-205449.png","Family Platter": "https://i.postimg.cc/wvCqWVJX/1778860669262.png","Midnight Deal 1": "https://i.postimg.cc/RVP840p3/1778860812709.png","Midnight Deal 2": "https://i.postimg.cc/KzBjhwZZ/1778861304895.png","Midnight Deal 3": "https://i.postimg.cc/c48Y49Xn/1778861058313.png","Midnight Deal 4": "https://i.postimg.cc/s2pCjrZ0/1778861416023.png","Midnight Deal 5": "https://i.postimg.cc/Mp2sWjb8/1778861549313.png","Midnight Signature Deal": "https://i.postimg.cc/7Z5mMnHz/Screenshot-20260515-211641.png","Roghni Naan": "https://i.postimg.cc/DZ81PJZ3/roghni-naan-featured.jpg","Kalonji Naan": "https://i.postimg.cc/gj4dcJVz/Snappy-ka-Kalonji-Naan.webp","Garlic Naan": "https://i.postimg.cc/wxFdm1NT/images-(37).jpg","Zeera Naan": "https://i.postimg.cc/TwYtM33h/sddefault.jpg","Cheese Naan": "https://i.postimg.cc/s2ZhBFH6/Cheese-Stuffed-Naan-Bread-2.jpg","Chicken Naan": "https://i.postimg.cc/cJ4djfwg/hq720-(3).jpg","Beef Naan": "https://i.postimg.cc/qRyDx5qD/High-Protein-Keema-Naan-Beef-Stuffed-Flatbread-12.jpg","Ginger Naan": "https://i.postimg.cc/Pq8SdRWp/ginger.jpg","Achari Naan": "https://i.postimg.cc/BQXHW15d/images-(38).jpg","Plain Roti": "https://i.postimg.cc/XqZJP9S4/images-(39).jpg","Plain Naan": "https://i.postimg.cc/BZdH0nhZ/images-(40).jpg","Khamiri Roti": "https://i.postimg.cc/g2GwzX3H/images-(41).jpg","Raita": "https://i.postimg.cc/3RYf9ZG4/images-(42).jpg","Mint Raita": "https://i.postimg.cc/VNCP2455/Screenshot-20260515-195110.png","Salad": "https://i.postimg.cc/qMPLjLfX/images-(43).jpg","Makhan Extra": "https://i.postimg.cc/cL7QTGBM/images-(44).jpg","Olive Oil Extra": "https://i.postimg.cc/hPTyFw1N/images-(45).jpg","Gulab Jaman": "https://i.postimg.cc/1tbH2cnK/images-(46).jpg","Kheer": "https://i.postimg.cc/X7bK5v9D/images-(47).jpg","Qawa": "https://i.postimg.cc/L5RqJnGz/6d6a92427ad7e94637985705bbc448b7.jpg","Tea": "https://i.postimg.cc/wBLTD95T/DSC04958-500x500.jpg","Mint Margarita": "https://i.postimg.cc/j5vTh2L6/images-(48).jpg","Classic Lemonade": "https://i.postimg.cc/Hs8GrB9G/images-(49).jpg","Peach Lemonade": "https://i.postimg.cc/pd21JZzv/images-(50).jpg","Mint Lemonade": "https://i.postimg.cc/KzKXtfhz/images-(51).jpg","Blue Lemonade": "https://i.postimg.cc/dVngXpqP/images-(52).jpg","Pink Lady Mocktail": "https://i.postimg.cc/Gm35kKk9/pink-lady-mocktail-featured.jpg","Sweet Lassi": "https://i.postimg.cc/bYQCWWgd/images-(53).jpg","Salted Lassi": "https://i.postimg.cc/ncFk5zMk/images-(54).jpg","Mineral Water Large": "https://i.postimg.cc/Njy1qrtK/download-1.jpg","Mineral Water Small": "https://i.postimg.cc/tJSV89mv/330ml-2.jpg","Soft Drink Can": "https://i.postimg.cc/nVRjFc0K/main-qimg-8eff3354383e7f1884c8ab055676ca21-c.jpg","Cold Drink 1 Ltr": "https://i.postimg.cc/xCdfhLrs/aje-big-soft-drink-mix-802398198-tsegaj8y.jpg","Cold Drink 1.5 Ltr": "https://i.postimg.cc/9QjWV65k/images-(55).jpg"
 };
-function getItemImage(name) {
-    // Remove "Makhani" suffix if present for lookup
-    let lookup = name.replace(/\s+Makhani$/, '');
-    if (imageMap[lookup]) return imageMap[lookup];
-    if (imageMap[name]) return imageMap[name];
-    return "https://i.postimg.cc/d0Bbj2GQ/images-(4).jpg";
-}
+function getItemImage(name) { let lookup = name.replace(/\s+Makhani$/, ''); if (imageMap[lookup]) return imageMap[lookup]; if (imageMap[name]) return imageMap[name]; return "https://i.postimg.cc/d0Bbj2GQ/images-(4).jpg"; }
 
-// ---------- BASE MENU (with accurate Half/Full and separate Qeema) ----------
+// ---------- FULL MENU ----------
 const baseMenu = [
   { category: "Desi Murgh Karahi", items: [{ name: "Desi Murgh Karahi", variants: [{name:"Half",price:2200},{name:"Full",price:4200}] },{ name: "Desi Murgh Karahi White", price: 4700, isFull: true }]},
   { category: "Chicken Karahi", items: [{ name: "Chicken Karahi Broiler", variants: [{name:"Half",price:1200},{name:"Full",price:2200}] },{ name: "Chicken White Karahi", variants: [{name:"Half",price:1250},{name:"Full",price:2500}] },{ name: "Chicken Green Karahi", variants: [{name:"Half",price:1250},{name:"Full",price:2500}] },{ name: "Chicken Achari Karahi", variants: [{name:"Half",price:1200},{name:"Full",price:2400}] }]},
@@ -537,65 +259,28 @@ const baseMenu = [
   { category: "Chinese & Continental", items: [{ name: "Butt Special Chicken Cashew Nuts", price: 1350 },{ name: "Chicken Hot Garlic", price: 950 },{ name: "Chicken Szechuan", price: 1050 },{ name: "Kung Pao Chicken", price: 1100 },{ name: "Chicken Manchurian", price: 1100 },{ name: "Chicken Chilli Dry", price: 1050 },{ name: "Chicken Chilli Vegetable", price: 900 },{ name: "Chicken Shashlik", price: 1050 },{ name: "Mangolian Chicken", price: 1050 },{ name: "Black Pepper Chicken", price: 900 },{ name: "Chicken Roasted Almond", price: 1100 },{ name: "Beef Chilli Dry", price: 1150 }]},
   { category: "Soups & Pasta", items: [{ name: "Butt Special Soup", price: 1200, desc: "Family bowl served with fish cracker" },{ name: "Chicken Corn Soup", price: 1000, desc: "Family bowl served with fish cracker" },{ name: "Hot & Sour Soup", price: 1000, desc: "Family bowl served with fish cracker" },{ name: "Thai Soup", price: 1000 },{ name: "Chicken Cream Soup", price: 1200 },{ name: "French Fries", price: 400 },{ name: "Alfredo Pasta", price: 1100 },{ name: "Chicken Crunchy Pasta", price: 1300 },{ name: "Chicken Taragon Pasta", price: 1200, desc: "Family bowl served with fish cracker" },{ name: "Butt Special Chow Mein", price: 1050 },{ name: "Chicken Chow Mein", price: 950 },{ name: "Vegetable Chow Mein", price: 800 },{ name: "Butt Special Rice", price: 1300 },{ name: "Chicken Masala Rice", price: 1100 },{ name: "Chicken Fried Rice", price: 1100 },{ name: "Egg Fried Rice", price: 1000 },{ name: "Grill Fish (Kg)", price: 1250 },{ name: "Rahu Fry Crispy Fish (Kg)", price: 1550 },{ name: "Finger Fish 10 Pc", price: 1800 }]},
   { category: "BBQ", items: [{ name: "Chicken Kabab (4 Piece)", price: 1200 },{ name: "Chicken Cheese Kabab (4 Piece)", price: 1450 },{ name: "Turkish Kabab (4 Piece)", price: 1500 },{ name: "Beef Kabab (4 Piece)", price: 1300 },{ name: "Beef Tikka 500g", price: 1600 },{ name: "Reshmi Kabab (4 Piece)", price: 1400 },{ name: "Mutton Kabab (4 Piece)", price: 1900 },{ name: "Chicken Boti (10 Pc)", price: 1350 },{ name: "Batair (5 Pc)", price: 1000 },{ name: "Chicken Achari Boti (10 Pc)", price: 1450 },{ name: "Chicken Tikka", price: 500 },{ name: "Malai Tikka", price: 600 },{ name: "Malai Boti Plate", price: 1650 },{ name: "Chicken Green Malai Boti", price: 1750 },{ name: "Kastoori Boti Plate", price: 1750 },{ name: "Peshawari Boti (Kg)", price: 1500 },{ name: "Mutton Namkeen Tikka (kg)", price: 3500 },{ name: "Full Chargha Namkeen", price: 1400 },{ name: "Masala Chargha", price: 1600 },{ name: "Fish Tikka (10 Pc)", price: 1500 }]},
-  { category: "Premium Platters", items: [
-    { name: "1 Person Platter", price: 1500, desc: "1 Pc Chicken Kabab, 5 Pc Chicken Boti, 1 Pc Beef Kabab, Rice, Mint, Raita" },
-    { name: "BBQ Platter (1)", price: 3500, desc: "2 Pc Chicken Kabab, Beef Kabab 2 Pc, 5 Pc Chicken Boti, 2 Chicken Tikka Rice, Mint, Raita (1-2 Person)" },
-    { name: "BBQ Platter (2)", price: 4000, desc: "2 Pc Chicken Kabab, 5 Pc Chicken Boti, Beef Tikka (500 gm), 3 Pc Batair, Rice, Mint, Raita (2-3 Person)" },
-    { name: "BBQ Platter (3)", price: 7800, desc: "2 Pc Reshmi Kabab, Chicken Cheese Kabab 2 Pc, Beef Kabab 2 Pc, Peshawari Boti (500 gm), Kastoori Boti 5 Pc, Chicken Boti 5 Pc, Beef Tikka (500 gm), 3 Pc Batair, Fish Tikka 5 Pc (4-5 Person)" },
-    { name: "Family Platter", price: 11500, desc: "Chicken Kabab 2 Pc, Chicken Cheese Kabab 2 Pc, Beef Kabab 2 Pc, Malai Boti 5 Pc, Kastoori Boti 5 Pc, Chicken Boti 5 Pc, Chicken Tikka 2 Pc, Beef Tikka (500 gm), Mutton Namkeen Tikka (500 gm), Peshawari Boti (500 gm), Fish Tikka 5 Pc, Batair 5 Pc (7-8 Person)" }
-  ]},
-  { category: "Midnight Deals (11 PM - 1 AM)", items: [
-    { name: "Midnight Deal 1", price: 3320, desc: "3 Person - Rs. 420 off" },{ name: "Midnight Deal 2", price: 4500, desc: "5 Person - Rs. 230 off" },{ name: "Midnight Deal 3", price: 6120, desc: "5 Person - Fish Karachi (Kg), 5 Pc Batair BBQ, Chicken Boti 1/2 Plate, Raita, Salad, 1.5 Ltr Drink, Roti, Naan (Rs. 185 off)" },{ name: "Midnight Deal 4", price: 5580, desc: "4 Person - Beef Tikka Karachi, Fish Tikka Plate, Chicken Boti Plate, Raita, Salad, 1.5 Ltr Drink, Roti, Naan (Rs. 380 off)" },{ name: "Midnight Deal 5", price: 3880, desc: "Available with similar combo" },{ name: "Midnight Signature Deal", price: 10610, desc: "8 Person - Chicken Karachi Half, Desi Karachi Half, Mutton Karachi Half, Batair Karachi 10 Pc, Fish Karachi Half, 2 Raita Salad, 2 Mint Raita, 2 Ltr Drink, Roti, Naan (Rs. 1040 off)" }
-  ]},
-  { category: "Naan & Add-ons", items: [ { name: "Roghni Naan", price: 100 },{ name: "Kalonji Naan", price: 100 },{ name: "Garlic Naan", price: 100 },{ name: "Zeera Naan", price: 100 },{ name: "Cheese Naan", price: 500 },{ name: "Chicken Naan", price: 500 },{ name: "Beef Naan", price: 400 },{ name: "Ginger Naan", price: 120 },{ name: "Achari Naan", price: 180 },{ name: "Plain Roti", price: 30 },{ name: "Plain Naan", price: 40 },{ name: "Khamiri Roti", price: 40 },{ name: "Raita", price: 140 },{ name: "Mint Raita", price: 160 },{ name: "Salad", price: 140 },{ name: "Makhan Extra", price: 700 },{ name: "Olive Oil Extra", price: 700 },{ name: "Gulab Jaman", price: 150 },{ name: "Kheer", price: 200 },{ name: "Qawa", price: 80 },{ name: "Tea", price: 150 } ]},
-  { category: "Beverages", items: [ { name: "Mint Margarita", price: 250 },{ name: "Classic Lemonade", price: 200 },{ name: "Peach Lemonade", price: 250 },{ name: "Mint Lemonade", price: 250 },{ name: "Blue Lemonade", price: 250 },{ name: "Pink Lady Mocktail", price: 300 },{ name: "Sweet Lassi", price: 180 },{ name: "Salted Lassi", price: 180 },{ name: "Mineral Water Large", price: 130 },{ name: "Mineral Water Small", price: 80 },{ name: "Soft Drink Can", price: 150 },{ name: "Cold Drink 1 Ltr", price: 200 },{ name: "Cold Drink 1.5 Ltr", price: 250 } ]}
+  { category: "Premium Platters", items: [ { name: "1 Person Platter", price: 1500, desc: "1 Pc Chicken Kabab, 5 Pc Chicken Boti, 1 Pc Beef Kabab, Rice, Mint, Raita" }, { name: "BBQ Platter (1)", price: 3500, desc: "2 Pc Chicken Kabab, Beef Kabab 2 Pc, 5 Pc Chicken Boti, 2 Chicken Tikka Rice, Mint, Raita (1-2 Person)" }, { name: "BBQ Platter (2)", price: 4000, desc: "2 Pc Chicken Kabab, 5 Pc Chicken Boti, Beef Tikka (500 gm), 3 Pc Batair, Rice, Mint, Raita (2-3 Person)" }, { name: "BBQ Platter (3)", price: 7800, desc: "2 Pc Reshmi Kabab, Chicken Cheese Kabab 2 Pc, Beef Kabab 2 Pc, Peshawari Boti (500 gm), Kastoori Boti 5 Pc, Chicken Boti 5 Pc, Beef Tikka (500 gm), 3 Pc Batair, Fish Tikka 5 Pc (4-5 Person)" }, { name: "Family Platter", price: 11500, desc: "Chicken Kabab 2 Pc, Chicken Cheese Kabab 2 Pc, Beef Kabab 2 Pc, Malai Boti 5 Pc, Kastoori Boti 5 Pc, Chicken Boti 5 Pc, Chicken Tikka 2 Pc, Beef Tikka (500 gm), Mutton Namkeen Tikka (500 gm), Peshawari Boti (500 gm), Fish Tikka 5 Pc, Batair 5 Pc (7-8 Person)" } ] },
+  { category: "Midnight Deals (11 PM - 1 AM)", items: [ { name: "Midnight Deal 1", price: 3320, desc: "3 Person - Rs. 420 off" },{ name: "Midnight Deal 2", price: 4500, desc: "5 Person - Rs. 230 off" },{ name: "Midnight Deal 3", price: 6120, desc: "5 Person - Fish Karachi (Kg), 5 Pc Batair BBQ, Chicken Boti 1/2 Plate, Raita, Salad, 1.5 Ltr Drink, Roti, Naan (Rs. 185 off)" },{ name: "Midnight Deal 4", price: 5580, desc: "4 Person - Beef Tikka Karachi, Fish Tikka Plate, Chicken Boti Plate, Raita, Salad, 1.5 Ltr Drink, Roti, Naan (Rs. 380 off)" },{ name: "Midnight Deal 5", price: 3880, desc: "Available with similar combo" },{ name: "Midnight Signature Deal", price: 10610, desc: "8 Person - Chicken Karachi Half, Desi Karachi Half, Mutton Karachi Half, Batair Karachi 10 Pc, Fish Karachi Half, 2 Raita Salad, 2 Mint Raita, 2 Ltr Drink, Roti, Naan (Rs. 1040 off)" } ] },
+  { category: "Naan & Add-ons", items: [ { name: "Roghni Naan", price: 100 },{ name: "Kalonji Naan", price: 100 },{ name: "Garlic Naan", price: 100 },{ name: "Zeera Naan", price: 100 },{ name: "Cheese Naan", price: 500 },{ name: "Chicken Naan", price: 500 },{ name: "Beef Naan", price: 400 },{ name: "Ginger Naan", price: 120 },{ name: "Achari Naan", price: 180 },{ name: "Plain Roti", price: 30 },{ name: "Plain Naan", price: 40 },{ name: "Khamiri Roti", price: 40 },{ name: "Raita", price: 140 },{ name: "Mint Raita", price: 160 },{ name: "Salad", price: 140 },{ name: "Makhan Extra", price: 700 },{ name: "Olive Oil Extra", price: 700 },{ name: "Gulab Jaman", price: 150 },{ name: "Kheer", price: 200 },{ name: "Qawa", price: 80 },{ name: "Tea", price: 150 } ] },
+  { category: "Beverages", items: [ { name: "Mint Margarita", price: 250 },{ name: "Classic Lemonade", price: 200 },{ name: "Peach Lemonade", price: 250 },{ name: "Mint Lemonade", price: 250 },{ name: "Blue Lemonade", price: 250 },{ name: "Pink Lady Mocktail", price: 300 },{ name: "Sweet Lassi", price: 180 },{ name: "Salted Lassi", price: 180 },{ name: "Mineral Water Large", price: 130 },{ name: "Mineral Water Small", price: 80 },{ name: "Soft Drink Can", price: 150 },{ name: "Cold Drink 1 Ltr", price: 200 },{ name: "Cold Drink 1.5 Ltr", price: 250 } ] }
 ];
-
-// Detect karahi items (any item with "karahi" in name)
-function isKarahiItem(itemName) {
-    return itemName.toLowerCase().includes("karahi");
-}
-
-// Convert "Butter X Karahi" to "X Karahi Makhani"
-function makeMakhaniName(originalName) {
-    // Remove leading "Butter " if present, then append " Makhani"
-    let base = originalName.replace(/^Butter /, '');
-    return `${base} Makhani`;
-}
-
+function isKarahiItem(itemName) { return itemName.toLowerCase().includes("karahi"); }
+function makeMakhaniName(originalName) { let base = originalName.replace(/^Butter /, ''); return `${base} Makhani`; }
 function buildFullMenuWithMakhani() {
     const finalMenu = [];
     for (const cat of baseMenu) {
         const newCat = { category: cat.category, items: [] };
         for (const item of cat.items) {
-            // Add original item (no modification)
             const originalCopy = { ...item };
-            if (!originalCopy.variants && originalCopy.isFull === true && isKarahiItem(originalCopy.name)) {
-                originalCopy.showFullBadge = true;
-            }
+            if (!originalCopy.variants && originalCopy.isFull === true && isKarahiItem(originalCopy.name)) originalCopy.showFullBadge = true;
             newCat.items.push(originalCopy);
-            // If it's a karahi dish, create Makhani version (no "Butter" in title, but with butter badge)
             if (isKarahiItem(item.name)) {
                 let makhaniItem = null;
                 if (item.variants) {
-                    const makhaniVariants = item.variants.map(v => ({
-                        name: v.name,
-                        price: v.price + (v.name.toLowerCase() === "half" ? 350 : 700)
-                    }));
-                    makhaniItem = {
-                        name: makeMakhaniName(item.name),
-                        variants: makhaniVariants,
-                        desc: item.desc ? `${item.desc} (Makhani style)` : "Rich creamy Makhani karahi",
-                        isMakhani: true
-                    };
+                    const makhaniVariants = item.variants.map(v => ({ name: v.name, price: v.price + (v.name.toLowerCase() === "half" ? 350 : 700) }));
+                    makhaniItem = { name: makeMakhaniName(item.name), variants: makhaniVariants, desc: item.desc ? `${item.desc} (Makhani style)` : "Rich creamy Makhani karahi", isMakhani: true };
                 } else if (item.price) {
-                    makhaniItem = {
-                        name: makeMakhaniName(item.name),
-                        price: item.price + 700,
-                        desc: item.desc ? `${item.desc} (Makhani style)` : "Rich creamy Makhani karahi",
-                        isMakhani: true,
-                        showFullBadge: true
-                    };
+                    makhaniItem = { name: makeMakhaniName(item.name), price: item.price + 700, desc: item.desc ? `${item.desc} (Makhani style)` : "Rich creamy Makhani karahi", isMakhani: true, showFullBadge: true };
                 }
                 if (makhaniItem) newCat.items.push(makhaniItem);
             }
@@ -604,28 +289,188 @@ function buildFullMenuWithMakhani() {
     }
     return finalMenu;
 }
-
 const menuData = buildFullMenuWithMakhani();
 
-function render() {
+// ----- RENDER MAIN MENU (full correct implementation) -----
+function scrollToSection(id) { let el = document.getElementById(id); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 165, behavior: 'smooth' }); }
+function changeVariant(btn, itemId, name, varName, price) {
+    let parent = btn.parentElement;
+    parent.querySelectorAll('.var-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    let mi = parent.closest('.menu-item');
+    mi.querySelector('.item-price').innerText = "Rs " + price.toLocaleString();
+    let minus = mi.querySelector('.minus'), plus = mi.querySelector('.plus');
+    minus.setAttribute('onclick', `updateCart('${name.replace(/'/g, "\\'")}','${varName}',${price},-1,'${itemId}')`);
+    plus.setAttribute('onclick', `updateCart('${name.replace(/'/g, "\\'")}','${varName}',${price},1,'${itemId}')`);
+    let key = `${name} (${varName})`;
+    if (cart[key]) document.getElementById(`qty_${itemId}`).innerText = cart[key].qty;
+}
+function updateCart(name, variant, price, delta, itemId) {
+    let key = variant ? `${name} (${variant})` : name;
+    if (!cart[key]) cart[key] = { qty: 0, price, itemId, name, variant, instructions: "" };
+    cart[key].qty += delta;
+    if (cart[key].qty <= 0) delete cart[key];
+    let qtySpan = document.getElementById(`qty_${itemId}`);
+    if (qtySpan) qtySpan.innerText = cart[key]?.qty || 0;
+    updateUI();
+}
+function updateUI() {
+    let subtotal = 0, count = 0, html = "";
+    for (let k in cart) {
+        let sub = cart[k].qty * cart[k].price;
+        subtotal += sub;
+        count += cart[k].qty;
+        let inst = cart[k].instructions || "";
+        let isAddon = cart[k].itemId && cart[k].itemId.startsWith("addon_");
+        html += `<div class="cart-item-row"><div class="cart-item-main"><div class="cart-item-details"><strong>${k}</strong><br><small>Rs ${cart[k].price}</small></div><div class="cart-item-controls"><button onclick="updateCart('${cart[k].name.replace(/'/g, "\\'")}','${cart[k].variant || ''}',${cart[k].price},-1,'${cart[k].itemId}')" style="background:#eee;border:none;width:28px;border-radius:8px">-</button><span>${cart[k].qty}</span><button onclick="updateCart('${cart[k].name.replace(/'/g, "\\'")}','${cart[k].variant || ''}',${cart[k].price},1,'${cart[k].itemId}')" style="background:var(--primary);color:white;border:none;width:28px;border-radius:8px">+</button></div><div>Rs ${sub.toLocaleString()}</div></div>`;
+        if (!isAddon) {
+            html += `<div class="cart-instructions"><input type="text" placeholder="Special instructions" value="${inst.replace(/"/g, '&quot;')}" onchange="updateInstructions('${k.replace(/'/g, "\\'")}', this.value)"><div class="inst-buttons"><button class="inst-btn" onclick="setInstruction('${k.replace(/'/g, "\\'")}', 'Spicy 🔥')">Spicy</button><button class="inst-btn" onclick="setInstruction('${k.replace(/'/g, "\\'")}', 'Not So Spicy')">Not Spicy</button><button class="inst-btn" onclick="setInstruction('${k.replace(/'/g, "\\'")}', 'Less Salt')">Less Salt</button><button class="inst-btn" onclick="setInstruction('${k.replace(/'/g, "\\'")}', 'Extra Salt')">Extra Salt</button><button class="inst-btn" onclick="setInstruction('${k.replace(/'/g, "\\'")}', 'Less Oil')">Less Oil</button></div></div>`;
+        }
+        html += `</div>`;
+    }
+    document.getElementById("cartItemsList").innerHTML = html || "<p style='text-align:center'>Empty cart</p>";
+    document.getElementById("totalPrice").innerText = "Rs " + subtotal.toLocaleString();
+    document.getElementById("badge").innerText = count;
+    document.getElementById("badge").style.display = count > 0 ? "flex" : "none";
+}
+function updateInstructions(key, val) { if (cart[key]) cart[key].instructions = val; }
+function setInstruction(key, preset) { if (cart[key]) { cart[key].instructions = preset; updateUI(); } }
+function toggleCart() { let m = document.getElementById("cartModal"); m.style.display = m.style.display === "block" ? "none" : "block"; }
+function openImageModal(src) { document.getElementById("previewImage").src = src; document.getElementById("imageModal").classList.add("active"); document.body.style.overflow = "hidden"; }
+function closeImageModal() { document.getElementById("imageModal").classList.remove("active"); document.body.style.overflow = "auto"; }
+
+// Add-ons with plus/minus
+function modifyAddonQuantity(name, price, delta) {
+    let key = name;
+    if (!cart[key]) {
+        if (delta <= 0) return;
+        cart[key] = { qty: 0, price, itemId: "addon_" + name.replace(/[^\w]/g, '_'), name, variant: "", instructions: "" };
+    }
+    cart[key].qty += delta;
+    if (cart[key].qty <= 0) delete cart[key];
+    updateUI();
+    if (document.getElementById("addonsModal").style.display === "block") {
+        renderAddonsModal();
+    }
+}
+function renderAddonsModal() {
+    let html = "";
+    const addonCats = ["Naan & Add-ons", "Beverages"];
+    menuData.forEach(cat => {
+        if (addonCats.includes(cat.category)) {
+            html += `<h4 style="margin:15px 0 5px; color:var(--primary);">${cat.category}</h4>`;
+            cat.items.forEach(item => {
+                const qty = cart[item.name] ? cart[item.name].qty : 0;
+                html += `<div class="addon-item"><div><strong>${item.name}</strong><br><small>Rs ${item.price}</small></div><div class="addon-controls"><button class="addon-minus" onclick="modifyAddonQuantity('${item.name.replace(/'/g, "\\'")}', ${item.price}, -1)">−</button><span class="addon-qty">${qty}</span><button class="addon-plus" onclick="modifyAddonQuantity('${item.name.replace(/'/g, "\\'")}', ${item.price}, 1)">+</button></div></div>`;
+            });
+        }
+    });
+    document.getElementById("addonsList").innerHTML = html || "<p>No add-ons available</p>";
+}
+function openAddonsModal() { renderAddonsModal(); document.getElementById("addonsModal").style.display = "block"; document.body.style.overflow = "hidden"; }
+function closeAddonsModal() { document.getElementById("addonsModal").style.display = "none"; document.body.style.overflow = "auto"; }
+
+// Checkout & delivery (fully preserved)
+function proceedToCheckout() {
+    if (Object.keys(cart).length === 0) { alert("Add items first"); return; }
+    let msg = "🛒 *NEW ORDER*\n\n", subtotal = 0;
+    for (let k in cart) {
+        let sub = cart[k].qty * cart[k].price;
+        subtotal += sub;
+        msg += `▪️ ${k}\n   ${cart[k].qty} x Rs ${cart[k].price} = Rs ${sub.toLocaleString()}\n`;
+        if (cart[k].instructions && cart[k].instructions.trim() !== "" && !cart[k].itemId?.startsWith("addon_")) msg += `   📝 Instructions: ${cart[k].instructions}\n`;
+        msg += `\n`;
+    }
+    msg += `═══════════\n*Subtotal: Rs ${subtotal.toLocaleString()}*`;
+    pendingOrderMessage = msg;
+    document.getElementById("cartModal").style.display = "none";
+    document.getElementById("deliveryModal").classList.add("active");
+    document.body.style.overflow = "hidden";
+    document.getElementById("deliveryDetails").style.display = "none";
+    document.getElementById("pickupDetails").style.display = "none";
+    document.getElementById("dineinDetails").style.display = "none";
+    selectedPayment = selectedPaymentPickup = selectedPaymentDinein = null;
+}
+function selectPayment(t) { selectedPayment = t; document.getElementById("payment_cod").classList.remove("selected"); document.getElementById("payment_bank").classList.remove("selected"); if (t === 'cod') { document.getElementById("payment_cod").classList.add("selected"); document.querySelector("#payment_bank .bank-details").style.display = "none"; } else { document.getElementById("payment_bank").classList.add("selected"); document.querySelector("#payment_bank .bank-details").style.display = "block"; } }
+function selectPaymentPickup(t) { selectedPaymentPickup = t; document.getElementById("pickup_payment_cod").classList.remove("selected"); document.getElementById("pickup_payment_bank").classList.remove("selected"); if (t === 'cod') { document.getElementById("pickup_payment_cod").classList.add("selected"); document.querySelector("#pickup_payment_bank .bank-details").style.display = "none"; } else { document.getElementById("pickup_payment_bank").classList.add("selected"); document.querySelector("#pickup_payment_bank .bank-details").style.display = "block"; } }
+function selectPaymentDinein(t) { selectedPaymentDinein = t; document.getElementById("dinein_payment_cash").classList.remove("selected"); document.getElementById("dinein_payment_bank").classList.remove("selected"); if (t === 'cash') { document.getElementById("dinein_payment_cash").classList.add("selected"); document.querySelector("#dinein_payment_bank .bank-details").style.display = "none"; } else { document.getElementById("dinein_payment_bank").classList.add("selected"); document.querySelector("#dinein_payment_bank .bank-details").style.display = "block"; } }
+function selectOrderType(t) {
+    currentOrderType = t;
+    document.getElementById("deliveryDetails").style.display = "none";
+    document.getElementById("pickupDetails").style.display = "none";
+    document.getElementById("dineinDetails").style.display = "none";
+    if (t === 'pickup') { document.getElementById("pickupDetails").style.display = "block"; }
+    else if (t === 'delivery') {
+        document.getElementById("deliveryDetails").style.display = "block";
+        let areas = ["Hassan Abdal", "Wah Cantt", "Taxila", "Kohistan Enclave", "Shah Wali Colony", "Khan Model Town", "Dhoke Dollian", "Cement Company", "Panja Sahib", "Wah Garden", "New City"];
+        let cont = document.getElementById("areaButtonsContainer");
+        cont.innerHTML = "";
+        areas.forEach(a => {
+            let btn = document.createElement("button");
+            btn.className = "area-btn";
+            btn.innerText = a;
+            btn.onclick = () => { document.getElementById("customLocation").value = a; validateLocationLive(a); };
+            cont.appendChild(btn);
+        });
+        document.getElementById("customLocation").oninput = (e) => validateLocationLive(e.target.value);
+        document.getElementById("paymentSection").style.display = "block";
+    } else if (t === 'dinein') { document.getElementById("dineinDetails").style.display = "block"; }
+}
+function validateLocationLive(l) {
+    let div = document.getElementById("locationValidation");
+    if (!l) { div.innerHTML = ""; return; }
+    if (isLocationAllowed(l)) { div.innerHTML = "✅ Delivery available!"; div.className = "success-text"; }
+    else { div.innerHTML = "❌ Outside delivery zone (Hassan Abdal - Wah Cantt - Taxila corridor)"; div.className = "info-text"; div.style.color = "#d90429"; }
+}
+function confirmDeliveryLocation() {
+    let loc = document.getElementById("customLocation").value.trim();
+    if (!loc || !isLocationAllowed(loc)) { alert("Valid address required."); return; }
+    if (!selectedPayment) { alert("Select payment"); return; }
+    let payText = selectedPayment === 'cod' ? "💵 Cash on Delivery" : "🏦 Meezan Bank Transfer\nAccount: Shabbir Aziz | 03080102761475\n⚠️ Send screenshot after transfer to 923320929999";
+    let subtotalOnly = 0; for (let k in cart) { subtotalOnly += cart[k].qty * cart[k].price; }
+    let totalWithDelivery = subtotalOnly + DELIVERY_FEE;
+    let finalMsg = pendingOrderMessage + `\n🚚 *HOME DELIVERY*\n📍 ${loc}\n💳 Payment: ${payText}\n➕ Delivery: Rs ${DELIVERY_FEE}\n\n*TOTAL: Rs ${totalWithDelivery}*`;
+    window.open("https://wa.me/" + CLIENT_WHATSAPP + "?text=" + encodeURIComponent(finalMsg), '_blank');
+    closeDeliveryModal(); cart = {}; updateUI(); renderMenu();
+}
+function confirmPickup() {
+    if (!selectedPaymentPickup) { alert("Select payment"); return; }
+    let payText = selectedPaymentPickup === 'cod' ? "💵 Cash on Pickup" : "🏦 Meezan Bank Transfer\nAccount: Shabbir Aziz | 03080102761475\n⚠️ Send screenshot after transfer to 923320929999";
+    let total = parseInt(document.getElementById("totalPrice").innerText.replace(/[^0-9]/g, '')) || 0;
+    let finalMsg = pendingOrderMessage + `\n🍽️ *PICKUP*\n📍 Butt Karahi, GT Road, Wah Cantt\n💳 Payment: ${payText}\n\n*TOTAL: Rs ${total}*`;
+    window.open("https://wa.me/" + CLIENT_WHATSAPP + "?text=" + encodeURIComponent(finalMsg), '_blank');
+    closeDeliveryModal(); cart = {}; updateUI(); renderMenu();
+}
+function confirmDineIn() {
+    if (!selectedPaymentDinein) { alert("Select payment"); return; }
+    let bookingType = document.querySelector('input[name="dineBookingType"]:checked')?.value || "Gents";
+    let payText = selectedPaymentDinein === 'cash' ? "💵 Cash at Restaurant" : "🏦 Meezan Bank Transfer\nAccount: Shabbir Aziz | 03080102761475\n⚠️ Send screenshot after transfer to 923320929999";
+    let total = parseInt(document.getElementById("totalPrice").innerText.replace(/[^0-9]/g, '')) || 0;
+    let finalMsg = pendingOrderMessage + `\n🍽️ *DINE-IN*\n📍 Butt Karahi, GT Road, Wah Cantt\n👥 Booking: ${bookingType} Section\n💳 Payment: ${payText}\n\n*TOTAL: Rs ${total}*`;
+    window.open("https://wa.me/" + CLIENT_WHATSAPP + "?text=" + encodeURIComponent(finalMsg), '_blank');
+    closeDeliveryModal(); cart = {}; updateUI(); renderMenu();
+}
+function closeDeliveryModal() { document.getElementById("deliveryModal").classList.remove("active"); document.body.style.overflow = "auto"; currentOrderType = null; }
+
+// Render the main menu
+function renderMenu() {
     let menuHtml = "", navHtml = "";
     menuData.forEach((cat, idx) => {
         let secId = "sec-" + idx;
         navHtml += `<div class="cat-chip" onclick="scrollToSection('${secId}')">${cat.category}</div>`;
         menuHtml += `<div id="${secId}" class="category-section" data-aos="fade-up"><div class="category-title">${cat.category}</div>`;
         cat.items.forEach((item, itemIdx) => {
-            let itemId = (item.name.replace(/[^\w]/g, '_') + idx + '_' + itemIdx).slice(0,50);
+            let itemId = (item.name.replace(/[^\w]/g, '_') + idx + '_' + itemIdx).slice(0, 50);
             let isVariant = !!item.variants;
             let img = getItemImage(item.name);
             let priceText = isVariant ? `Rs ${item.variants[0].price.toLocaleString()}` : `Rs ${item.price.toLocaleString()}`;
-            // Show butter badge for Makhani items only (or any item with isMakhani flag)
             let butterBadge = item.isMakhani ? `<span class="butter-badge">🧈 Butter</span>` : '';
             let fullBadge = (item.showFullBadge && !isVariant) ? `<span class="full-badge">Full</span>` : '';
             let selectorHtml = '';
             if (isVariant) {
-                selectorHtml = `<div class="variant-selector">${item.variants.map((v,vIdx)=>`<button class="var-btn ${vIdx===0?'active':''}" onclick="changeVariant(this,'${itemId}','${item.name.replace(/'/g,"\\'")}','${v.name}',${v.price})">${v.name}</button>`).join('')}</div>`;
+                selectorHtml = `<div class="variant-selector">${item.variants.map((v, vIdx) => `<button class="var-btn ${vIdx === 0 ? 'active' : ''}" onclick="changeVariant(this,'${itemId}','${item.name.replace(/'/g, "\\'")}','${v.name}',${v.price})">${v.name}</button>`).join('')}</div>`;
             }
-            menuHtml += `<div class="menu-item"><img src="${img}" onclick="openImageModal('${img}')"><div class="item-content"><div><div class="item-name">${item.name} ${butterBadge} ${fullBadge}</div>${item.desc?`<div class="item-desc">${item.desc}</div>`:''}</div><div class="item-bottom"><div>${selectorHtml}<div class="item-price">${priceText}</div></div><div class="controls"><button class="minus" onclick="updateCart('${item.name.replace(/'/g,"\\'")}','',${isVariant?item.variants[0].price:item.price},-1,'${itemId}')">-</button><span class="qty-val" id="qty_${itemId}">0</span><button class="plus" onclick="updateCart('${item.name.replace(/'/g,"\\'")}','',${isVariant?item.variants[0].price:item.price},1,'${itemId}')">+</button></div></div></div></div>`;
+            menuHtml += `<div class="menu-item"><img src="${img}" onclick="openImageModal('${img}')"><div class="item-content"><div><div class="item-name">${item.name} ${butterBadge} ${fullBadge}</div>${item.desc ? `<div class="item-desc">${item.desc}</div>` : ''}</div><div class="item-bottom"><div>${selectorHtml}<div class="item-price">${priceText}</div></div><div class="controls"><button class="minus" onclick="updateCart('${item.name.replace(/'/g, "\\'")}','',${isVariant ? item.variants[0].price : item.price},-1,'${itemId}')">-</button><span class="qty-val" id="qty_${itemId}">0</span><button class="plus" onclick="updateCart('${item.name.replace(/'/g, "\\'")}','',${isVariant ? item.variants[0].price : item.price},1,'${itemId}')">+</button></div></div></div></div>`;
         });
         menuHtml += `</div>`;
     });
@@ -633,32 +478,8 @@ function render() {
     document.getElementById("catNav").innerHTML = navHtml;
     if (window.AOS) AOS.refresh();
 }
-
-// ---------- CART AND CHECKOUT FUNCTIONS (fully working) ----------
-function scrollToSection(id) { let el=document.getElementById(id); if(el) window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-165, behavior:'smooth'}); }
-function changeVariant(btn,itemId,name,varName,price){ let parent=btn.parentElement; parent.querySelectorAll('.var-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); let mi=parent.closest('.menu-item'); mi.querySelector('.item-price').innerText="Rs "+price.toLocaleString(); let minus=mi.querySelector('.minus'), plus=mi.querySelector('.plus'); minus.setAttribute('onclick',`updateCart('${name.replace(/'/g,"\\'")}','${varName}',${price},-1,'${itemId}')`); plus.setAttribute('onclick',`updateCart('${name.replace(/'/g,"\\'")}','${varName}',${price},1,'${itemId}')`); let key=`${name} (${varName})`; if(cart[key]) document.getElementById(`qty_${itemId}`).innerText=cart[key].qty; }
-function updateCart(name, variant, price, delta, itemId) { let key = variant ? `${name} (${variant})` : name; if (!cart[key]) cart[key] = { qty:0, price, itemId, name, variant, instructions: "" }; cart[key].qty += delta; if (cart[key].qty <= 0) delete cart[key]; let qtySpan=document.getElementById(`qty_${itemId}`); if(qtySpan) qtySpan.innerText=cart[key]?.qty||0; updateUI(); }
-function updateUI(){ let subtotal=0,count=0,html=""; for(let k in cart){ let sub=cart[k].qty*cart[k].price; subtotal+=sub; count+=cart[k].qty; let inst = cart[k].instructions || ""; let isAddon = cart[k].itemId && cart[k].itemId.startsWith("addon_"); html+=`<div class="cart-item-row"><div class="cart-item-main"><div class="cart-item-details"><strong>${k}</strong><br><small>Rs ${cart[k].price}</small></div><div class="cart-item-controls"><button onclick="updateCart('${cart[k].name.replace(/'/g,"\\'")}','${cart[k].variant||''}',${cart[k].price},-1,'${cart[k].itemId}')" style="background:#eee;border:none;width:28px;border-radius:8px">-</button><span>${cart[k].qty}</span><button onclick="updateCart('${cart[k].name.replace(/'/g,"\\'")}','${cart[k].variant||''}',${cart[k].price},1,'${cart[k].itemId}')" style="background:var(--primary);color:white;border:none;width:28px;border-radius:8px">+</button></div><div>Rs ${sub.toLocaleString()}</div></div>`; if(!isAddon) { html+=`<div class="cart-instructions"><input type="text" placeholder="Special instructions" value="${inst.replace(/"/g, '&quot;')}" onchange="updateInstructions('${k.replace(/'/g,"\\'")}', this.value)"><div class="inst-buttons"><button class="inst-btn" onclick="setInstruction('${k.replace(/'/g,"\\'")}', 'Spicy 🔥')">Spicy</button><button class="inst-btn" onclick="setInstruction('${k.replace(/'/g,"\\'")}', 'Not So Spicy')">Not Spicy</button><button class="inst-btn" onclick="setInstruction('${k.replace(/'/g,"\\'")}', 'Less Salt')">Less Salt</button><button class="inst-btn" onclick="setInstruction('${k.replace(/'/g,"\\'")}', 'Extra Salt')">Extra Salt</button><button class="inst-btn" onclick="setInstruction('${k.replace(/'/g,"\\'")}', 'Less Oil')">Less Oil</button></div></div>`; } html+=`</div>`; } document.getElementById("cartItemsList").innerHTML=html||"<p style='text-align:center'>Empty cart</p>"; document.getElementById("totalPrice").innerText="Rs "+subtotal.toLocaleString(); document.getElementById("badge").innerText=count; document.getElementById("badge").style.display=count>0?"flex":"none"; }
-function updateInstructions(key, val) { if(cart[key]) cart[key].instructions = val; }
-function setInstruction(key, preset) { if(cart[key]) { cart[key].instructions = preset; updateUI(); } }
-function toggleCart(){ let m=document.getElementById("cartModal"); m.style.display=m.style.display==="block"?"none":"block"; }
-function openImageModal(src){ document.getElementById("previewImage").src=src; document.getElementById("imageModal").classList.add("active"); document.body.style.overflow="hidden"; }
-function closeImageModal(){ document.getElementById("imageModal").classList.remove("active"); document.body.style.overflow="auto"; }
-function openAddonsModal(){ let html=""; const addonCats=["Naan & Add-ons","Beverages"]; menuData.forEach(cat=>{ if(addonCats.includes(cat.category)){ html+=`<h4 style="margin:15px 0 5px; color:var(--primary);">${cat.category}</h4>`; cat.items.forEach(item=>{ html+=`<div class="addon-item"><div><strong>${item.name}</strong><br><small>Rs ${item.price}</small></div><button class="btn-addon" onclick="addAddonItem(this, '${item.name.replace(/'/g,"\\'")}', ${item.price})">+ Add</button></div>`; }); } }); document.getElementById("addonsList").innerHTML=html; document.getElementById("addonsModal").style.display="block"; document.body.style.overflow="hidden"; }
-function closeAddonsModal(){ document.getElementById("addonsModal").style.display="none"; document.body.style.overflow="auto"; }
-function addAddonItem(btn, name, price) { let key=name; if(!cart[key]) cart[key]={qty:0,price,itemId:"addon_"+name.replace(/[^\w]/g,'_'),name,variant:"",instructions:""}; cart[key].qty+=1; updateUI(); btn.innerText="Added!"; btn.classList.add("added"); setTimeout(()=>{ btn.innerText="+ Add"; btn.classList.remove("added"); },800); }
-function proceedToCheckout(){ if(Object.keys(cart).length===0){alert("Add items first");return;} let msg="🛒 *NEW ORDER*\n\n",subtotal=0; for(let k in cart){ let sub=cart[k].qty*cart[k].price; subtotal+=sub; msg+=`▪️ ${k}\n   ${cart[k].qty} x Rs ${cart[k].price} = Rs ${sub.toLocaleString()}\n`; if(cart[k].instructions && cart[k].instructions.trim()!="" && !cart[k].itemId?.startsWith("addon_")) msg+=`   📝 Instructions: ${cart[k].instructions}\n`; msg+=`\n`; } msg+=`═══════════\n*Subtotal: Rs ${subtotal.toLocaleString()}*`; pendingOrderMessage=msg; document.getElementById("cartModal").style.display="none"; document.getElementById("deliveryModal").classList.add("active"); document.body.style.overflow="hidden"; document.getElementById("deliveryDetails").style.display="none"; document.getElementById("pickupDetails").style.display="none"; document.getElementById("dineinDetails").style.display="none"; selectedPayment=selectedPaymentPickup=selectedPaymentDinein=null; }
-function selectPayment(t){ selectedPayment=t; document.getElementById("payment_cod").classList.remove("selected"); document.getElementById("payment_bank").classList.remove("selected"); if(t==='cod'){ document.getElementById("payment_cod").classList.add("selected"); document.querySelector("#payment_bank .bank-details").style.display="none"; }else{ document.getElementById("payment_bank").classList.add("selected"); document.querySelector("#payment_bank .bank-details").style.display="block"; } }
-function selectPaymentPickup(t){ selectedPaymentPickup=t; document.getElementById("pickup_payment_cod").classList.remove("selected"); document.getElementById("pickup_payment_bank").classList.remove("selected"); if(t==='cod'){ document.getElementById("pickup_payment_cod").classList.add("selected"); document.querySelector("#pickup_payment_bank .bank-details").style.display="none"; }else{ document.getElementById("pickup_payment_bank").classList.add("selected"); document.querySelector("#pickup_payment_bank .bank-details").style.display="block"; } }
-function selectPaymentDinein(t){ selectedPaymentDinein=t; document.getElementById("dinein_payment_cash").classList.remove("selected"); document.getElementById("dinein_payment_bank").classList.remove("selected"); if(t==='cash'){ document.getElementById("dinein_payment_cash").classList.add("selected"); document.querySelector("#dinein_payment_bank .bank-details").style.display="none"; }else{ document.getElementById("dinein_payment_bank").classList.add("selected"); document.querySelector("#dinein_payment_bank .bank-details").style.display="block"; } }
-function selectOrderType(t){ currentOrderType=t; document.getElementById("deliveryDetails").style.display="none"; document.getElementById("pickupDetails").style.display="none"; document.getElementById("dineinDetails").style.display="none"; if(t==='pickup') { document.getElementById("pickupDetails").style.display="block"; } else if(t==='delivery'){ document.getElementById("deliveryDetails").style.display="block"; let areas=["Hassan Abdal","Wah Cantt","Taxila","Kohistan Enclave","Shah Wali Colony","Khan Model Town","Dhoke Dollian","Cement Company","Panja Sahib","Wah Garden","New City"]; let cont=document.getElementById("areaButtonsContainer"); cont.innerHTML=""; areas.forEach(a=>{ let btn=document.createElement("button"); btn.className="area-btn"; btn.innerText=a; btn.onclick=()=>{ document.getElementById("customLocation").value=a; validateLocationLive(a); }; cont.appendChild(btn); }); document.getElementById("customLocation").oninput=(e)=>validateLocationLive(e.target.value); document.getElementById("paymentSection").style.display="block"; } else if(t==='dinein') { document.getElementById("dineinDetails").style.display="block"; } }
-function validateLocationLive(l){ let div=document.getElementById("locationValidation"); if(!l){div.innerHTML="";return;} if(isLocationAllowed(l)){ div.innerHTML="✅ Delivery available!"; div.className="success-text"; }else{ div.innerHTML="❌ Outside delivery zone (Hassan Abdal - Wah Cantt - Taxila corridor)"; div.className="info-text"; div.style.color="#d90429"; } }
-function confirmDeliveryLocation(){ let loc=document.getElementById("customLocation").value.trim(); if(!loc||!isLocationAllowed(loc)){alert("Valid address required.");return;} if(!selectedPayment){alert("Select payment");return;} let payText=selectedPayment==='cod'?"💵 Cash on Delivery":"🏦 Meezan Bank Transfer\nAccount: Shabbir Aziz | 03080102761475\n⚠️ Send screenshot after transfer to 923320929999"; let subtotalOnly=0; for(let k in cart){ subtotalOnly += cart[k].qty*cart[k].price; } let totalWithDelivery = subtotalOnly + DELIVERY_FEE; let finalMsg=pendingOrderMessage+`\n🚚 *HOME DELIVERY*\n📍 ${loc}\n💳 Payment: ${payText}\n➕ Delivery: Rs ${DELIVERY_FEE}\n\n*TOTAL: Rs ${totalWithDelivery}*`; window.open("https://wa.me/"+CLIENT_WHATSAPP+"?text="+encodeURIComponent(finalMsg),'_blank'); closeDeliveryModal(); cart={}; updateUI(); render(); }
-function confirmPickup(){ if(!selectedPaymentPickup){alert("Select payment");return;} let payText=selectedPaymentPickup==='cod'?"💵 Cash on Pickup":"🏦 Meezan Bank Transfer\nAccount: Shabbir Aziz | 03080102761475\n⚠️ Send screenshot after transfer to 923320929999"; let total=parseInt(document.getElementById("totalPrice").innerText.replace(/[^0-9]/g,'')) || 0; let finalMsg=pendingOrderMessage+`\n🍽️ *PICKUP*\n📍 Butt Karahi, GT Road, Wah Cantt\n💳 Payment: ${payText}\n\n*TOTAL: Rs ${total}*`; window.open("https://wa.me/"+CLIENT_WHATSAPP+"?text="+encodeURIComponent(finalMsg),'_blank'); closeDeliveryModal(); cart={}; updateUI(); render(); }
-function confirmDineIn(){ if(!selectedPaymentDinein){alert("Select payment");return;} let bookingType = document.querySelector('input[name="dineBookingType"]:checked')?.value || "Gents"; let payText=selectedPaymentDinein==='cash'?"💵 Cash at Restaurant":"🏦 Meezan Bank Transfer\nAccount: Shabbir Aziz | 03080102761475\n⚠️ Send screenshot after transfer to 923320929999"; let total=parseInt(document.getElementById("totalPrice").innerText.replace(/[^0-9]/g,'')) || 0; let finalMsg=pendingOrderMessage+`\n🍽️ *DINE-IN*\n📍 Butt Karahi, GT Road, Wah Cantt\n👥 Booking: ${bookingType} Section\n💳 Payment: ${payText}\n\n*TOTAL: Rs ${total}*`; window.open("https://wa.me/"+CLIENT_WHATSAPP+"?text="+encodeURIComponent(finalMsg),'_blank'); closeDeliveryModal(); cart={}; updateUI(); render(); }
-function closeDeliveryModal(){ document.getElementById("deliveryModal").classList.remove("active"); document.body.style.overflow="auto"; currentOrderType=null; }
-render();
-document.addEventListener('keydown', e => { if(e.key === 'Escape') { closeImageModal(); closeAddonsModal(); closeDeliveryModal(); } });
+renderMenu();
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeImageModal(); closeAddonsModal(); closeDeliveryModal(); } });
 </script>
 </body>
 </html>
