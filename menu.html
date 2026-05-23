@@ -118,6 +118,8 @@
         .delivery-options { display: flex; gap: 15px; margin: 25px 0; }
         .delivery-option { flex: 1; padding: 15px; border: 2px solid #e0e0e0; border-radius: 20px; cursor: pointer; font-weight: 700; transition: 0.3s; }
         .delivery-option:hover { border-color: var(--primary); transform: translateY(-3px); }
+        .input-field { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 12px; font-size: 1rem; margin: 10px 0; }
+        .input-field:focus { border-color: var(--primary); outline: none; }
         .location-input { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 12px; font-size: 1rem; margin: 15px 0; }
         .location-input:focus { border-color: var(--primary); outline: none; }
         .area-buttons { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 15px 0; max-height: 150px; overflow-y: auto; }
@@ -155,6 +157,8 @@
         .booking-radio-group label { margin: 0; font-weight: 500; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; }
         .addons-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
         .back-addon-top { background: var(--primary); color: white; border: none; padding: 6px 12px; border-radius: 30px; font-size: 0.8rem; cursor: pointer; }
+        .required-star { color: red; margin-left: 3px; }
+        .field-error { border-color: #d90429 !important; background-color: #fff0f0; }
     </style>
 </head>
 <body>
@@ -202,6 +206,7 @@
     </div>
 </div>
 
+<!-- Delivery Modal with Phone & Address Fields -->
 <div id="deliveryModal" class="delivery-modal">
     <div class="delivery-card">
         <h3 style="color:var(--primary)">📦 Order Type</h3>
@@ -210,9 +215,67 @@
             <div class="delivery-option" onclick="selectOrderType('pickup')">🏠 Pickup</div>
             <div class="delivery-option" onclick="selectOrderType('delivery')">🚚 Home Delivery</div>
         </div>
-        <div id="deliveryDetails" style="display:none"><hr><h4>📍 Your Location</h4><div class="area-buttons" id="areaButtonsContainer"></div><input type="text" id="customLocation" class="location-input" placeholder="Type your full address"><div id="locationValidation" class="info-text"></div><div id="paymentSection" style="display:none; margin-top: 20px;"><hr><h4>💳 Payment Method</h4><div class="payment-options"><div class="payment-option" onclick="selectPayment('cod')" id="payment_cod"><div class="payment-name">💵 Cash on Delivery</div></div><div class="payment-option" onclick="selectPayment('bank')" id="payment_bank"><div class="payment-name">🏦 Meezan Bank Transfer</div><div class="bank-details" id="bankDetails" style="display:none;"><p>Account: Shabbir Aziz | 03080102761475</p><div class="payment-warning">⚠️ After completing bank transfer, please send screenshot of payment confirmation on WhatsApp (923320929999) to confirm your order.</div></div></div></div></div><button class="confirm-delivery" onclick="confirmDeliveryLocation()">✅ Confirm & Continue</button></div>
-        <div id="pickupDetails" style="display:none"><hr><h4>🏠 Pickup</h4><p><strong>Butt Karahi, GT Road, Wah Cantt</strong></p><div id="paymentSectionPickup"><hr><h4>💳 Payment</h4><div class="payment-options"><div class="payment-option" onclick="selectPaymentPickup('cod')" id="pickup_payment_cod"><div class="payment-name">💵 Cash on Pickup</div></div><div class="payment-option" onclick="selectPaymentPickup('bank')" id="pickup_payment_bank"><div class="payment-name">🏦 Meezan Bank Transfer</div><div class="bank-details" id="bankDetailsPickup" style="display:none;"><p>Account: Shabbir Aziz | 03080102761475</p><div class="payment-warning">⚠️ After bank transfer, send screenshot via WhatsApp (923320929999) for order confirmation.</div></div></div></div></div><button class="confirm-delivery" onclick="confirmPickup()">👍 Confirm Pickup</button></div>
-        <div id="dineinDetails" style="display:none"><hr><h4>🍽️ Dine-in</h4><p><strong>Butt Karahi, GT Road, Wah Cantt</strong></p><div class="booking-radio-group"><strong>📌 Booking Preference:</strong><label><input type="radio" name="dineBookingType" value="Gents" checked> 👨‍🦱 Gents Section</label><label><input type="radio" name="dineBookingType" value="Family"> 👨‍👩‍👧‍👦 Family Section</label></div><div id="paymentSectionDinein"><hr><h4>💳 Payment</h4><div class="payment-options"><div class="payment-option" onclick="selectPaymentDinein('cash')" id="dinein_payment_cash"><div class="payment-name">💵 Cash at Restaurant</div></div><div class="payment-option" onclick="selectPaymentDinein('bank')" id="dinein_payment_bank"><div class="payment-name">🏦 Meezan Bank Transfer</div><div class="bank-details" style="display:none;"><p>Account: Shabbir Aziz | 03080102761475</p><div class="payment-warning">⚠️ After transfer, send screenshot via WhatsApp (923320929999) to confirm booking.</div></div></div></div></div><button class="confirm-delivery" onclick="confirmDineIn()">✅ Confirm Dine-in</button></div>
+
+        <!-- Delivery Section (Home Delivery) -->
+        <div id="deliveryDetails" style="display:none">
+            <hr>
+            <h4>📞 Your Details</h4>
+            <input type="text" id="deliveryName" class="input-field" placeholder="Your Name *" required>
+            <input type="tel" id="deliveryPhone" class="input-field" placeholder="Phone Number * (e.g., 03xx-xxxxxxx)" required>
+            <h4>📍 Delivery Address</h4>
+            <div class="area-buttons" id="areaButtonsContainer"></div>
+            <input type="text" id="customLocation" class="location-input" placeholder="Full address (Street, Sector, Landmark) *" required>
+            <div id="locationValidation" class="info-text"></div>
+            <div id="paymentSection" style="display:none; margin-top: 20px;">
+                <hr><h4>💳 Payment Method</h4>
+                <div class="payment-options">
+                    <div class="payment-option" onclick="selectPayment('cod')" id="payment_cod"><div class="payment-name">💵 Cash on Delivery</div></div>
+                    <div class="payment-option" onclick="selectPayment('bank')" id="payment_bank"><div class="payment-name">🏦 Meezan Bank Transfer</div><div class="bank-details" id="bankDetails" style="display:none;"><p>Account: Shabbir Aziz | 03080102761475</p><div class="payment-warning">⚠️ After completing bank transfer, please send screenshot of payment confirmation on WhatsApp (923320929999) to confirm your order.</div></div></div>
+                </div>
+            </div>
+            <button class="confirm-delivery" onclick="confirmDeliveryLocation()">✅ Confirm & Continue</button>
+        </div>
+
+        <!-- Pickup Section -->
+        <div id="pickupDetails" style="display:none">
+            <hr>
+            <h4>📞 Your Details</h4>
+            <input type="text" id="pickupName" class="input-field" placeholder="Your Name *" required>
+            <input type="tel" id="pickupPhone" class="input-field" placeholder="Phone Number * (e.g., 03xx-xxxxxxx)" required>
+            <h4>🏠 Pickup Location</h4>
+            <p><strong>Butt Karahi, GT Road, Wah Cantt</strong></p>
+            <div id="paymentSectionPickup">
+                <hr><h4>💳 Payment</h4>
+                <div class="payment-options">
+                    <div class="payment-option" onclick="selectPaymentPickup('cod')" id="pickup_payment_cod"><div class="payment-name">💵 Cash on Pickup</div></div>
+                    <div class="payment-option" onclick="selectPaymentPickup('bank')" id="pickup_payment_bank"><div class="payment-name">🏦 Meezan Bank Transfer</div><div class="bank-details" id="bankDetailsPickup" style="display:none;"><p>Account: Shabbir Aziz | 03080102761475</p><div class="payment-warning">⚠️ After bank transfer, send screenshot via WhatsApp (923320929999) for order confirmation.</div></div></div>
+                </div>
+            </div>
+            <button class="confirm-delivery" onclick="confirmPickup()">👍 Confirm Pickup</button>
+        </div>
+
+        <!-- Dine-in Section -->
+        <div id="dineinDetails" style="display:none">
+            <hr>
+            <h4>📞 Your Details</h4>
+            <input type="text" id="dineinName" class="input-field" placeholder="Your Name *" required>
+            <input type="tel" id="dineinPhone" class="input-field" placeholder="Phone Number * (e.g., 03xx-xxxxxxx)" required>
+            <h4>🍽️ Dine-in Information</h4>
+            <p><strong>Butt Karahi, GT Road, Wah Cantt</strong></p>
+            <div class="booking-radio-group">
+                <strong>📌 Booking Preference:</strong>
+                <label><input type="radio" name="dineBookingType" value="Gents" checked> 👨‍🦱 Gents Section</label>
+                <label><input type="radio" name="dineBookingType" value="Family"> 👨‍👩‍👧‍👦 Family Section</label>
+            </div>
+            <div id="paymentSectionDinein">
+                <hr><h4>💳 Payment</h4>
+                <div class="payment-options">
+                    <div class="payment-option" onclick="selectPaymentDinein('cash')" id="dinein_payment_cash"><div class="payment-name">💵 Cash at Restaurant</div></div>
+                    <div class="payment-option" onclick="selectPaymentDinein('bank')" id="dinein_payment_bank"><div class="payment-name">🏦 Meezan Bank Transfer</div><div class="bank-details" style="display:none;"><p>Account: Shabbir Aziz | 03080102761475</p><div class="payment-warning">⚠️ After transfer, send screenshot via WhatsApp (923320929999) to confirm booking.</div></div></div>
+                </div>
+            </div>
+            <button class="confirm-delivery" onclick="confirmDineIn()">✅ Confirm Dine-in</button>
+        </div>
         <button class="cancel-btn" onclick="closeDeliveryModal()">Cancel</button>
     </div>
 </div>
@@ -249,7 +312,7 @@ const imageMap = { "Desi Murgh Karahi": "https://i.postimg.cc/vmpVRXCw/IMG-20260
 };
 function getItemImage(name) { let lookup = name.replace(/\s+Makhani$/, ''); if (imageMap[lookup]) return imageMap[lookup]; if (imageMap[name]) return imageMap[name]; return "https://i.postimg.cc/d0Bbj2GQ/images-(4).jpg"; }
 
-// ---------- FULL MENU ----------
+// ---------- FULL MENU (unchanged) ----------
 const baseMenu = [
   { category: "Desi Murgh Karahi", items: [{ name: "Desi Murgh Karahi", variants: [{name:"Half",price:2200},{name:"Full",price:4200}] },{ name: "Desi Murgh Karahi White", price: 4700, isFull: true }]},
   { category: "Chicken Karahi", items: [{ name: "Chicken Karahi Broiler", variants: [{name:"Half",price:1200},{name:"Full",price:2200}] },{ name: "Chicken White Karahi", variants: [{name:"Half",price:1250},{name:"Full",price:2500}] },{ name: "Chicken Green Karahi", variants: [{name:"Half",price:1250},{name:"Full",price:2500}] },{ name: "Chicken Achari Karahi", variants: [{name:"Half",price:1200},{name:"Full",price:2400}] }]},
@@ -291,7 +354,7 @@ function buildFullMenuWithMakhani() {
 }
 const menuData = buildFullMenuWithMakhani();
 
-// ----- RENDER MAIN MENU (full correct implementation) -----
+// ----- RENDER MAIN MENU -----
 function scrollToSection(id) { let el = document.getElementById(id); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 165, behavior: 'smooth' }); }
 function changeVariant(btn, itemId, name, varName, price) {
     let parent = btn.parentElement;
@@ -370,7 +433,7 @@ function renderAddonsModal() {
 function openAddonsModal() { renderAddonsModal(); document.getElementById("addonsModal").style.display = "block"; document.body.style.overflow = "hidden"; }
 function closeAddonsModal() { document.getElementById("addonsModal").style.display = "none"; document.body.style.overflow = "auto"; }
 
-// Checkout & delivery (fully preserved)
+// Checkout & delivery with phone/address validation
 function proceedToCheckout() {
     if (Object.keys(cart).length === 0) { alert("Add items first"); return; }
     let msg = "🛒 *NEW ORDER*\n\n", subtotal = 0;
@@ -423,30 +486,43 @@ function validateLocationLive(l) {
     else { div.innerHTML = "❌ Outside delivery zone (Hassan Abdal - Wah Cantt - Taxila corridor)"; div.className = "info-text"; div.style.color = "#d90429"; }
 }
 function confirmDeliveryLocation() {
+    let name = document.getElementById("deliveryName").value.trim();
+    let phone = document.getElementById("deliveryPhone").value.trim();
     let loc = document.getElementById("customLocation").value.trim();
-    if (!loc || !isLocationAllowed(loc)) { alert("Valid address required."); return; }
-    if (!selectedPayment) { alert("Select payment"); return; }
+    if (!name) { alert("Please enter your name"); return; }
+    if (!phone) { alert("Please enter your phone number"); return; }
+    if (!loc) { alert("Please enter your delivery address"); return; }
+    if (!isLocationAllowed(loc)) { alert("Delivery not available at this address."); return; }
+    if (!selectedPayment) { alert("Select payment method"); return; }
     let payText = selectedPayment === 'cod' ? "💵 Cash on Delivery" : "🏦 Meezan Bank Transfer\nAccount: Shabbir Aziz | 03080102761475\n⚠️ Send screenshot after transfer to 923320929999";
     let subtotalOnly = 0; for (let k in cart) { subtotalOnly += cart[k].qty * cart[k].price; }
     let totalWithDelivery = subtotalOnly + DELIVERY_FEE;
-    let finalMsg = pendingOrderMessage + `\n🚚 *HOME DELIVERY*\n📍 ${loc}\n💳 Payment: ${payText}\n➕ Delivery: Rs ${DELIVERY_FEE}\n\n*TOTAL: Rs ${totalWithDelivery}*`;
+    let finalMsg = pendingOrderMessage + `\n👤 *Customer:* ${name}\n📞 *Phone:* ${phone}\n🚚 *HOME DELIVERY*\n📍 *Address:* ${loc}\n💳 Payment: ${payText}\n➕ Delivery Fee: Rs ${DELIVERY_FEE}\n\n*TOTAL: Rs ${totalWithDelivery}*`;
     window.open("https://wa.me/" + CLIENT_WHATSAPP + "?text=" + encodeURIComponent(finalMsg), '_blank');
     closeDeliveryModal(); cart = {}; updateUI(); renderMenu();
 }
 function confirmPickup() {
-    if (!selectedPaymentPickup) { alert("Select payment"); return; }
+    let name = document.getElementById("pickupName").value.trim();
+    let phone = document.getElementById("pickupPhone").value.trim();
+    if (!name) { alert("Please enter your name"); return; }
+    if (!phone) { alert("Please enter your phone number"); return; }
+    if (!selectedPaymentPickup) { alert("Select payment method"); return; }
     let payText = selectedPaymentPickup === 'cod' ? "💵 Cash on Pickup" : "🏦 Meezan Bank Transfer\nAccount: Shabbir Aziz | 03080102761475\n⚠️ Send screenshot after transfer to 923320929999";
     let total = parseInt(document.getElementById("totalPrice").innerText.replace(/[^0-9]/g, '')) || 0;
-    let finalMsg = pendingOrderMessage + `\n🍽️ *PICKUP*\n📍 Butt Karahi, GT Road, Wah Cantt\n💳 Payment: ${payText}\n\n*TOTAL: Rs ${total}*`;
+    let finalMsg = pendingOrderMessage + `\n👤 *Customer:* ${name}\n📞 *Phone:* ${phone}\n🍽️ *PICKUP*\n📍 Butt Karahi, GT Road, Wah Cantt\n💳 Payment: ${payText}\n\n*TOTAL: Rs ${total}*`;
     window.open("https://wa.me/" + CLIENT_WHATSAPP + "?text=" + encodeURIComponent(finalMsg), '_blank');
     closeDeliveryModal(); cart = {}; updateUI(); renderMenu();
 }
 function confirmDineIn() {
-    if (!selectedPaymentDinein) { alert("Select payment"); return; }
+    let name = document.getElementById("dineinName").value.trim();
+    let phone = document.getElementById("dineinPhone").value.trim();
+    if (!name) { alert("Please enter your name"); return; }
+    if (!phone) { alert("Please enter your phone number"); return; }
+    if (!selectedPaymentDinein) { alert("Select payment method"); return; }
     let bookingType = document.querySelector('input[name="dineBookingType"]:checked')?.value || "Gents";
     let payText = selectedPaymentDinein === 'cash' ? "💵 Cash at Restaurant" : "🏦 Meezan Bank Transfer\nAccount: Shabbir Aziz | 03080102761475\n⚠️ Send screenshot after transfer to 923320929999";
     let total = parseInt(document.getElementById("totalPrice").innerText.replace(/[^0-9]/g, '')) || 0;
-    let finalMsg = pendingOrderMessage + `\n🍽️ *DINE-IN*\n📍 Butt Karahi, GT Road, Wah Cantt\n👥 Booking: ${bookingType} Section\n💳 Payment: ${payText}\n\n*TOTAL: Rs ${total}*`;
+    let finalMsg = pendingOrderMessage + `\n👤 *Customer:* ${name}\n📞 *Phone:* ${phone}\n🍽️ *DINE-IN*\n📍 Butt Karahi, GT Road, Wah Cantt\n👥 Booking: ${bookingType} Section\n💳 Payment: ${payText}\n\n*TOTAL: Rs ${total}*`;
     window.open("https://wa.me/" + CLIENT_WHATSAPP + "?text=" + encodeURIComponent(finalMsg), '_blank');
     closeDeliveryModal(); cart = {}; updateUI(); renderMenu();
 }
